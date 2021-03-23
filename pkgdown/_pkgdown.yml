@@ -1,0 +1,13 @@
+url: https://cmap-repos.github.io/cmapgeo
+
+home:
+  title: Chicago Region Geodata
+  description: R-friendly geodata for the Chicago region.
+
+authors:
+  Chicago Metropolitan Agency for Planning:
+    href: https://www.cmap.illinois.gov
+
+template:
+  params:
+    bootswatch: yeti
