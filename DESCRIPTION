@@ -14,6 +14,8 @@ Description: A repository of geodata files representing various geographic and
     Chicago Community Areas; Census tracts, block groups, blocks and public use
     microdata areas (PUMAs); Chicago Metropolitan Agency for Planning travel
     modeling zones and subzones; and, legislative districts.
+URL: https://github.com/CMAP-REPOS/cmapgeo
+BugReports: https://github.com/CMAP-REPOS/cmapgeo/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
