@@ -15,7 +15,7 @@ Description: The cmapgeo package is a repository of geodata files representing
     municipalities; Chicago Community Areas; Census tracts, block groups, blocks
     and public use microdata areas (PUMAs); CMAP travel modeling zones and
     subzones; and, legislative districts (state and federal).
-URL: https://github.com/CMAP-REPOS/cmapgeo
+URL: https://cmap-repos.github.io/cmapgeo, https://github.com/CMAP-REPOS/cmapgeo
 BugReports: https://github.com/CMAP-REPOS/cmapgeo/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
