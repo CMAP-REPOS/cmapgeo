@@ -8,12 +8,13 @@ Authors@R:
            comment = c(ORCID = "0000-0003-1290-2362")),
     person("Chicago Metropolitan Agency for Planning",
            role = "cph"))
-Description: A repository of geodata files representing various geographic and
-    administrative boundaries in the Chicago region. Data is in the sf (simple
-    features) format, and includes boundaries for: counties; municipalities;
-    Chicago Community Areas; Census tracts, block groups, blocks and public use
-    microdata areas (PUMAs); Chicago Metropolitan Agency for Planning travel
-    modeling zones and subzones; and, legislative districts.
+Description: The cmapgeo package is a repository of geodata files representing
+    various geographic and administrative boundaries in the Chicago region,
+    maintained by the Chicago Metropolitan Agency for Planning (CMAP). Data is
+    in the sf (simple features) format, and includes boundaries for: counties;
+    municipalities; Chicago Community Areas; Census tracts, block groups, blocks
+    and public use microdata areas (PUMAs); CMAP travel modeling zones and
+    subzones; and, legislative districts (state and federal).
 URL: https://github.com/CMAP-REPOS/cmapgeo
 BugReports: https://github.com/CMAP-REPOS/cmapgeo/issues
 License: MIT + file LICENSE
