@@ -6,7 +6,7 @@
 \title{Chicago Wards}
 \format{
 A multipolygon \code{sf} object with 50 rows and
-2)` variables:
+2 variables:
 \describe{
 \item{ward_num}{Ward number. Integer.}
 }

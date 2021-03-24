@@ -6,7 +6,7 @@
 \title{Chicago Community Areas (CCAs)}
 \format{
 A multipolygon \code{sf} object with 77 rows and
-3)` variables:
+3 variables:
 \describe{
 \item{cca_name}{Community area name. Character.}
 \item{cca_num}{Numeric ID, as assigned by the City of Chicago. Integer.}
