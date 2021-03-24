@@ -16,6 +16,10 @@
 #' @keywords internal
 "_PACKAGE"
 
+
+
+# Exported variables ------------------------------------------------------
+
 #' cmapgeo's coordinate system
 #'
 #' The EPSG code of the coordinate system that all datasets in cmapgeo have been
@@ -35,6 +39,7 @@
 #'
 #' @export
 cmap_crs <- 3435
+
 
 #' County FIPS code lists
 #'
@@ -88,3 +93,10 @@ county_fips <- list(
     Walworth = "55127"
   )
 )
+
+
+
+# Internal variables ------------------------------------------------------
+
+# Define sq. ft. per sq. mile for calculating area in sq. miles
+sqft_per_sqmi <- 5280 ** 2
