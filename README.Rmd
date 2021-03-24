@@ -48,7 +48,7 @@ The cmapgeo package for [R](https://www.r-project.org) is a repository of
 geodata files representing various geographic and administrative boundaries in
 the Chicago region, maintained by the
 [Chicago Metropolitan Agency for Planning](https://www.cmap.illinois.gov)
-(CMAP). Data is in the [sf](https://r-spatial.github.io/sf) (simple features)
+(CMAP). Data is in the [`sf`](https://r-spatial.github.io/sf) (simple features)
 format, and includes boundaries for:
 
 - Counties
