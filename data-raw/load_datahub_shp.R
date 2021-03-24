@@ -1,0 +1,52 @@
+library(tidyverse)
+library(devtools)
+load_all()
+
+# Links to zipped shapefiles hosted on the CMAP Data Hub
+SUBZONE_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/a515b107-bdee-4b4c-b92e-50d3ecc0d971/resource/c4e47fca-0030-4b66-9221-947120c9c24f/download/subzones17CMAP2019.zip"
+ZONE_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/a515b107-bdee-4b4c-b92e-50d3ecc0d971/resource/8dd37215-98dc-4244-9623-2d28c4e1611c/download/zones17.zip"
+
+# Set temp dir to download and extract ZIP files into
+unzip_dir <- tempdir()
+
+# Process subzones
+subzone_zip <- tempfile()
+download.file(SUBZONE_ZIP_URL, subzone_zip)
+unzip(subzone_zip, exdir = unzip_dir)
+unlink(subzone_zip)
+subzone_sf <- sf::st_read(paste(unzip_dir, "subzones17.shp", sep="\\")) %>%
+  sf::st_transform(cmap_crs) %>%
+  rename(county_fips = county_fip,
+         township_range = township_r,
+         county_name = county_nam) %>%
+  mutate(subzone17 = as.integer(subzone17),
+         zone17 = as.integer(zone17),
+         capzone17 = as.integer(capzone17),
+         cmap = as.logical(cmap),
+         chicago = as.logical(chicago),
+         cbd = as.logical(cbd),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(subzone17, zone17, capzone17, cmap, chicago, cbd, township_range, county_fips, state, sqmi) %>%
+  arrange(subzone17)
+
+# Process zones
+zone_zip <- tempfile()
+download.file(ZONE_ZIP_URL, zone_zip)
+unzip(zone_zip, exdir = unzip_dir)
+unlink(zone_zip)
+zone_sf <- sf::st_read(paste(unzip_dir, "zones17.shp", sep="\\")) %>%
+  sf::st_transform(cmap_crs) %>%
+  rename(county_fips = county_fip,
+         township_range = township_r,
+         county_name = county_nam) %>%
+  mutate(zone17 = as.integer(zone17),
+         cmap = as.logical(cmap),
+         chicago = as.logical(chicago),
+         cbd = as.logical(cbd),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(zone17, cmap, chicago, cbd, township_range, county_fips, state, sqmi) %>%
+  arrange(zone17)
+
+# Save processed data to package's data dir
+usethis::use_data(subzone_sf, overwrite = TRUE)
+usethis::use_data(zone_sf, overwrite = TRUE)
