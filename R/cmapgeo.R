@@ -30,12 +30,12 @@
 #' @seealso <https://epsg.io/3435>
 #'
 #' @examples
-#' sf::st_crs(cmap_crs)  # View projection specification
-#'
 #' \dontrun{
-#' # Reproject another sf dataset to match cmapgeo coordinate system
-#' my_sf_data <- sf::st_transform(my_sf_data, crs = cmap_crs)
+#'   # Reproject any other sf object to match cmapgeo coordinate system
+#'   my_sf_data <- sf::st_transform(my_sf_data, crs = cmap_crs)
 #' }
+#'
+#' sf::st_crs(cmap_crs)  # View projection specification
 #'
 #' @export
 cmap_crs <- 3435

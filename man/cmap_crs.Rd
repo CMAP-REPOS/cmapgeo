@@ -17,12 +17,12 @@ be used as the \code{crs} parameter in \code{sf::st_transform()} to reproject ot
 \code{sf} objects that have a different projection.
 }
 \examples{
-sf::st_crs(cmap_crs)  # View projection specification
-
 \dontrun{
-# Reproject another sf dataset to match cmapgeo coordinate system
-my_sf_data <- sf::st_transform(my_sf_data, crs = cmap_crs)
+  # Reproject any other sf object to match cmapgeo coordinate system
+  my_sf_data <- sf::st_transform(my_sf_data, crs = cmap_crs)
 }
+
+sf::st_crs(cmap_crs)  # View projection specification
 
 }
 \seealso{
