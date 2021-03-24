@@ -3,7 +3,7 @@
 \docType{data}
 \name{cca_sf}
 \alias{cca_sf}
-\title{Chicago Community Areas (CCAs)}
+\title{Chicago community areas (CCAs)}
 \format{
 A multipolygon \code{sf} object with 77 rows and 4
 variables:

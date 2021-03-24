@@ -1,6 +1,6 @@
 # Datasets created with data-raw/load_chicago_geojson.R -------------------
 
-#' Chicago Community Areas (CCAs)
+#' Chicago community areas (CCAs)
 #'
 #' The official boundaries of the Chicago Community Areas. Obtained 3/24/2021.
 #'
@@ -23,9 +23,9 @@
 "cca_sf"
 
 
-#' Chicago Wards (2015-Present)
+#' Chicago wards, 2015-present
 #'
-#' The official boundaries of the current Chicago Wards (established in May of
+#' The official boundaries of the current Chicago wards (established in May of
 #' 2015). Obtained 3/24/2021.
 #'
 #' @format
@@ -49,7 +49,55 @@
 
 # Datasets created with data-raw/load_datahub_shp.R -----------------------
 
-#' CMAP Travel Modeling Subzones (2017)
+#' Councils of Mayors (COMs), 2013
+#'
+#' This dataset was developed by CMAP to create a more up-to-date depiction of
+#' Council of Mayors (COM) boundaries. Since COMs are made up of groups of
+#' municipalities, CMAP utilized the most current available municipal boundaries
+#' from the seven counties to help construct this file in September 2010. This
+#' file was updated in March 2013 to reflect the expansion of the MPA into
+#' DeKalb County (Sandwich and Somonauk Townships).
+#'
+#' DISCLAIMER: Subregional Councils of Mayors (COM) boundaries are a hybrid of
+#' county and municipal boundaries. The council boundaries are based on the
+#' membership of municipalities within a subregional council. County boundaries
+#' are followed in unincorporated areas. For municipalities designated as
+#' belonging to more than one council, the county boundary is followed. Example
+#' 1: the City of Naperville is a member of the DuPage Council of Mayors; since
+#' Naperville city limits extend into Will County, the DuPage COM boundary
+#' follows the Naperville boundary (including all unincorporated pockets) in
+#' Will County. Example 2: Buffalo Grove belongs to both the Lake County and
+#' Northwest subregional councils; in this case, the subregional boundary
+#' follows the county boundary through Buffalo Grove.
+#'
+#' It is important to note here that the portions of COM boundaries, defined by
+#' municipalities, are fluid: they change as a village annexes adjacent
+#' unincorporated land. The boundaries depicted in this dataset reflect
+#' municipal boundaries of varying vintages and sources, and cannot be
+#' considered “true” for any given point in time.
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(com_sf)` rows and `r ncol(com_sf)`
+#' variables:
+#' \describe{
+#'   \item{council}{Council of Mayors name (short). Character.}
+#'   \item{full_name}{Council of Mayors name (full). Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries/resource/cbe742e0-2e78-4a54-95c2-d694703e1ae6)
+#'
+#' @examples
+#' # Display the CoMs with tmap
+#' library(tmap)
+#' tmap_mode("view")
+#' tm_shape(com_sf) + tm_polygons(col="MAP_COLORS", alpha=0.5)
+"com_sf"
+
+
+
+#' CMAP Travel Modeling Subzones, 2017
 #'
 #' The 2017 subzones (a.k.a. MAZs) used by [CMAP](http://cmap.illinois.gov) for
 #' travel demand modeling and socioeconomic forecasting. Covers the 7-county
@@ -109,7 +157,7 @@
 "subzone_sf"
 
 
-#' CMAP Travel Modeling Zones (2017)
+#' CMAP Travel Modeling Zones, 2017
 #'
 #' The 2017 zones (a.k.a. TAZs) used by [CMAP](http://cmap.illinois.gov) for
 #' travel demand modeling. Covers the 7-county CMAP region, plus 14 other

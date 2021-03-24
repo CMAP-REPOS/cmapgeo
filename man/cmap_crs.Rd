@@ -3,7 +3,7 @@
 \docType{data}
 \name{cmap_crs}
 \alias{cmap_crs}
-\title{cmapgeo's coordinate system}
+\title{Geodata coordinate system}
 \format{
 An object of class \code{numeric} of length 1.
 }

@@ -3,11 +3,25 @@ library(devtools)
 load_all()
 
 # Links to zipped shapefiles hosted on the CMAP Data Hub
+COM_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/a466a0bf-3c3e-48cb-8297-6eb55f49fb50/resource/cbe742e0-2e78-4a54-95c2-d694703e1ae6/download/CoMCMAP201303.zip"
 SUBZONE_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/a515b107-bdee-4b4c-b92e-50d3ecc0d971/resource/c4e47fca-0030-4b66-9221-947120c9c24f/download/subzones17CMAP2019.zip"
 ZONE_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/a515b107-bdee-4b4c-b92e-50d3ecc0d971/resource/8dd37215-98dc-4244-9623-2d28c4e1611c/download/zones17.zip"
 
 # Set temp dir to download and extract ZIP files into
 unzip_dir <- tempdir()
+
+# Process Councils of Mayors
+com_zip <- tempfile()
+download.file(COM_ZIP_URL, com_zip)
+unzip(com_zip, exdir = unzip_dir)
+unlink(com_zip)
+com_sf <- sf::st_read(paste(unzip_dir, "CoM_CMAP_201303.shp", sep="\\")) %>%
+  sf::st_transform(cmap_crs) %>%
+  rename(council = Council,
+         full_name = FullName) %>%
+  mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(council, full_name, sqmi) %>%
+  arrange(council)
 
 # Process subzones
 subzone_zip <- tempfile()
@@ -48,5 +62,6 @@ zone_sf <- sf::st_read(paste(unzip_dir, "zones17.shp", sep="\\")) %>%
   arrange(zone17)
 
 # Save processed data to package's data dir
+usethis::use_data(com_sf, overwrite = TRUE)
 usethis::use_data(subzone_sf, overwrite = TRUE)
 usethis::use_data(zone_sf, overwrite = TRUE)

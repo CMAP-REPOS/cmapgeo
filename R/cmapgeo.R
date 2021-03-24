@@ -20,7 +20,7 @@
 
 # Exported variables ------------------------------------------------------
 
-#' cmapgeo's coordinate system
+#' Geodata coordinate system
 #'
 #' The EPSG code of the coordinate system that all datasets in cmapgeo have been
 #' projected in -- specifically, Illinois State Plane East (NAD83, ft). It can

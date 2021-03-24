@@ -3,7 +3,7 @@
 \docType{data}
 \name{ward_sf}
 \alias{ward_sf}
-\title{Chicago Wards (2015-Present)}
+\title{Chicago wards, 2015-present}
 \format{
 A multipolygon \code{sf} object with 50 rows and 3
 variables:
@@ -20,7 +20,7 @@ variables:
 ward_sf
 }
 \description{
-The official boundaries of the current Chicago Wards (established in May of
+The official boundaries of the current Chicago wards (established in May of
 2015). Obtained 3/24/2021.
 }
 \examples{
