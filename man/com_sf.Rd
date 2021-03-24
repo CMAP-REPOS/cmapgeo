@@ -3,7 +3,7 @@
 \docType{data}
 \name{com_sf}
 \alias{com_sf}
-\title{Councils of Mayors (COMs), 2013}
+\title{CMAP Subregional Councils of Mayors (COMs), 2013}
 \format{
 A multipolygon \code{sf} object with 12 rows and 4
 variables:
@@ -48,9 +48,11 @@ municipal boundaries of varying vintages and sources, and cannot be
 considered “true” for any given point in time.
 }
 \examples{
-# Display the CoMs with tmap
-library(tmap)
-tmap_mode("view")
-tm_shape(com_sf) + tm_polygons(col="MAP_COLORS", alpha=0.5)
+# Display the COMs with ggplot2
+library(ggplot2)
+ggplot(data = com_sf) + geom_sf(lwd = 0.1) + theme_void()
+}
+\seealso{
+\url{https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils}
 }
 \keyword{datasets}

@@ -14,7 +14,8 @@
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source [Chicago Data Portal](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6)
+#' @source
+#' [Chicago Data Portal](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6)
 #'
 #' @examples
 #' # Display the CCAs with ggplot2
@@ -37,7 +38,8 @@
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source [Chicago Data Portal](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Wards-2015-/sp34-6z76)
+#' @source
+#' [Chicago Data Portal](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Wards-2015-/sp34-6z76)
 #'
 #' @examples
 #' # Display the wards with ggplot2
@@ -49,7 +51,7 @@
 
 # Datasets created with data-raw/load_datahub_shp.R -----------------------
 
-#' Councils of Mayors (COMs), 2013
+#' CMAP Subregional Councils of Mayors (COMs), 2013
 #'
 #' This dataset was developed by CMAP to create a more up-to-date depiction of
 #' Council of Mayors (COM) boundaries. Since COMs are made up of groups of
@@ -86,15 +88,16 @@
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries/resource/cbe742e0-2e78-4a54-95c2-d694703e1ae6)
+#' @source
+#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries/resource/cbe742e0-2e78-4a54-95c2-d694703e1ae6)
+#'
+#' @seealso <https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils>
 #'
 #' @examples
-#' # Display the CoMs with tmap
-#' library(tmap)
-#' tmap_mode("view")
-#' tm_shape(com_sf) + tm_polygons(col="MAP_COLORS", alpha=0.5)
+#' # Display the COMs with ggplot2
+#' library(ggplot2)
+#' ggplot(data = com_sf) + geom_sf(lwd = 0.1) + theme_void()
 "com_sf"
-
 
 
 #' CMAP Travel Modeling Subzones, 2017
@@ -148,7 +151,8 @@
 #'   \item{geometry}{Feature geometry. `sf` polygon.}
 #' }
 #'
-#' @source [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems/resource/c4e47fca-0030-4b66-9221-947120c9c24f)
+#' @source
+#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems/resource/c4e47fca-0030-4b66-9221-947120c9c24f)
 #'
 #' @examples
 #' # Display the subzones with ggplot2
@@ -187,7 +191,8 @@
 #'   \item{geometry}{Feature geometry. `sf` polygon.}
 #' }
 #'
-#' @source [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems/resource/8dd37215-98dc-4244-9623-2d28c4e1611c)
+#' @source
+#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems/resource/8dd37215-98dc-4244-9623-2d28c4e1611c)
 #'
 #' @examples
 #' # Display the zones with ggplot2
