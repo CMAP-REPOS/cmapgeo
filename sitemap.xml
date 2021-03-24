@@ -16,6 +16,12 @@
     <loc>https://cmap-repos.github.io/cmapgeo/reference/county_fips.html</loc>
   </url>
   <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/subzone_sf.html</loc>
+  </url>
+  <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/ward_sf.html</loc>
+  </url>
+  <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/zone_sf.html</loc>
   </url>
 </urlset>
