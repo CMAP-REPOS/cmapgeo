@@ -134,7 +134,12 @@ be used as the <code>crs</code> parameter in <code><a href='https://r-spatial.gi
     <div class='dont-index'><p><a href='https://epsg.io/3435'>https://epsg.io/3435</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_crs.html'>st_crs</a></span><span class='op'>(</span><span class='va'>cmap_crs</span><span class='op'>)</span>  <span class='co'># View projection specification</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># Reproject any other sf object to match cmapgeo coordinate system</span>
+  <span class='va'>my_sf_data</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='va'>my_sf_data</span>, crs <span class='op'>=</span> <span class='va'>cmap_crs</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_crs.html'>st_crs</a></span><span class='op'>(</span><span class='va'>cmap_crs</span><span class='op'>)</span>  <span class='co'># View projection specification</span>
 </div><div class='output co'>#&gt; Coordinate Reference System:
 #&gt;   User input: EPSG:3435 
 #&gt;   wkt:
@@ -176,11 +181,6 @@ be used as the <code>crs</code> parameter in <code><a href='https://r-spatial.gi
 #&gt;         AREA["USA - Illinois - SPCS - E"],
 #&gt;         BBOX[37.06,-89.28,42.5,-87.02]],
 #&gt;     ID["EPSG",3435]]</div><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Reproject another sf dataset to match cmapgeo coordinate system</span>
-<span class='va'>my_sf_data</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='va'>my_sf_data</span>, crs <span class='op'>=</span> <span class='va'>cmap_crs</span><span class='op'>)</span>
-<span class='op'>}</span>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
