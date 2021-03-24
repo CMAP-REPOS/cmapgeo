@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Councils of Mayors (COMs), 2013 — com_sf • cmapgeo</title>
+<title>CMAP Subregional Councils of Mayors (COMs), 2013 — com_sf • cmapgeo</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Councils of Mayors (COMs), 2013 — com_sf" />
+<meta property="og:title" content="CMAP Subregional Councils of Mayors (COMs), 2013 — com_sf" />
 <meta property="og:description" content="This dataset was developed by CMAP to create a more up-to-date depiction of
 Council of Mayors (COM) boundaries. Since COMs are made up of groups of
 municipalities, CMAP utilized the most current available municipal boundaries
@@ -113,7 +113,7 @@ DeKalb County (Sandwich and Somonauk Townships)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Councils of Mayors (COMs), 2013</h1>
+    <h1>CMAP Subregional Councils of Mayors (COMs), 2013</h1>
     <small class="dont-index">Source: <a href='https://github.com/CMAP-REPOS/cmapgeo/blob/master/R/data.R'><code>R/data.R</code></a></small>
     <div class="hidden name"><code>com_sf.Rd</code></div>
     </div>
@@ -162,13 +162,15 @@ municipalities, are fluid: they change as a village annexes adjacent
 unincorporated land. The boundaries depicted in this dataset reflect
 municipal boundaries of varying vintages and sources, and cannot be
 considered “true” for any given point in time.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><a href='https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils'>https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Display the CoMs with tmap</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tmap_mode.html'>tmap_mode</a></span><span class='op'>(</span><span class='st'>"view"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>tmap mode set to interactive viewing</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>com_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col<span class='op'>=</span><span class='st'>"MAP_COLORS"</span>, alpha<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</span></div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Display the COMs with ggplot2</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>com_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='com_sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
