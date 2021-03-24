@@ -4,6 +4,9 @@
     <loc>https://cmap-repos.github.io/cmapgeo/index.html</loc>
   </url>
   <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/cca_sf.html</loc>
+  </url>
+  <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/cmap_crs.html</loc>
   </url>
   <url>
@@ -11,5 +14,8 @@
   </url>
   <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/county_fips.html</loc>
+  </url>
+  <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/ward_sf.html</loc>
   </url>
 </urlset>
