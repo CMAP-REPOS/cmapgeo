@@ -47,6 +47,7 @@ format, and includes boundaries for:
 -   Census tracts, block groups, blocks and public use microdata areas
     (PUMAs)
 -   CMAP travel modeling zones and subzones
+-   CMAP subregional Councils of Mayors (COMs)
 -   Legislative districts (state and federal)
 
 ## Installation
