@@ -51,8 +51,7 @@ format, and includes boundaries for:
 
 ## Installation
 
-You can install the released version of cmapgeo from
-[CRAN](https://CRAN.R-project.org) with:
+Run the following to install or update cmapgeo:
 
 ``` r
 ## Install current version from GitHub
