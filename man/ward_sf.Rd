@@ -9,6 +9,7 @@ A multipolygon \code{sf} object with 50 rows and
 2 variables:
 \describe{
 \item{ward_num}{Ward number. Integer.}
+\item{geometry}{Feature geometry. \code{sf} multipolygon.}
 }
 }
 \source{

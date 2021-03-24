@@ -10,6 +10,7 @@ A multipolygon \code{sf} object with 77 rows and
 \describe{
 \item{cca_name}{Community area name. Character.}
 \item{cca_num}{Numeric ID, as assigned by the City of Chicago. Integer.}
+\item{geometry}{Feature geometry. \code{sf} multipolygon.}
 }
 }
 \source{

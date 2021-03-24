@@ -9,6 +9,7 @@
 #' \describe{
 #'   \item{cca_name}{Community area name. Character.}
 #'   \item{cca_num}{Numeric ID, as assigned by the City of Chicago. Integer.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
 #' @source [Chicago Data Portal](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6)
@@ -29,6 +30,7 @@
 #' `r ncol(ward_sf)` variables:
 #' \describe{
 #'   \item{ward_num}{Ward number. Integer.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
 #' @source [Chicago Data Portal](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Wards-2015-/sp34-6z76)
