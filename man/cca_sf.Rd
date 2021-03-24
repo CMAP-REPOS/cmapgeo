@@ -5,8 +5,8 @@
 \alias{cca_sf}
 \title{Chicago Community Areas (CCAs)}
 \format{
-A multipolygon \code{sf} object with 77 rows and
-3 variables:
+A multipolygon \code{sf} object with 77 rows and 3
+variables:
 \describe{
 \item{cca_name}{Community area name. Character.}
 \item{cca_num}{Numeric ID, as assigned by the City of Chicago. Integer.}
@@ -25,6 +25,6 @@ The official boundaries of the Chicago Community Areas. Obtained 3/24/2021.
 \examples{
 # Display the CCAs with ggplot2
 library(ggplot2)
-ggplot(data = cca_sf) + geom_sf() + theme_void()
+ggplot(data = cca_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

@@ -50,9 +50,11 @@ cmap_crs <- 3435
 #' county_fips$xin   # External Indiana counties
 #' county_fips$xwi   # External Wisconsin counties
 #'
-#' unlist(county_fips)  # Combine all 4 divisions into a single vector
+#' # Get the names of the CMAP counties
+#' names(county_fips$cmap)
 #'
-#' names(county_fips$xwi)  # Get the names of the Wisconsin counties
+#' # Combine all 4 divisions into a single vector
+#' unlist(county_fips)
 #'
 #' @export
 county_fips <- list(
