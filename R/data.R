@@ -10,6 +10,7 @@
 #' \describe{
 #'   \item{cca_name}{Community area name. Character.}
 #'   \item{cca_num}{Numeric ID, as assigned by the City of Chicago. Integer.}
+#'   \item{sqmi}{Area in square miles. Double.}
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
@@ -32,6 +33,7 @@
 #' variables:
 #' \describe{
 #'   \item{ward_num}{Ward number. Integer.}
+#'   \item{sqmi}{Area in square miles. Double.}
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'

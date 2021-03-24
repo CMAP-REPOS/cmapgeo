@@ -5,10 +5,11 @@
 \alias{ward_sf}
 \title{Chicago Wards}
 \format{
-A multipolygon \code{sf} object with 50 rows and 2
+A multipolygon \code{sf} object with 50 rows and 3
 variables:
 \describe{
 \item{ward_num}{Ward number. Integer.}
+\item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} multipolygon.}
 }
 }

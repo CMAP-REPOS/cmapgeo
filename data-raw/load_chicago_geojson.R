@@ -1,4 +1,6 @@
 library(tidyverse)
+library(devtools)
+load_all()
 
 # Links to City of Chicago Socrata resources' GeoJSON exports
 CCA_GEOJSON_URL <- "https://data.cityofchicago.org/api/geospatial/cauq-8yn6?method=export&format=GeoJSON"
@@ -11,16 +13,18 @@ cca_sf <- sf::read_sf(CCA_GEOJSON_URL) %>%
     cca_name = case_when(community == "OHARE" ~ "O'Hare",
                          community == "MCKINLEY PARK" ~ "McKinley Park",
                          TRUE ~ str_to_title(community)),
-    cca_num = as.integer(area_numbe)
+    cca_num = as.integer(area_numbe),
+    sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)
   ) %>%
-  select(cca_name, cca_num) %>%
+  select(cca_name, cca_num, sqmi) %>%
   arrange(cca_name)
 
 # Process Chicago Wards
 ward_sf <- sf::read_sf(WARD_GEOJSON_URL) %>%
   sf::st_transform(cmap_crs) %>%
-  mutate(ward_num = as.integer(ward)) %>%
-  select(ward_num) %>%
+  mutate(ward_num = as.integer(ward),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(ward_num, sqmi) %>%
   arrange(ward_num)
 
 
