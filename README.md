@@ -43,7 +43,7 @@ format, and includes boundaries for:
 
 -   Counties
 -   Municipalities
--   Chicago Community Areas
+-   Chicago community areas (CCAs) and wards
 -   Census tracts, block groups, blocks and public use microdata areas
     (PUMAs)
 -   CMAP travel modeling zones and subzones

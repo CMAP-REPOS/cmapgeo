@@ -12,9 +12,9 @@ Description: The cmapgeo package is a repository of geodata files representing
     various geographic and administrative boundaries in the Chicago region,
     maintained by the Chicago Metropolitan Agency for Planning (CMAP). Data is
     in the sf (simple features) format, and includes boundaries for: counties;
-    municipalities; Chicago Community Areas; Census tracts, block groups, blocks
-    and public use microdata areas (PUMAs); CMAP travel modeling zones and
-    subzones; and, legislative districts (state and federal).
+    municipalities; Chicago community areas (CCAs) and wards; Census tracts,
+    block groups, blocks and public use microdata areas (PUMAs); CMAP travel
+    modeling zones and subzones; and, legislative districts (state and federal).
 URL: https://cmap-repos.github.io/cmapgeo, https://github.com/CMAP-REPOS/cmapgeo
 BugReports: https://github.com/CMAP-REPOS/cmapgeo/issues
 License: MIT + file LICENSE
@@ -23,6 +23,7 @@ LazyData: true
 Depends: 
     R (>= 2.10)
 Suggests:
+    ggplot2,
     sf
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
