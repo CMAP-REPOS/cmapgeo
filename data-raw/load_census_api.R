@@ -13,6 +13,12 @@ temp_cmap_sf <- tigris::counties(state = STATE) %>%
   sf::st_transform(cmap_crs) %>%
   select(GEOID)
 
+# Get Lake Michigan tracts for erasing
+temp_lakemich_sf <- tigris::tracts(state = STATE, county = c("031", "097")) %>%
+  filter(TRACTCE == "990000") %>%
+  sf::st_transform(cmap_crs) %>%
+  rmapshaper::ms_dissolve()
+
 # Define helper function to determine overlaps with CMAP counties
 intersects_cmap <- function(in_sf) {
   apply(sf::st_overlaps(in_sf, temp_cmap_sf, sparse = FALSE), 1, any) |
@@ -43,7 +49,7 @@ municipality_sf <- tigris::places(state = STATE) %>%
   select(geoid_place, municipality, sqmi) %>%
   arrange(geoid_place)
 
-## Process Census tracts
+# Process Census tracts
 tract_sf <- tigris::tracts(state = STATE, county = COUNTIES_7CO) %>%
   filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
   sf::st_transform(cmap_crs) %>%
@@ -53,7 +59,7 @@ tract_sf <- tigris::tracts(state = STATE, county = COUNTIES_7CO) %>%
   select(geoid_tract, county_fips, sqmi) %>%
   arrange(geoid_tract)
 
-## Process Census block groups
+# Process Census block groups
 blockgroup_sf <- tigris::block_groups(state = STATE, county = COUNTIES_7CO) %>%
   filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
   sf::st_transform(cmap_crs) %>%
@@ -72,6 +78,19 @@ block_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO) %>%
          sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
   select(geoid_block, county_fips, sqmi) %>%
   arrange(geoid_block)
+
+# Process Census PUMAs
+puma_sf <- tigris::pumas(state = STATE) %>%
+  sf::st_transform(cmap_crs) %>%
+  filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
+  rename(geoid_puma = GEOID10,
+         name = NAMELSAD10) %>%
+  mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_puma, name, sqmi) %>%
+  arrange(geoid_puma) %>%
+  rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
+  ## Manually exclude one PUMA, which appears to mistakenly include a *tiny* block in McHenry
+  filter(geoid_puma != "1702901")
 
 # Process Congressional Districts (U.S. House of Representatives)
 congress_sf <- tigris::congressional_districts() %>%
@@ -115,6 +134,7 @@ usethis::use_data(municipality_sf, overwrite = TRUE)
 usethis::use_data(tract_sf, overwrite = TRUE)
 usethis::use_data(blockgroup_sf, overwrite = TRUE)
 usethis::use_data(block_sf, overwrite = TRUE)
+usethis::use_data(puma_sf, overwrite = TRUE)
 usethis::use_data(congress_sf, overwrite = TRUE)
 usethis::use_data(ilga_house_sf, overwrite = TRUE)
 usethis::use_data(ilga_senate_sf, overwrite = TRUE)
