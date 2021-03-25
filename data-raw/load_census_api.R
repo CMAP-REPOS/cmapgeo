@@ -83,12 +83,12 @@ block_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO) %>%
 puma_sf <- tigris::pumas(state = STATE) %>%
   sf::st_transform(cmap_crs) %>%
   filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
+  rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
   rename(geoid_puma = GEOID10,
          name = NAMELSAD10) %>%
   mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
   select(geoid_puma, name, sqmi) %>%
   arrange(geoid_puma) %>%
-  rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
   ## Manually exclude one PUMA, which appears to mistakenly include a *tiny* block in McHenry
   filter(geoid_puma != "1702901")
 
