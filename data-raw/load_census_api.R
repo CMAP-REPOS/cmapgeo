@@ -7,6 +7,19 @@ STATE <- "17"  # Illinois
 COUNTIES_7CO <- c("031", "043", "089", "093", "097", "111", "197")  # CMAP 7
 COUNTIES_MPO <- c(COUNTIES_7CO, "063", "037")  # CMAP 7, plus Grundy and DeKalb
 
+# Get CMAP counties for spatial filtering (not saved) -- includes Lake Michigan
+temp_cmap_sf <- tigris::counties(state = STATE) %>%
+  filter(COUNTYFP %in% COUNTIES_7CO) %>%
+  sf::st_transform(cmap_crs) %>%
+  select(GEOID)
+
+# Define helper function to determine overlaps with CMAP counties
+intersects_cmap <- function(in_sf) {
+  apply(sf::st_overlaps(in_sf, temp_cmap_sf, sparse = FALSE), 1, any) |
+    apply(sf::st_covers(in_sf, temp_cmap_sf, sparse = FALSE), 1, any) |
+    apply(sf::st_covered_by(in_sf, temp_cmap_sf, sparse = FALSE), 1, any)
+}
+
 # Process Census county subdivisions (a.k.a. political townships)
 township_sf <- tigris::county_subdivisions(state = STATE, county = COUNTIES_MPO) %>%
   filter(COUSUBFP != "00000",  # Exclude Lake Michigan "townships"
@@ -23,8 +36,7 @@ township_sf <- tigris::county_subdivisions(state = STATE, county = COUNTIES_MPO)
 municipality_sf <- tigris::places(state = STATE) %>%
   filter(!str_detect(NAMELSAD, " CDP")) %>%  # Incorporated places only
   sf::st_transform(cmap_crs) %>%
-  filter(apply(sf::st_intersects(., township_sf, sparse = FALSE), 1, any)) %>%  # In CMAP MPO only
-  filter(NAME != "Somonauk") %>%  # Exclude Somonauk (doesn't touch 7 counties)
+  filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
   rename(geoid_place = GEOID,
          municipality = NAME) %>%
   mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
@@ -61,9 +73,48 @@ block_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO) %>%
   select(geoid_block, county_fips, sqmi) %>%
   arrange(geoid_block)
 
+# Process Congressional Districts (U.S. House of Representatives)
+congress_sf <- tigris::congressional_districts() %>%
+  filter(STATEFP == STATE, LSAD == "C2") %>%
+  sf::st_transform(cmap_crs) %>%
+  mutate(dist_num = as.integer(CD116FP),
+         dist_name = paste0("IL-", dist_num),
+         dist_name_long = paste("Illinois",
+                                nombre::nom_ord(dist_num, max_n = 0),
+                                "Congressional District"),
+         cmap = intersects_cmap(.),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(dist_num, dist_name, dist_name_long, cmap, sqmi) %>%
+  arrange(dist_num)
+
+# Process IL House Districts
+ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "lower") %>%
+  filter(LSAD == "LL") %>%
+  sf::st_transform(cmap_crs) %>%
+  rename(dist_name = NAMELSAD) %>%
+  mutate(dist_num = as.integer(SLDLST),
+         cmap = intersects_cmap(.),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(dist_num, dist_name, cmap, sqmi) %>%
+  arrange(dist_num)
+
+# Process IL Senate Districts
+ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "upper") %>%
+  filter(LSAD == "LU") %>%
+  sf::st_transform(cmap_crs) %>%
+  rename(dist_name = NAMELSAD) %>%
+  mutate(dist_num = as.integer(SLDUST),
+         cmap = intersects_cmap(.),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(dist_num, dist_name, cmap, sqmi) %>%
+  arrange(dist_num)
+
 # Save processed data to package's data dir
 usethis::use_data(township_sf, overwrite = TRUE)
 usethis::use_data(municipality_sf, overwrite = TRUE)
 usethis::use_data(tract_sf, overwrite = TRUE)
 usethis::use_data(blockgroup_sf, overwrite = TRUE)
 usethis::use_data(block_sf, overwrite = TRUE)
+usethis::use_data(congress_sf, overwrite = TRUE)
+usethis::use_data(ilga_house_sf, overwrite = TRUE)
+usethis::use_data(ilga_senate_sf, overwrite = TRUE)
