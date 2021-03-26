@@ -28,16 +28,17 @@ The United States Congressional Districts in the state of Illinois. From the
 US Census Bureau's TIGER/Line shapefiles, 2019 vintage.
 }
 \details{
-Census Bureau description: "Congressional Districts are the 435 areas from
-which people are elected to the U.S. House of Representatives. After the
-apportionment of congressional seats among the states based on decennial
-census population counts, each state with multiple seats is responsible for
-establishing congressional districts for the purpose of electing
-representatives. Each congressional district is to be as equal in population
-to all other congressional districts in a state as practicable. For the
-District of Columbia, Puerto Rico, and each Island Area, a separate code is
-used to identify the entire areas of these state-equivalent entities as
-having a single nonvoting delegate."
+Census Bureau description:
+
+\emph{"Congressional Districts are the 435 areas from which people are elected to
+the U.S. House of Representatives. After the apportionment of congressional
+seats among the states based on decennial census population counts, each
+state with multiple seats is responsible for establishing congressional
+districts for the purpose of electing representatives. Each congressional
+district is to be as equal in population to all other congressional districts
+in a state as practicable. For the District of Columbia, Puerto Rico, and
+each Island Area, a separate code is used to identify the entire areas of
+these state-equivalent entities as having a single nonvoting delegate."}
 }
 \examples{
 # Display the Congressional Districts with ggplot2

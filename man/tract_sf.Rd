@@ -10,7 +10,7 @@ variables:
 \describe{
 \item{geoid_tract}{11-digit unique tract ID, assigned by the Census
 Bureau. Character.}
-\item{county_fips}{5-digit FIPS code of the county the zone is in.
+\item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
 Character.}
 \item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} polygon.}
@@ -29,25 +29,26 @@ Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 2019 vintage.
 }
 \details{
-Census Bureau description: "Census Tracts are small, relatively permanent
-statistical subdivisions of a county or equivalent entity that are updated by
-local participants prior to each decennial census as part of the Census
-Bureau's Participant Statistical Areas Program. The Census Bureau delineates
-census tracts in situations where no local participant existed or where
-state, local, or tribal governments declined to participate. The primary
-purpose of census tracts is to provide a stable set of geographic units for
-the presentation of statistical data.
+Census Bureau description:
 
-"Census tracts generally have a population size between 1,200 and 8,000
+\emph{"Census Tracts are small, relatively permanent statistical subdivisions of a
+county or equivalent entity that are updated by local participants prior to
+each decennial census as part of the Census Bureau's Participant Statistical
+Areas Program. The Census Bureau delineates census tracts in situations where
+no local participant existed or where state, local, or tribal governments
+declined to participate. The primary purpose of census tracts is to provide a
+stable set of geographic units for the presentation of statistical data.}
+
+\emph{"Census tracts generally have a population size between 1,200 and 8,000
 people, with an optimum size of 4,000 people. A census tract usually covers a
 contiguous area; however, the spatial size of census tracts varies widely
 depending on the density of settlement. Census tract boundaries are
 delineated with the intention of being maintained over a long time so that
 statistical comparisons can be made from census to census. Census tracts
 occasionally are split due to population growth or merged as a result of
-substantial population decline.
+substantial population decline.}
 
-"Census tract boundaries generally follow visible and identifiable features.
+\emph{"Census tract boundaries generally follow visible and identifiable features.
 They may follow nonvisible legal boundaries, such as minor civil division
 (MCD) or incorporated place boundaries in some states and situations, to
 allow for census-tract-to-governmental-unit relationships where the
@@ -57,7 +58,7 @@ geographic hierarchy. Tribal census tracts are a unique geographic entity
 defined within federally recognized American Indian reservations and
 off-reservation trust lands and can cross state and county boundaries. Tribal
 census tracts may be completely different from the census tracts and block
-groups defined by state and county."
+groups defined by state and county."}
 }
 \examples{
 # Display the tracts with ggplot2

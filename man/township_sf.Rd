@@ -11,8 +11,8 @@ A multipolygon \code{sf} object with 128 rows and
 \item{geoid_cousub}{10-digit unique county subdivision/township ID,
 assigned by the Census Bureau. Character.}
 \item{township}{Township name. Character.}
-\item{county_fips}{5-digit FIPS code of the county the subzone is in.
-Character.}
+\item{county_fips}{Unique 5-digit FIPS code of the county the township is
+in. Character.}
 \item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} multipolygon.}
 }
@@ -28,21 +28,24 @@ township_sf
 The political townships (also referred to as "county subdivisions" in Census
 Bureau terminology) that are within the CMAP Metropolitan Planning Area
 (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
-Grundy County and Sandwich & Somonauk Townships in DeKalb County.). From the
+Grundy County and Sandwich & Somonauk Townships in DeKalb County.) From the
 US Census Bureau's TIGER/Line shapefiles, 2019 vintage.
 }
 \details{
-Census Bureau description: "County Subdivisions are the primary divisions of
-counties and equivalent entities. They include census county divisions,
-census subareas, minor civil divisions, and unorganized territories and can
-be classified as either legal or statistical. Each county subdivision is
-assigned a five-character numeric Federal Information Processing Series
-(FIPS) code based on alphabetical sequence within state and an eight-digit
-National Standard feature identifier."
+Census Bureau description:
 
-Note: The City of Chicago is included as a single township in this dataset,
-and has not been subdivided into the eight theoretical townships defined by
-the Cook County Clerk's Office for the purposes of collecting property tax.
+\emph{"County Subdivisions are the primary divisions of counties and equivalent
+entities. They include census county divisions, census subareas, minor civil
+divisions, and unorganized territories and can be classified as either legal
+or statistical. Each county subdivision is assigned a five-character numeric
+Federal Information Processing Series (FIPS) code based on alphabetical
+sequence within state and an eight-digit National Standard feature
+identifier."}
+
+Note: The entire City of Chicago (other than the portion of O'Hare in DuPage
+County) is included as a single township in this dataset, and has not been
+subdivided into the eight theoretical townships defined by the Cook County
+Clerk's Office for the purposes of collecting property tax.
 }
 \examples{
 # Display the townships with ggplot2

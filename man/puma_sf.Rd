@@ -29,20 +29,21 @@ Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 2019 vintage.
 }
 \details{
-Census Bureau description: "Public Use Microdata Areas (PUMAs) are geographic
-areas for which the Census Bureau provides selected extracts of raw data from
-a small sample of census records that are screened to protect
-confidentiality. These extracts are referred to as public use microdata
-sample (PUMS) files.
+Census Bureau description:
 
-"For the 2010 Census, each state, the District of Columbia, Puerto Rico, and
+\emph{"Public Use Microdata Areas (PUMAs) are geographic areas for which the
+Census Bureau provides selected extracts of raw data from a small sample of
+census records that are screened to protect confidentiality. These extracts
+are referred to as public use microdata sample (PUMS) files.}
+
+\emph{"For the 2010 Census, each state, the District of Columbia, Puerto Rico, and
 some Island Area participants delineated PUMAs for use in presenting PUMS
 data based on a 5 percent sample of decennial census or American Community
 Survey data. These areas are required to contain at least 100,000 people.
 This is different from Census 2000 when two types of PUMAs were defined: a 5
 percent PUMA as for 2010 and an additional super-PUMA designed to provide a 1
 percent sample. The PUMAs are identified by a five-digit census code unique
-within state."
+within state."}
 }
 \examples{
 # Display the PUMAs with ggplot2

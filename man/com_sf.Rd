@@ -15,7 +15,7 @@ variables:
 }
 }
 \source{
-\href{https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries/resource/cbe742e0-2e78-4a54-95c2-d694703e1ae6}{CMAP Data Hub}
+\href{https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries}{CMAP Data Hub}
 }
 \usage{
 com_sf

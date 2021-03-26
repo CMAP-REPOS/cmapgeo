@@ -20,15 +20,15 @@ Lake Michigan.) Logical.}
 \item{township_range}{4-digit ID of the
 \href{https://clearinghouse.isgs.illinois.edu/data/reference/illinois-plss-townships}{PLSS township}
 the zone is in; first 2 digits are township, last 2 are range. Character.}
-\item{county_fips}{5-digit FIPS code of the county the zone is in; first
-2 digits are the state FIPS code. Character.}
+\item{county_fips}{Unique 5-digit FIPS code of the county the zone is in;
+first 2 digits are the state FIPS code. Character.}
 \item{state}{State the zone is in (IL, IN or WI). Character.}
 \item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} polygon.}
 }
 }
 \source{
-\href{https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems/resource/8dd37215-98dc-4244-9623-2d28c4e1611c}{CMAP Data Hub}
+\href{https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems}{CMAP Data Hub}
 }
 \usage{
 zone_sf

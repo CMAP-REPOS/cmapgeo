@@ -38,15 +38,15 @@ Lake Michigan.) Logical.}
 \item{township_range}{4-digit ID of the
 \href{https://clearinghouse.isgs.illinois.edu/data/reference/illinois-plss-townships}{PLSS township}
 the subzone is in; first 2 digits are township, last 2 are range. Character.}
-\item{county_fips}{5-digit FIPS code of the county the subzone is in; first
-2 digits are the state FIPS code. Character.}
+\item{county_fips}{Unique 5-digit FIPS code of the county the subzone is
+in; first 2 digits are the state FIPS code. Character.}
 \item{state}{State the subzone is in (IL, IN or WI). Character.}
 \item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} polygon.}
 }
 }
 \source{
-\href{https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems/resource/c4e47fca-0030-4b66-9221-947120c9c24f}{CMAP Data Hub}
+\href{https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems}{CMAP Data Hub}
 }
 \usage{
 subzone_sf

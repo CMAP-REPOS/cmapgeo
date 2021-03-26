@@ -29,16 +29,18 @@ Metropolitan Agency for Planning (CMAP) region. From the US Census Bureau's
 TIGER/Line shapefiles, 2019 vintage.
 }
 \details{
-Census Bureau description: "Incorporated Places are those reported to the
-Census Bureau as legally in existence as of January 1, 2010, as reported in
-the latest Boundary and Annexation Survey (BAS), under the laws of their
-respective states. An incorporated place is established to provide
-governmental functions for a concentration of people as opposed to a minor
-civil division, which generally is created to provide services or administer
-an area without regard, necessarily, to population. Places always are within
-a single state or equivalent entity, but may extend across county and county
-subdivision boundaries. An incorporated place usually is a city, town,
-village, or borough, but can have other legal descriptions."
+Census Bureau description:
+
+\emph{"Incorporated Places are those reported to the Census Bureau as legally in
+existence as of January 1, 2010, as reported in the latest Boundary and
+Annexation Survey (BAS), under the laws of their respective states. An
+incorporated place is established to provide governmental functions for a
+concentration of people as opposed to a minor civil division, which generally
+is created to provide services or administer an area without regard,
+necessarily, to population. Places always are within a single state or
+equivalent entity, but may extend across county and county subdivision
+boundaries. An incorporated place usually is a city, town, village, or
+borough, but can have other legal descriptions."}
 }
 \examples{
 # Display the municipalities with ggplot2

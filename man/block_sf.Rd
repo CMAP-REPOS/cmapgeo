@@ -11,7 +11,7 @@ variables:
 \item{geoid_block}{15-digit unique block ID, assigned by the Census Bureau.
 The parent tract and block group can be identified from the first 11 and 12
 digits, respectively. Character.}
-\item{county_fips}{5-digit FIPS code of the county the zone is in.
+\item{county_fips}{Unique 5-digit FIPS code of the county the block is in.
 Character.}
 \item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} multipolygon.}
@@ -30,18 +30,20 @@ Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 2019 vintage.
 }
 \details{
-Census Bureau description: "Blocks are statistical areas bounded by visible
-features, such as streets, roads, streams, and railroad tracks, and by
-nonvisible boundaries, such as selected property lines and city, township,
-school district, and county limits and short line-of-sight extensions of
-streets and roads. Generally, census blocks are small in area; for example, a
-block in a city bounded on all sides by streets. Census blocks in suburban
-and rural areas may be large, irregular, and bounded by a variety of
-features, such as roads, streams, and transmission lines. In remote areas,
-census blocks may encompass hundreds of square miles. Census blocks cover the
-entire territory of the United States, Puerto Rico, and the Island Areas.
-Census blocks nest within all other tabulated census geographic entities and
-are the basis for all tabulated data."
+Census Bureau description:
+
+\emph{"Blocks are statistical areas bounded by visible features, such as streets,
+roads, streams, and railroad tracks, and by nonvisible boundaries, such as
+selected property lines and city, township, school district, and county
+limits and short line-of-sight extensions of streets and roads. Generally,
+census blocks are small in area; for example, a block in a city bounded on
+all sides by streets. Census blocks in suburban and rural areas may be large,
+irregular, and bounded by a variety of features, such as roads, streams, and
+transmission lines. In remote areas, census blocks may encompass hundreds of
+square miles. Census blocks cover the entire territory of the United States,
+Puerto Rico, and the Island Areas. Census blocks nest within all other
+tabulated census geographic entities and are the basis for all tabulated
+data."}
 }
 \examples{
 # Display the blocks with ggplot2
