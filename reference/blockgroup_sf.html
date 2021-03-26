@@ -131,8 +131,8 @@ Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 <dt>geoid_blkgrp</dt><dd><p>12-digit unique block group ID, assigned by the Census
 Bureau. The parent tract can be identified from the first 11 digits.
 Character.</p></dd>
-<dt>county_fips</dt><dd><p>5-digit FIPS code of the county the zone is in.
-Character.</p></dd>
+<dt>county_fips</dt><dd><p>Unique 5-digit FIPS code of the county the block group
+is in. Character.</p></dd>
 <dt>sqmi</dt><dd><p>Area in square miles. Double.</p></dd>
 <dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> polygon.</p></dd>
 
@@ -144,17 +144,18 @@ Character.</p></dd>
 <a href='https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html'>TIGER/Line</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Census Bureau description: "Block Groups (BGs) are statistical divisions of
-census tracts, are generally defined to contain between 600 and 3,000 people,
-and are used to present data and control block numbering. A block group
-consists of clusters of blocks within the same census tract that have the
-same first digit of their four-digit census block number. For example, blocks
-3001, 3002, 3003, ..., 3999 in census tract 1210.02 belong to BG 3 in that
-census tract. Most BGs were delineated by local participants in the Census
-Bureau's Participant Statistical Areas Program. The Census Bureau delineated
-BGs only where a local or tribal government declined to participate, and a
-regional organization or State Data Center was not available to participate.</p>
-<p>"A BG usually covers a contiguous area. Each census tract contains at least
+    <p>Census Bureau description:</p>
+<p><em>"Block Groups (BGs) are statistical divisions of census tracts, are
+generally defined to contain between 600 and 3,000 people, and are used to
+present data and control block numbering. A block group consists of clusters
+of blocks within the same census tract that have the same first digit of
+their four-digit census block number. For example, blocks 3001, 3002, 3003,
+..., 3999 in census tract 1210.02 belong to BG 3 in that census tract. Most
+BGs were delineated by local participants in the Census Bureau's Participant
+Statistical Areas Program. The Census Bureau delineated BGs only where a
+local or tribal government declined to participate, and a regional
+organization or State Data Center was not available to participate.</em></p>
+<p><em>"A BG usually covers a contiguous area. Each census tract contains at least
 one BG, and BGs are uniquely numbered within the census tract. Within the
 standard census geographic hierarchy, BGs never cross state, county, or
 census tract boundaries but may cross the boundaries of any other geographic
@@ -162,7 +163,7 @@ entity. Tribal census tracts and tribal BGs are separate and unique
 geographic areas defined within federally recognized American Indian
 reservations and can cross state and county boundaries. The tribal census
 tracts and tribal block groups may be completely different from the census
-tracts and block groups defined by state and county."</p>
+tracts and block groups defined by state and county."</em></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Display the block groups with ggplot2</span>

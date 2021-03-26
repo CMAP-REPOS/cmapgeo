@@ -43,7 +43,7 @@
 <meta property="og:description" content="The political townships (also referred to as &quot;county subdivisions&quot; in Census
 Bureau terminology) that are within the CMAP Metropolitan Planning Area
 (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
-Grundy County and Sandwich &amp;amp; Somonauk Townships in DeKalb County.). From the
+Grundy County and Sandwich &amp;amp; Somonauk Townships in DeKalb County.) From the
 US Census Bureau's TIGER/Line shapefiles, 2019 vintage." />
 
 
@@ -121,7 +121,7 @@ US Census Bureau's TIGER/Line shapefiles, 2019 vintage." />
     <p>The political townships (also referred to as "county subdivisions" in Census
 Bureau terminology) that are within the CMAP Metropolitan Planning Area
 (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
-Grundy County and Sandwich &amp; Somonauk Townships in DeKalb County.). From the
+Grundy County and Sandwich &amp; Somonauk Townships in DeKalb County.) From the
 US Census Bureau's TIGER/Line shapefiles, 2019 vintage.</p>
     </div>
 
@@ -135,8 +135,8 @@ US Census Bureau's TIGER/Line shapefiles, 2019 vintage.</p>
 <dt>geoid_cousub</dt><dd><p>10-digit unique county subdivision/township ID,
 assigned by the Census Bureau. Character.</p></dd>
 <dt>township</dt><dd><p>Township name. Character.</p></dd>
-<dt>county_fips</dt><dd><p>5-digit FIPS code of the county the subzone is in.
-Character.</p></dd>
+<dt>county_fips</dt><dd><p>Unique 5-digit FIPS code of the county the township is
+in. Character.</p></dd>
 <dt>sqmi</dt><dd><p>Area in square miles. Double.</p></dd>
 <dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> multipolygon.</p></dd>
 
@@ -148,16 +148,18 @@ Character.</p></dd>
 <a href='https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html'>TIGER/Line</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Census Bureau description: "County Subdivisions are the primary divisions of
-counties and equivalent entities. They include census county divisions,
-census subareas, minor civil divisions, and unorganized territories and can
-be classified as either legal or statistical. Each county subdivision is
-assigned a five-character numeric Federal Information Processing Series
-(FIPS) code based on alphabetical sequence within state and an eight-digit
-National Standard feature identifier."</p>
-<p>Note: The City of Chicago is included as a single township in this dataset,
-and has not been subdivided into the eight theoretical townships defined by
-the Cook County Clerk's Office for the purposes of collecting property tax.</p>
+    <p>Census Bureau description:</p>
+<p><em>"County Subdivisions are the primary divisions of counties and equivalent
+entities. They include census county divisions, census subareas, minor civil
+divisions, and unorganized territories and can be classified as either legal
+or statistical. Each county subdivision is assigned a five-character numeric
+Federal Information Processing Series (FIPS) code based on alphabetical
+sequence within state and an eight-digit National Standard feature
+identifier."</em></p>
+<p>Note: The entire City of Chicago (other than the portion of O'Hare in DuPage
+County) is included as a single township in this dataset, and has not been
+subdivided into the eight theoretical townships defined by the Cook County
+Clerk's Office for the purposes of collecting property tax.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Display the townships with ggplot2</span>
