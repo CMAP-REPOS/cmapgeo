@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CMAP Travel Modeling Zones, 2017 — zone_sf • cmapgeo</title>
+<title>CMAP Travel Modeling Zones — zone_sf • cmapgeo</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="CMAP Travel Modeling Zones, 2017 — zone_sf" />
+<meta property="og:title" content="CMAP Travel Modeling Zones — zone_sf" />
 <meta property="og:description" content="The 2017 zones (a.k.a. TAZs) used by CMAP for
 travel demand modeling. Covers the 7-county CMAP region, plus 14 other
 counties in Illinois, Indiana and Wisconsin (some only partially). Zones are
@@ -111,7 +111,7 @@ aggregations of subzones (subzone_sf)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CMAP Travel Modeling Zones, 2017</h1>
+    <h1>CMAP Travel Modeling Zones</h1>
     <small class="dont-index">Source: <a href='https://github.com/CMAP-REPOS/cmapgeo/blob/master/R/data.R'><code>R/data.R</code></a></small>
     <div class="hidden name"><code>zone_sf.Rd</code></div>
     </div>
@@ -131,9 +131,9 @@ aggregations of subzones (<code>subzone_sf</code>).</p>
     <p>A polygon <code>sf</code> object with 3632 rows and 9
 variables:</p><dl>
 <dt>zone17</dt><dd><p>Numeric zone ID. Integer.</p></dd>
-<dt>cmap</dt><dd><p>Is zone in the CMAP MPO area? (The MPO area includes the 7
-CMAP counties, plus Aux Sable Township in Grundy County and Sandwich &amp;
-Somonauk Townships in DeKalb County.) Logical.</p></dd>
+<dt>cmap</dt><dd><p>Is zone in the CMAP MPA? (The MPA includes the 7 CMAP counties,
+plus Aux Sable Township in Grundy County and Sandwich &amp; Somonauk Townships
+in DeKalb County.) Logical.</p></dd>
 <dt>chicago</dt><dd><p>Is zone in the City of Chicago? (Approximate, in some
 cases.) Logical.</p></dd>
 <dt>cbd</dt><dd><p>Is zone in the Chicago Central Business District? (CBD is
@@ -157,7 +157,7 @@ the zone is in; first 2 digits are township, last 2 are range. Character.</p></d
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Display the zones with ggplot2</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>zone_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>zone_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>cmap</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='zone_sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

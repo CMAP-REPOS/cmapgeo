@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CMAP Subregional Councils of Mayors (COMs) — com_sf • cmapgeo</title>
+<title>U.S. Congressional Districts — congress_sf • cmapgeo</title>
 
 
 <!-- jquery -->
@@ -39,13 +39,9 @@
 
 
 
-<meta property="og:title" content="CMAP Subregional Councils of Mayors (COMs) — com_sf" />
-<meta property="og:description" content="This dataset was developed by CMAP to create a more up-to-date depiction of
-Council of Mayors (COM) boundaries. Since COMs are made up of groups of
-municipalities, CMAP utilized the most current available municipal boundaries
-from the seven counties to help construct this file in September 2010. This
-file was updated in March 2013 to reflect the expansion of the MPA into
-DeKalb County (Sandwich and Somonauk Townships)." />
+<meta property="og:title" content="U.S. Congressional Districts — congress_sf" />
+<meta property="og:description" content="The United States Congressional Districts in the state of Illinois. From the
+US Census Bureau's TIGER/Line shapefiles, 2019 vintage." />
 
 
 
@@ -113,29 +109,27 @@ DeKalb County (Sandwich and Somonauk Townships)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CMAP Subregional Councils of Mayors (COMs)</h1>
+    <h1>U.S. Congressional Districts</h1>
     <small class="dont-index">Source: <a href='https://github.com/CMAP-REPOS/cmapgeo/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>com_sf.Rd</code></div>
+    <div class="hidden name"><code>congress_sf.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This dataset was developed by CMAP to create a more up-to-date depiction of
-Council of Mayors (COM) boundaries. Since COMs are made up of groups of
-municipalities, CMAP utilized the most current available municipal boundaries
-from the seven counties to help construct this file in September 2010. This
-file was updated in March 2013 to reflect the expansion of the MPA into
-DeKalb County (Sandwich and Somonauk Townships).</p>
+    <p>The United States Congressional Districts in the state of Illinois. From the
+US Census Bureau's TIGER/Line shapefiles, 2019 vintage.</p>
     </div>
 
-    <pre class="usage"><span class='va'>com_sf</span></pre>
+    <pre class="usage"><span class='va'>congress_sf</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A multipolygon <code>sf</code> object with 12 rows and 4
+    <p>A multipolygon <code>sf</code> object with 18 rows and 6
 variables:</p><dl>
-<dt>council</dt><dd><p>Council of Mayors name (short). Character.</p></dd>
-<dt>full_name</dt><dd><p>Council of Mayors name (full). Character.</p></dd>
+<dt>dist_num</dt><dd><p>Congressional District number. Integer.</p></dd>
+<dt>dist_name</dt><dd><p>Name of the district (full). Character.</p></dd>
+<dt>dist_name_short</dt><dd><p>Name of the district (short). Character.</p></dd>
+<dt>cmap</dt><dd><p>Does the district overlap the 7-county CMAP region? Logical.</p></dd>
 <dt>sqmi</dt><dd><p>Area in square miles. Double.</p></dd>
 <dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> multipolygon.</p></dd>
 
@@ -143,34 +137,26 @@ variables:</p><dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries/resource/cbe742e0-2e78-4a54-95c2-d694703e1ae6'>CMAP Data Hub</a></p>
+    <p>US Census Bureau
+<a href='https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html'>TIGER/Line</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>DISCLAIMER: Subregional Councils of Mayors (COM) boundaries are a hybrid of
-county and municipal boundaries. The council boundaries are based on the
-membership of municipalities within a subregional council. County boundaries
-are followed in unincorporated areas. For municipalities designated as
-belonging to more than one council, the county boundary is followed. Example
-1: the City of Naperville is a member of the DuPage Council of Mayors; since
-Naperville city limits extend into Will County, the DuPage COM boundary
-follows the Naperville boundary (including all unincorporated pockets) in
-Will County. Example 2: Buffalo Grove belongs to both the Lake County and
-Northwest subregional councils; in this case, the subregional boundary
-follows the county boundary through Buffalo Grove.</p>
-<p>It is important to note here that the portions of COM boundaries, defined by
-municipalities, are fluid: they change as a village annexes adjacent
-unincorporated land. The boundaries depicted in this dataset reflect
-municipal boundaries of varying vintages and sources, and cannot be
-considered “true” for any given point in time.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils'>https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils</a></p></div>
+    <p>Census Bureau description: "Congressional Districts are the 435 areas from
+which people are elected to the U.S. House of Representatives. After the
+apportionment of congressional seats among the states based on decennial
+census population counts, each state with multiple seats is responsible for
+establishing congressional districts for the purpose of electing
+representatives. Each congressional district is to be as equal in population
+to all other congressional districts in a state as practicable. For the
+District of Columbia, Puerto Rico, and each Island Area, a separate code is
+used to identify the entire areas of these state-equivalent entities as
+having a single nonvoting delegate."</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Display the COMs with ggplot2</span>
+    <pre class="examples"><div class='input'><span class='co'># Display the Congressional Districts with ggplot2</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>com_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='com_sf-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>congress_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>cmap</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='congress_sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
