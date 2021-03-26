@@ -1,3 +1,434 @@
+# Datasets created with data-raw/load_census_api.R -----------------------
+
+#' Census Blocks
+#'
+#' The Census Blocks within the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2019 vintage.
+#'
+#' Census Bureau description: "Blocks are statistical areas bounded by visible
+#' features, such as streets, roads, streams, and railroad tracks, and by
+#' nonvisible boundaries, such as selected property lines and city, township,
+#' school district, and county limits and short line-of-sight extensions of
+#' streets and roads. Generally, census blocks are small in area; for example, a
+#' block in a city bounded on all sides by streets. Census blocks in suburban
+#' and rural areas may be large, irregular, and bounded by a variety of
+#' features, such as roads, streams, and transmission lines. In remote areas,
+#' census blocks may encompass hundreds of square miles. Census blocks cover the
+#' entire territory of the United States, Puerto Rico, and the Island Areas.
+#' Census blocks nest within all other tabulated census geographic entities and
+#' are the basis for all tabulated data."
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(block_sf)` rows and `r ncol(block_sf)`
+#' variables:
+#' \describe{
+#'   \item{geoid_block}{15-digit unique block ID, assigned by the Census Bureau.
+#'   The parent tract and block group can be identified from the first 11 and 12
+#'   digits, respectively. Character.}
+#'   \item{county_fips}{5-digit FIPS code of the county the zone is in.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the blocks with ggplot2
+#' library(ggplot2)
+#' ggplot(data = block_sf) + geom_sf(lwd = 0.1) + theme_void()
+"block_sf"
+
+
+#' Census Block Groups
+#'
+#' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2019 vintage.
+#'
+#' Census Bureau description: "Block Groups (BGs) are statistical divisions of
+#' census tracts, are generally defined to contain between 600 and 3,000 people,
+#' and are used to present data and control block numbering. A block group
+#' consists of clusters of blocks within the same census tract that have the
+#' same first digit of their four-digit census block number. For example, blocks
+#' 3001, 3002, 3003, ..., 3999 in census tract 1210.02 belong to BG 3 in that
+#' census tract. Most BGs were delineated by local participants in the Census
+#' Bureau's Participant Statistical Areas Program. The Census Bureau delineated
+#' BGs only where a local or tribal government declined to participate, and a
+#' regional organization or State Data Center was not available to participate.
+#'
+#' "A BG usually covers a contiguous area. Each census tract contains at least
+#' one BG, and BGs are uniquely numbered within the census tract. Within the
+#' standard census geographic hierarchy, BGs never cross state, county, or
+#' census tract boundaries but may cross the boundaries of any other geographic
+#' entity. Tribal census tracts and tribal BGs are separate and unique
+#' geographic areas defined within federally recognized American Indian
+#' reservations and can cross state and county boundaries. The tribal census
+#' tracts and tribal block groups may be completely different from the census
+#' tracts and block groups defined by state and county."
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(blockgroup_sf)` rows and
+#' `r ncol(blockgroup_sf)` variables:
+#' \describe{
+#'   \item{geoid_blkgrp}{12-digit unique block group ID, assigned by the Census
+#'   Bureau. The parent tract can be identified from the first 11 digits.
+#'   Character.}
+#'   \item{county_fips}{5-digit FIPS code of the county the zone is in.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the block groups with ggplot2
+#' library(ggplot2)
+#' ggplot(data = blockgroup_sf) + geom_sf(lwd = 0.1) + theme_void()
+"blockgroup_sf"
+
+
+#' Census Tracts
+#'
+#' The Census Tracts within the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2019 vintage.
+#'
+#' Census Bureau description: "Census Tracts are small, relatively permanent
+#' statistical subdivisions of a county or equivalent entity that are updated by
+#' local participants prior to each decennial census as part of the Census
+#' Bureau's Participant Statistical Areas Program. The Census Bureau delineates
+#' census tracts in situations where no local participant existed or where
+#' state, local, or tribal governments declined to participate. The primary
+#' purpose of census tracts is to provide a stable set of geographic units for
+#' the presentation of statistical data.
+#'
+#' "Census tracts generally have a population size between 1,200 and 8,000
+#' people, with an optimum size of 4,000 people. A census tract usually covers a
+#' contiguous area; however, the spatial size of census tracts varies widely
+#' depending on the density of settlement. Census tract boundaries are
+#' delineated with the intention of being maintained over a long time so that
+#' statistical comparisons can be made from census to census. Census tracts
+#' occasionally are split due to population growth or merged as a result of
+#' substantial population decline.
+#'
+#' "Census tract boundaries generally follow visible and identifiable features.
+#' They may follow nonvisible legal boundaries, such as minor civil division
+#' (MCD) or incorporated place boundaries in some states and situations, to
+#' allow for census-tract-to-governmental-unit relationships where the
+#' governmental boundaries tend to remain unchanged between censuses. State and
+#' county boundaries always are census tract boundaries in the standard census
+#' geographic hierarchy. Tribal census tracts are a unique geographic entity
+#' defined within federally recognized American Indian reservations and
+#' off-reservation trust lands and can cross state and county boundaries. Tribal
+#' census tracts may be completely different from the census tracts and block
+#' groups defined by state and county."
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(tract_sf)` rows and `r ncol(tract_sf)`
+#' variables:
+#' \describe{
+#'   \item{geoid_tract}{11-digit unique tract ID, assigned by the Census
+#'   Bureau. Character.}
+#'   \item{county_fips}{5-digit FIPS code of the county the zone is in.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the tracts with ggplot2
+#' library(ggplot2)
+#' ggplot(data = tract_sf) + geom_sf(lwd = 0.1) + theme_void()
+"tract_sf"
+
+
+#' Census Public Use Microdata Areas (PUMAs)
+#'
+#' The Census PUMAs covering the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2019 vintage.
+#'
+#' Census Bureau description: "Public Use Microdata Areas (PUMAs) are geographic
+#' areas for which the Census Bureau provides selected extracts of raw data from
+#' a small sample of census records that are screened to protect
+#' confidentiality. These extracts are referred to as public use microdata
+#' sample (PUMS) files.
+#'
+#' "For the 2010 Census, each state, the District of Columbia, Puerto Rico, and
+#' some Island Area participants delineated PUMAs for use in presenting PUMS
+#' data based on a 5 percent sample of decennial census or American Community
+#' Survey data. These areas are required to contain at least 100,000 people.
+#' This is different from Census 2000 when two types of PUMAs were defined: a 5
+#' percent PUMA as for 2010 and an additional super-PUMA designed to provide a 1
+#' percent sample. The PUMAs are identified by a five-digit census code unique
+#' within state."
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(puma_sf)` rows and `r ncol(puma_sf)`
+#' variables:
+#' \describe{
+#'   \item{geoid_puma}{7-digit unique PUMA ID, assigned by the Census Bureau.
+#'   Character.}
+#'   \item{name}{A Census-assigned name to help describe a PUMA's extent.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the PUMAs with ggplot2
+#' library(ggplot2)
+#' ggplot(data = puma_sf) + geom_sf(lwd = 0.1) + theme_void()
+"puma_sf"
+
+
+#' Illinois State Senate Districts
+#'
+#' The Illinois General Assembly Senate Districts. From the US Census Bureau's
+#' TIGER/Line shapefiles, 2019 vintage.
+#'
+#' Census Bureau description: "State Legislative Districts (SLDs) are the areas
+#' from which members are elected to state legislatures. The Census Bureau first
+#' reported data for SLDs as part of the 2000 Public Law (P.L.) 94-171
+#' Redistricting Data File.
+#'
+#' "Current SLDs (2010 Election Cycle) — States participating in Phase 1 of the
+#' 2010 Census Redistricting Data Program voluntarily provided the Census Bureau
+#' with the 2006 election cycle boundaries, codes, and, in some cases, names for
+#' their SLDs. All 50 states, plus the District of Columbia and Puerto Rico,
+#' participated in Phase 1, State Legislative District Project (SLDP) of the
+#' 2010 Census Redistricting Data Program. States subsequently provided legal
+#' changes to those plans through the Redistricting Data Office and/or
+#' corrections as part of Phase 2 of the 2010 Census Redistricting Data Program,
+#' as needed.
+#'
+#' "The SLDs embody the upper (senate—SLDU) and lower (house—SLDL) chambers of
+#' the state legislature. A unique three-character census code, identified by
+#' state participants, is assigned to each SLD within a state. In Connecticut,
+#' Hawaii, Illinois, Louisiana, Maine, Massachusetts, New Jersey, Ohio, and
+#' Puerto Rico, state officials did not define the SLDs to cover all of the
+#' state or state equivalent area (usually bodies of water). In these areas with
+#' no SLDs defined, the code "ZZZ" has been assigned, which is treated within
+#' state as a single SLD for purposes of data presentation."
+#'
+#' (The aforementioned "ZZZ" district, which comprises the Illinois portion of
+#' Lake Michigan, has been excluded from this dataset.)
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(ilga_senate_sf)` rows and
+#' `r ncol(ilga_senate_sf)` variables:
+#' \describe{
+#'   \item{dist_num}{Illinois State Senate District number. Integer.}
+#'   \item{dist_name}{Name of the district. Character.}
+#'   \item{cmap}{Does the district overlap the 7-county CMAP region? Logical.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the ILGA Senate Districts with ggplot2
+#' library(ggplot2)
+#' ggplot(data = ilga_senate_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+"ilga_senate_sf"
+
+
+#' Illinois State House Districts
+#'
+#' The Illinois General Assembly House Districts. From the US Census Bureau's
+#' TIGER/Line shapefiles, 2019 vintage.
+#'
+#' Census Bureau description: "State Legislative Districts (SLDs) are the areas
+#' from which members are elected to state legislatures. The Census Bureau first
+#' reported data for SLDs as part of the 2000 Public Law (P.L.) 94-171
+#' Redistricting Data File.
+#'
+#' "Current SLDs (2010 Election Cycle) — States participating in Phase 1 of the
+#' 2010 Census Redistricting Data Program voluntarily provided the Census Bureau
+#' with the 2006 election cycle boundaries, codes, and, in some cases, names for
+#' their SLDs. All 50 states, plus the District of Columbia and Puerto Rico,
+#' participated in Phase 1, State Legislative District Project (SLDP) of the
+#' 2010 Census Redistricting Data Program. States subsequently provided legal
+#' changes to those plans through the Redistricting Data Office and/or
+#' corrections as part of Phase 2 of the 2010 Census Redistricting Data Program,
+#' as needed.
+#'
+#' "The SLDs embody the upper (senate—SLDU) and lower (house—SLDL) chambers of
+#' the state legislature. A unique three-character census code, identified by
+#' state participants, is assigned to each SLD within a state. In Connecticut,
+#' Hawaii, Illinois, Louisiana, Maine, Massachusetts, New Jersey, Ohio, and
+#' Puerto Rico, state officials did not define the SLDs to cover all of the
+#' state or state equivalent area (usually bodies of water). In these areas with
+#' no SLDs defined, the code "ZZZ" has been assigned, which is treated within
+#' state as a single SLD for purposes of data presentation."
+#'
+#' (The aforementioned "ZZZ" district, which comprises the Illinois portion of
+#' Lake Michigan, has been excluded from this dataset.)
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(ilga_house_sf)` rows and
+#' `r ncol(ilga_house_sf)` variables:
+#' \describe{
+#'   \item{dist_num}{Illinois State House District number. Integer.}
+#'   \item{dist_name}{Name of the district. Character.}
+#'   \item{cmap}{Does the district overlap the 7-county CMAP region? Logical.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the ILGA House Districts with ggplot2
+#' library(ggplot2)
+#' ggplot(data = ilga_house_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+"ilga_house_sf"
+
+
+#' U.S. Congressional Districts
+#'
+#' The United States Congressional Districts in the state of Illinois. From the
+#' US Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+#'
+#' Census Bureau description: "Congressional Districts are the 435 areas from
+#' which people are elected to the U.S. House of Representatives. After the
+#' apportionment of congressional seats among the states based on decennial
+#' census population counts, each state with multiple seats is responsible for
+#' establishing congressional districts for the purpose of electing
+#' representatives. Each congressional district is to be as equal in population
+#' to all other congressional districts in a state as practicable. For the
+#' District of Columbia, Puerto Rico, and each Island Area, a separate code is
+#' used to identify the entire areas of these state-equivalent entities as
+#' having a single nonvoting delegate."
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(congress_sf)` rows and `r ncol(congress_sf)`
+#' variables:
+#' \describe{
+#'   \item{dist_num}{Congressional District number. Integer.}
+#'   \item{dist_name}{Name of the district (full). Character.}
+#'   \item{dist_name_short}{Name of the district (short). Character.}
+#'   \item{cmap}{Does the district overlap the 7-county CMAP region? Logical.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the Congressional Districts with ggplot2
+#' library(ggplot2)
+#' ggplot(data = congress_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+"congress_sf"
+
+
+#' Municipalities
+#'
+#' The 284 municipalities (also referred to as "incorporated places" in Census
+#' Bureau terminology) that are at least partially within the 7-county Chicago
+#' Metropolitan Agency for Planning (CMAP) region. From the US Census Bureau's
+#' TIGER/Line shapefiles, 2019 vintage.
+#'
+#' Census Bureau description: "Incorporated Places are those reported to the
+#' Census Bureau as legally in existence as of January 1, 2010, as reported in
+#' the latest Boundary and Annexation Survey (BAS), under the laws of their
+#' respective states. An incorporated place is established to provide
+#' governmental functions for a concentration of people as opposed to a minor
+#' civil division, which generally is created to provide services or administer
+#' an area without regard, necessarily, to population. Places always are within
+#' a single state or equivalent entity, but may extend across county and county
+#' subdivision boundaries. An incorporated place usually is a city, town,
+#' village, or borough, but can have other legal descriptions."
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(municipality_sf)` rows and
+#' `r ncol(municipality_sf)` variables:
+#' \describe{
+#'   \item{geoid_place}{7-digit unique place/municipality ID, assigned by the
+#'   Census Bureau. Character.}
+#'   \item{municipality}{Municipality name. Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the municipalities with ggplot2
+#' library(ggplot2)
+#' ggplot(data = municipality_sf) + geom_sf(lwd = 0.1) + theme_void()
+"municipality_sf"
+
+
+#' Townships
+#'
+#' The political townships (also referred to as "county subdivisions" in Census
+#' Bureau terminology) that are within the CMAP Metropolitan Planning Area
+#' (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
+#' Grundy County and Sandwich & Somonauk Townships in DeKalb County.). From the
+#' US Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+#'
+#' Census Bureau description: "County Subdivisions are the primary divisions of
+#' counties and equivalent entities. They include census county divisions,
+#' census subareas, minor civil divisions, and unorganized territories and can
+#' be classified as either legal or statistical. Each county subdivision is
+#' assigned a five-character numeric Federal Information Processing Series
+#' (FIPS) code based on alphabetical sequence within state and an eight-digit
+#' National Standard feature identifier."
+#'
+#' Note: The City of Chicago is included as a single township in this dataset,
+#' and has not been subdivided into the eight theoretical townships defined by
+#' the Cook County Clerk's Office for the purposes of collecting property tax.
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(township_sf)` rows and
+#' `r ncol(township_sf)` variables:
+#' \describe{
+#'   \item{geoid_cousub}{10-digit unique county subdivision/township ID,
+#'   assigned by the Census Bureau. Character.}
+#'   \item{township}{Township name. Character.}
+#'   \item{county_fips}{5-digit FIPS code of the county the subzone is in.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the townships with ggplot2
+#' library(ggplot2)
+#' ggplot(data = township_sf) + geom_sf(lwd = 0.1) + theme_void()
+"township_sf"
+
+
+
 # Datasets created with data-raw/load_chicago_geojson.R -------------------
 
 #' Chicago community areas (CCAs)
@@ -24,7 +455,7 @@
 "cca_sf"
 
 
-#' Chicago wards, 2015-present
+#' Chicago wards
 #'
 #' The official boundaries of the current Chicago wards (established in May of
 #' 2015). Obtained 3/24/2021.
@@ -51,7 +482,7 @@
 
 # Datasets created with data-raw/load_datahub_shp.R -----------------------
 
-#' CMAP Subregional Councils of Mayors (COMs), 2013
+#' CMAP Subregional Councils of Mayors (COMs)
 #'
 #' This dataset was developed by CMAP to create a more up-to-date depiction of
 #' Council of Mayors (COM) boundaries. Since COMs are made up of groups of
@@ -91,7 +522,8 @@
 #' @source
 #' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries/resource/cbe742e0-2e78-4a54-95c2-d694703e1ae6)
 #'
-#' @seealso <https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils>
+#' @seealso
+#' <https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils>
 #'
 #' @examples
 #' # Display the COMs with ggplot2
@@ -100,7 +532,7 @@
 "com_sf"
 
 
-#' CMAP Travel Modeling Subzones, 2017
+#' CMAP Travel Modeling Subzones
 #'
 #' The 2017 subzones (a.k.a. MAZs) used by [CMAP](http://cmap.illinois.gov) for
 #' travel demand modeling and socioeconomic forecasting. Covers the 7-county
@@ -133,9 +565,9 @@
 #'     \item{10 = Remainder of Lake County, IN (rural)}
 #'     \item{11 = External area}
 #'   }}
-#'   \item{cmap}{Is subzone in the CMAP MPO area? (The MPO area includes the 7
-#'   CMAP counties, plus Aux Sable Township in Grundy County and Sandwich &
-#'   Somonauk Townships in DeKalb County.) Logical.}
+#'   \item{cmap}{Is subzone in the CMAP MPA? (The MPA includes the 7 CMAP
+#'   counties, plus Aux Sable Township in Grundy County and Sandwich & Somonauk
+#'   Townships in DeKalb County.) Logical.}
 #'   \item{chicago}{Is subzone in the City of Chicago? (Approximate, in some
 #'   cases.) Logical.}
 #'   \item{cbd}{Is subzone in the Chicago Central Business District? (CBD is
@@ -157,11 +589,11 @@
 #' @examples
 #' # Display the subzones with ggplot2
 #' library(ggplot2)
-#' ggplot(data = subzone_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(data = subzone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 "subzone_sf"
 
 
-#' CMAP Travel Modeling Zones, 2017
+#' CMAP Travel Modeling Zones
 #'
 #' The 2017 zones (a.k.a. TAZs) used by [CMAP](http://cmap.illinois.gov) for
 #' travel demand modeling. Covers the 7-county CMAP region, plus 14 other
@@ -173,9 +605,9 @@
 #' variables:
 #' \describe{
 #'   \item{zone17}{Numeric zone ID. Integer.}
-#'   \item{cmap}{Is zone in the CMAP MPO area? (The MPO area includes the 7
-#'   CMAP counties, plus Aux Sable Township in Grundy County and Sandwich &
-#'   Somonauk Townships in DeKalb County.) Logical.}
+#'   \item{cmap}{Is zone in the CMAP MPA? (The MPA includes the 7 CMAP counties,
+#'   plus Aux Sable Township in Grundy County and Sandwich & Somonauk Townships
+#'   in DeKalb County.) Logical.}
 #'   \item{chicago}{Is zone in the City of Chicago? (Approximate, in some
 #'   cases.) Logical.}
 #'   \item{cbd}{Is zone in the Chicago Central Business District? (CBD is
@@ -197,5 +629,5 @@
 #' @examples
 #' # Display the zones with ggplot2
 #' library(ggplot2)
-#' ggplot(data = zone_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(data = zone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 "zone_sf"

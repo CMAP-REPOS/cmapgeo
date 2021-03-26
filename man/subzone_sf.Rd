@@ -3,7 +3,7 @@
 \docType{data}
 \name{subzone_sf}
 \alias{subzone_sf}
-\title{CMAP Travel Modeling Subzones, 2017}
+\title{CMAP Travel Modeling Subzones}
 \format{
 A polygon \code{sf} object with 17418 rows and 11
 variables:
@@ -27,9 +27,9 @@ Metropolitan Planning Area plus other Urbanized Areas in IL}
 \item{10 = Remainder of Lake County, IN (rural)}
 \item{11 = External area}
 }}
-\item{cmap}{Is subzone in the CMAP MPO area? (The MPO area includes the 7
-CMAP counties, plus Aux Sable Township in Grundy County and Sandwich &
-Somonauk Townships in DeKalb County.) Logical.}
+\item{cmap}{Is subzone in the CMAP MPA? (The MPA includes the 7 CMAP
+counties, plus Aux Sable Township in Grundy County and Sandwich & Somonauk
+Townships in DeKalb County.) Logical.}
 \item{chicago}{Is subzone in the City of Chicago? (Approximate, in some
 cases.) Logical.}
 \item{cbd}{Is subzone in the Chicago Central Business District? (CBD is
@@ -63,6 +63,6 @@ corresponding to a PLSS quarter-section. This forms a fairly regular grid of
 \examples{
 # Display the subzones with ggplot2
 library(ggplot2)
-ggplot(data = subzone_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(data = subzone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

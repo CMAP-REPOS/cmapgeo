@@ -3,7 +3,7 @@
 \docType{data}
 \name{ward_sf}
 \alias{ward_sf}
-\title{Chicago wards, 2015-present}
+\title{Chicago wards}
 \format{
 A multipolygon \code{sf} object with 50 rows and 3
 variables:

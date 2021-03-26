@@ -3,15 +3,15 @@
 \docType{data}
 \name{zone_sf}
 \alias{zone_sf}
-\title{CMAP Travel Modeling Zones, 2017}
+\title{CMAP Travel Modeling Zones}
 \format{
 A polygon \code{sf} object with 3632 rows and 9
 variables:
 \describe{
 \item{zone17}{Numeric zone ID. Integer.}
-\item{cmap}{Is zone in the CMAP MPO area? (The MPO area includes the 7
-CMAP counties, plus Aux Sable Township in Grundy County and Sandwich &
-Somonauk Townships in DeKalb County.) Logical.}
+\item{cmap}{Is zone in the CMAP MPA? (The MPA includes the 7 CMAP counties,
+plus Aux Sable Township in Grundy County and Sandwich & Somonauk Townships
+in DeKalb County.) Logical.}
 \item{chicago}{Is zone in the City of Chicago? (Approximate, in some
 cases.) Logical.}
 \item{cbd}{Is zone in the Chicago Central Business District? (CBD is
@@ -42,6 +42,6 @@ aggregations of subzones (\code{subzone_sf}).
 \examples{
 # Display the zones with ggplot2
 library(ggplot2)
-ggplot(data = zone_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(data = zone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

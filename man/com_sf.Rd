@@ -3,7 +3,7 @@
 \docType{data}
 \name{com_sf}
 \alias{com_sf}
-\title{CMAP Subregional Councils of Mayors (COMs), 2013}
+\title{CMAP Subregional Councils of Mayors (COMs)}
 \format{
 A multipolygon \code{sf} object with 12 rows and 4
 variables:
