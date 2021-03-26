@@ -97,13 +97,13 @@ congress_sf <- tigris::congressional_districts() %>%
   filter(STATEFP == STATE, LSAD == "C2") %>%
   sf::st_transform(cmap_crs) %>%
   mutate(dist_num = as.integer(CD116FP),
-         dist_name = paste0("IL-", dist_num),
-         dist_name_long = paste("Illinois",
-                                nombre::nom_ord(dist_num, max_n = 0),
-                                "Congressional District"),
+         dist_name = paste("Illinois",
+                           nombre::nom_ord(dist_num, max_n = 0),
+                           "Congressional District"),
+         dist_name_short = paste0("IL-", dist_num),
          cmap = intersects_cmap(.),
          sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(dist_num, dist_name, dist_name_long, cmap, sqmi) %>%
+  select(dist_num, dist_name, dist_name_short, cmap, sqmi) %>%
   arrange(dist_num)
 
 # Process IL House Districts
