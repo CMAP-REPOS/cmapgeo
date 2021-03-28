@@ -26,7 +26,7 @@ a8"     ""  88P'   "88"    "8a  ""     `Y8  88P'    "8a  a8"    `Y88  a8P_____88
                  An R package made with ♥ in Chicago by and for CMAP staff.
 -->
 
-# cmapgeo <!--<img src="man/figures/logo.png" align="right" alt="cmapplot logo" width="128">-->
+# cmapgeo <img src="man/figures/logo.png" align="right" alt="cmapplot logo" width="128">
 
 <!-- badges: start -->
 
