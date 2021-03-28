@@ -1,6 +1,5 @@
 library(tidyverse)
-library(devtools)
-load_all()
+devtools::load_all()
 
 # Links to City of Chicago Socrata resources' GeoJSON exports
 CCA_GEOJSON_URL <- "https://data.cityofchicago.org/api/geospatial/cauq-8yn6?method=export&format=GeoJSON"

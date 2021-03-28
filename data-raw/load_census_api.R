@@ -1,6 +1,5 @@
 library(tidyverse)
-library(devtools)
-load_all()
+devtools::load_all()
 
 # Set common parameters
 STATE <- "17"  # Illinois

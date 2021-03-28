@@ -1,6 +1,5 @@
 library(tidyverse)
-library(devtools)
-load_all()
+devtools::load_all()
 
 # Links to zipped shapefiles hosted on the CMAP Data Hub
 CMAP_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/2e8ed4ce-d056-4183-8d97-5f2901edb1f9/resource/832c29a6-9ca8-4459-9ff0-106c56c39a0d/download/mpocountiescmap201409.zip"
