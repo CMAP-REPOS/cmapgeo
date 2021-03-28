@@ -8,7 +8,7 @@
 A multipolygon \code{sf} object with 128 rows and
 5 variables:
 \describe{
-\item{geoid_cousub}{10-digit unique county subdivision/township ID,
+\item{geoid_cousub}{Unique 10-digit county subdivision/township ID,
 assigned by the Census Bureau. Character.}
 \item{township}{Township name. Character.}
 \item{county_fips}{Unique 5-digit FIPS code of the county the township is

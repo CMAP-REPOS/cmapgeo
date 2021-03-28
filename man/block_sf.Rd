@@ -8,7 +8,7 @@
 A multipolygon \code{sf} object with 169469 rows and 4
 variables:
 \describe{
-\item{geoid_block}{15-digit unique block ID, assigned by the Census Bureau.
+\item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
 The parent tract and block group can be identified from the first 11 and 12
 digits, respectively. Character.}
 \item{county_fips}{Unique 5-digit FIPS code of the county the block is in.

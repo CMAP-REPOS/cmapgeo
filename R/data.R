@@ -25,7 +25,7 @@
 #' A multipolygon `sf` object with `r nrow(block_sf)` rows and `r ncol(block_sf)`
 #' variables:
 #' \describe{
-#'   \item{geoid_block}{15-digit unique block ID, assigned by the Census Bureau.
+#'   \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
 #'   The parent tract and block group can be identified from the first 11 and 12
 #'   digits, respectively. Character.}
 #'   \item{county_fips}{Unique 5-digit FIPS code of the county the block is in.
@@ -78,7 +78,7 @@
 #' A polygon `sf` object with `r nrow(blockgroup_sf)` rows and
 #' `r ncol(blockgroup_sf)` variables:
 #' \describe{
-#'   \item{geoid_blkgrp}{12-digit unique block group ID, assigned by the Census
+#'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 #'   Bureau. The parent tract can be identified from the first 11 digits.
 #'   Character.}
 #'   \item{county_fips}{Unique 5-digit FIPS code of the county the block group
@@ -139,7 +139,7 @@
 #' A polygon `sf` object with `r nrow(tract_sf)` rows and `r ncol(tract_sf)`
 #' variables:
 #' \describe{
-#'   \item{geoid_tract}{11-digit unique tract ID, assigned by the Census
+#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
 #'   Bureau. Character.}
 #'   \item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
 #'   Character.}
@@ -184,7 +184,7 @@
 #' A multipolygon `sf` object with `r nrow(puma_sf)` rows and `r ncol(puma_sf)`
 #' variables:
 #' \describe{
-#'   \item{geoid_puma}{7-digit unique PUMA ID, assigned by the Census Bureau.
+#'   \item{geoid_puma}{Unique 7-digit PUMA ID, assigned by the Census Bureau.
 #'   Character.}
 #'   \item{name}{A Census-assigned name to help describe a PUMA's extent.
 #'   Character.}
@@ -377,7 +377,7 @@
 #' A multipolygon `sf` object with `r nrow(municipality_sf)` rows and
 #' `r ncol(municipality_sf)` variables:
 #' \describe{
-#'   \item{geoid_place}{7-digit unique place/municipality ID, assigned by the
+#'   \item{geoid_place}{Unique 7-digit place/municipality ID, assigned by the
 #'   Census Bureau. Character.}
 #'   \item{municipality}{Municipality name. Character.}
 #'   \item{sqmi}{Area in square miles. Double.}
@@ -422,7 +422,7 @@
 #' A multipolygon `sf` object with `r nrow(township_sf)` rows and
 #' `r ncol(township_sf)` variables:
 #' \describe{
-#'   \item{geoid_cousub}{10-digit unique county subdivision/township ID,
+#'   \item{geoid_cousub}{Unique 10-digit county subdivision/township ID,
 #'   assigned by the Census Bureau. Character.}
 #'   \item{township}{Township name. Character.}
 #'   \item{county_fips}{Unique 5-digit FIPS code of the county the township is

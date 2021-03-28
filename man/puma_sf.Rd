@@ -8,7 +8,7 @@
 A multipolygon \code{sf} object with 58 rows and 4
 variables:
 \describe{
-\item{geoid_puma}{7-digit unique PUMA ID, assigned by the Census Bureau.
+\item{geoid_puma}{Unique 7-digit PUMA ID, assigned by the Census Bureau.
 Character.}
 \item{name}{A Census-assigned name to help describe a PUMA's extent.
 Character.}

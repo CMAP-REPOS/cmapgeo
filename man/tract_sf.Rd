@@ -8,7 +8,7 @@
 A polygon \code{sf} object with 1983 rows and 4
 variables:
 \describe{
-\item{geoid_tract}{11-digit unique tract ID, assigned by the Census
+\item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
 Bureau. Character.}
 \item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
 Character.}

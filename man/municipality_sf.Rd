@@ -8,7 +8,7 @@
 A multipolygon \code{sf} object with 284 rows and
 4 variables:
 \describe{
-\item{geoid_place}{7-digit unique place/municipality ID, assigned by the
+\item{geoid_place}{Unique 7-digit place/municipality ID, assigned by the
 Census Bureau. Character.}
 \item{municipality}{Municipality name. Character.}
 \item{sqmi}{Area in square miles. Double.}

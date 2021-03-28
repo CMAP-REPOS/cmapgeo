@@ -8,7 +8,7 @@
 A polygon \code{sf} object with 5880 rows and
 4 variables:
 \describe{
-\item{geoid_blkgrp}{12-digit unique block group ID, assigned by the Census
+\item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 Bureau. The parent tract can be identified from the first 11 digits.
 Character.}
 \item{county_fips}{Unique 5-digit FIPS code of the county the block group
