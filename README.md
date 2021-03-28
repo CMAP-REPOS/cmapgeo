@@ -30,6 +30,8 @@ a8"     ""  88P'   "88"    "8a  ""     `Y8  88P'    "8a  a8"    `Y88  a8P_____88
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/CMAP-REPOS/cmapgeo/workflows/R-CMD-check/badge.svg)](https://github.com/CMAP-REPOS/cmapgeo/actions)
+[![pkgdown](https://github.com/CMAP-REPOS/cmapgeo/workflows/pkgdown/badge.svg)](https://github.com/CMAP-REPOS/cmapgeo/actions)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/cmapgeo)](https://cran.r-project.org/package=cmapgeo)
 <!-- badges: end -->
