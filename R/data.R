@@ -445,7 +445,7 @@
 
 # Datasets created with data-raw/load_chicago_geojson.R -------------------
 
-#' Chicago community areas (CCAs)
+#' Chicago Community Areas (CCAs)
 #'
 #' The official boundaries of the Chicago Community Areas. Obtained 3/24/2021.
 #'
@@ -469,7 +469,7 @@
 "cca_sf"
 
 
-#' Chicago wards
+#' Chicago Wards
 #'
 #' The official boundaries of the current Chicago wards (established in May of
 #' 2015). Obtained 3/24/2021.
@@ -514,6 +514,7 @@
 #'   \item{label_name}{County name (or township names, for partial counties).
 #'   Character.}
 #'   \item{county_fips}{Unique 5-digit county FIPS code. Character.}
+#'   \item{whole_county}{Does feature represent an entire county? Logical.}
 #'   \item{sqmi}{Area in square miles. Double.}
 #'   \item{geometry}{Feature geometry. `sf` polygon.}
 #' }

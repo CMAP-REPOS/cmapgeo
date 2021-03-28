@@ -11,6 +11,7 @@ A polygon \code{sf} object with 9 rows and
 \item{label_name}{County name (or township names, for partial counties).
 Character.}
 \item{county_fips}{Unique 5-digit county FIPS code. Character.}
+\item{whole_county}{Does feature represent an entire county? Logical.}
 \item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} polygon.}
 }

@@ -3,7 +3,7 @@
 \docType{data}
 \name{county_fips}
 \alias{county_fips}
-\title{County FIPS code lists}
+\title{County FIPS Code Lists}
 \format{
 An object of class \code{list} of length 4.
 }

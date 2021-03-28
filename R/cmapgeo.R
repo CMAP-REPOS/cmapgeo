@@ -20,7 +20,7 @@
 
 # Exported variables ------------------------------------------------------
 
-#' Geodata coordinate system
+#' Geodata Coordinate System
 #'
 #' The EPSG code of the coordinate system that all datasets in cmapgeo have been
 #' projected in -- specifically, Illinois State Plane East (NAD83, ft). It can
@@ -41,7 +41,7 @@
 cmap_crs <- 3435
 
 
-#' County FIPS code lists
+#' County FIPS Code Lists
 #'
 #' A named list comprising four named vectors, each of which contains the FIPS
 #' codes (as 5-character strings) for the counties in one of the four primary
