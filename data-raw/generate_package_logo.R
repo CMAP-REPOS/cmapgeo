@@ -24,7 +24,7 @@ reg_logo <- cnty_logo %>%
   rmapshaper::ms_dissolve()
 
 # Plot the map
-logo_map2 <- ggplot() +
+logo_map <- ggplot() +
   geom_sf(data = twp_logo, color = cmap_colors["green_lt"], fill = NA, lwd = 0.1) +
   geom_sf(data = cnty_logo, color = cmap_colors["green_lt"], fill = NA, lwd = 0.5) +
   geom_sf(data = reg_logo, color = cmap_colors["green_lt"], fill = NA, lwd = 0.8) +
@@ -34,11 +34,20 @@ logo_map2 <- ggplot() +
 # Create the hexagonal logo
 sysfonts::font_add_google("Economica", "Economica")
 #showtext::showtext_auto()
-s <- hexSticker::sticker(
-  logo_map2, s_x = 1, s_y = 0.7, s_width = 1.25, s_height = 1.25,  # Map size/position
+logo <- hexSticker::sticker(
+  logo_map, s_x = 1, s_y = 0.7, s_width = 1.25, s_height = 1.25,  # Map size/position
   package = "cmapgeo", p_family = "Economica", p_color = cmap_colors["blue_lt"],  # Title appearance
   p_size = 32, p_y = 1.48,  # Title size/position
   h_fill = cmap_colors["blue_dk"], h_color = cmap_colors["blue_lt"],  # Hexagon fill/border colors
   filename="man/figures/logo.png"  # Output location
 )
-plot(s)
+plot(logo)
+
+# Create a no-text variant
+logo_notext <- hexSticker::sticker(
+  logo_map, s_x = 1, s_y = 0.94, s_width = 1.7, s_height = 1.7,  # Map size/position
+  package = "",  # Empty string for logo title
+  h_fill = cmap_colors["blue_dk"], h_color = cmap_colors["blue_lt"],  # Hexagon fill/border colors
+  filename="man/figures/logo_notext.png"  # Output location
+)
+plot(logo_notext)
