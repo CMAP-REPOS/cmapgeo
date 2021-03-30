@@ -26,7 +26,6 @@ ward_sf <- sf::read_sf(WARD_GEOJSON_URL) %>%
   select(ward_num, sqmi) %>%
   arrange(ward_num)
 
-
 # Save processed data to package's data dir
 usethis::use_data(cca_sf, overwrite = TRUE)
 usethis::use_data(ward_sf, overwrite = TRUE)
