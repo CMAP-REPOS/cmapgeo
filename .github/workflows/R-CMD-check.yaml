@@ -74,7 +74,7 @@ jobs:
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
         run: |
-          tidycensus::census_api_key("${{ env.CENSUS_API_KEY }}", install = TRUE)
+          tidycensus::census_api_key(Sys.getenv(CENSUS_API_KEY), install = TRUE)
         shell: Rscript {0}
 
       - name: Check
