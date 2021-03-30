@@ -71,10 +71,9 @@ jobs:
         shell: Rscript {0}
 
       - name: Set Census API key
-        shell: bash
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
-        run: Rscript -e 'tidycensus::census_api_key("$CENSUS_API_KEY", install = TRUE)'
+        run: Rscript -e 'tidycensus::census_api_key("${{ env.CENSUS_API_KEY }}", install = TRUE)'
 
       - name: Check
         env:
