@@ -2,7 +2,9 @@ url: https://cmap-repos.github.io/cmapgeo
 
 home:
   title: Chicago Region Geodata
-  description: R-friendly geodata for the Chicago region.
+  description: >
+    R-friendly geodata for the Chicago region, maintained by the Chicago
+    Metropolitan Agency for Planning
 
 authors:
   Chicago Metropolitan Agency for Planning:
@@ -16,7 +18,10 @@ reference:
 - title: Geodata
 - contents:
   - ends_with("_sf")
-- title: Useful information
+-title: Crosswalk Tables
+-contents:
+  - starts_with("xwalk_")
+- title: Other Useful Information
 - contents:
   - cmap_crs
   - county_fips

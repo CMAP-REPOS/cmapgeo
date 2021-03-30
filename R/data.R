@@ -1,4 +1,4 @@
-# Datasets created with data-raw/load_census_api.R -----------------------
+# Geodata created with data-raw/load_census_api.R ------------------------
 
 #' Census Blocks
 #'
@@ -443,7 +443,7 @@
 
 
 
-# Datasets created with data-raw/load_chicago_geojson.R -------------------
+# Geodata created with data-raw/load_chicago_geojson.R --------------------
 
 #' Chicago Community Areas (CCAs)
 #'
@@ -494,7 +494,7 @@
 
 
 
-# Datasets created with data-raw/load_datahub_shp.R -----------------------
+# Geodata created with data-raw/load_datahub_shp.R ------------------------
 
 #' CMAP Metropolitan Planning Area
 #'
@@ -678,3 +678,178 @@
 #' library(ggplot2)
 #' ggplot(data = zone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 "zone_sf"
+
+
+
+# Crosswalk tables created with data-raw/generate_xwalks.R ----------------
+
+#' Tract-to-CCA Crosswalk
+#'
+#' This table contains a set of factors to apportion Census tract-level data
+#' among Chicago Community Areas (CCAs). Seperate factors are provided for
+#' apportioning housing unit, household, and population attributes. All factors
+#' were determined by calculating the percentage of a tract's housing units,
+#' households and population that were located in each of its component blocks,
+#' according to the 2010 Decennial Census, and then assigning each block to a
+#' CCA (based on the location of the block's centroid point).
+#'
+#' Generally speaking, tract boundaries align neatly with CCA boundaries as they
+#' tend to follow similar features (e.g. rivers, major roads, rail lines) but
+#' there are cases where the population, households and/or housing units in a
+#' tract are split across multiple CCAs, or else are partially within the City
+#' of Chicago and partially outside of it. For that reason, it is not
+#' appropriate to use a one-to-one tract-to-CCA assignment to apportion Census
+#' data among CCAs, and this crosswalk (or `xwalk_blockgroup2cca` for block
+#' group-level data) should be used instead.
+#'
+#' To use this crosswalk effectively, Census data should be joined to it (not
+#' vice versa, since tract IDs appear multiple times in this table). Once the
+#' data is joined, it should be multiplied by the appropriate factor (depending
+#' whether the data of interest is measured at the housing unit, household or
+#' person level), and then the result should be summed by CCA. If calculating
+#' rates, this should only be done after the counts have been summed to CCA. The
+#' resulting table can then be joined to `cca_sf` for mapping, if desired.
+#'
+#' If your data is also available at the block group level, it is recommended
+#' that you use that with `xwalk_blockgroup2cca` instead of the tract-level
+#' allocation.
+#'
+#' @format
+#' A tibble with `r nrow(xwalk_tract2cca)` rows and `r ncol(xwalk_tract2cca)`
+#' variables:
+#' \describe{
+#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
+#'   Bureau. Corresponds to `tract_sf`. Character.}
+#'   \item{cca_num}{Numeric CCA ID, as assigned by the City of Chicago.
+#'   Corresponds to `cca_sf`. Integer.}
+#'   \item{hu_pct}{Proportion of the tract's housing units (occupied or vacant)
+#'   located in the specified CCA. Multiply this by a tract-level measure of a
+#'   housing attribute (e.g. vacant homes) to estimate the CCA's portion.
+#'   Double.}
+#'   \item{hh_pct}{Proportion of the tract's households (i.e. occupied housing
+#'   units) living in the specified CCA. Multiply this by a tract-level measure
+#'   of a household attribute (e.g. car-free households) to estimate the CCA's
+#'   portion. Double.}
+#'   \item{pop_pct}{Proportion of the tract's total population (including group
+#'   quarters) living in the specified CCA. Multiply this by a tract-level
+#'   measure of a population attribute (e.g. race/ethnicity) to estimate the
+#'   CCA's portion. Double.}
+#' }
+#'
+#' @examples
+#' library(tidyverse)
+#'
+#' # View the tracts with population not fully contained in a single CCA
+#' filter(xwalk_tract2cca, pop_pct < 1)
+#'
+#' # Estimate CCA-level transit mode share from tract-level ACS data
+#' df_tract <- tidycensus::get_acs(
+#'   "tract", state = "IL", county = "031", table = "B08006",
+#'   year = 2019, survey = "acs5", output = "wide"
+#' ) %>%
+#'   rename(workers = B08006_001E, transit = B08006_008E) %>%
+#'   select(GEOID, workers, transit)
+#'
+#' df_cca <- xwalk_tract2cca %>%
+#'   left_join(df_tract, by = c("geoid_tract" = "GEOID")) %>%
+#'   mutate(transit = transit * pop_pct,
+#'          workers = workers * pop_pct) %>%
+#'   group_by(cca_num) %>%
+#'   summarize_at(vars(transit, workers), sum) %>%
+#'   mutate(transit_commute_pct = transit / workers)
+#' df_cca
+#'
+#' # Join to cca_sf for mapping
+#' cca_sf %>%
+#'   left_join(df_cca, by = "cca_num") %>%
+#'   ggplot() +
+#'     geom_sf(aes(fill = transit_commute_pct)) +
+#'     scale_fill_viridis_c() +
+#'     theme_void()
+"xwalk_tract2cca"
+
+
+#' Block Group-to-CCA Crosswalk
+#'
+#' This table contains a set of factors to apportion Census block group-level
+#' data among Chicago Community Areas (CCAs). Seperate factors are provided for
+#' apportioning housing unit, household, and population attributes. All factors
+#' were determined by calculating the percentage of a block group's housing
+#' units, households and population that were located in each of its component
+#' blocks, according to the 2010 Decennial Census, and then assigning each block
+#' to a CCA (based on the location of the block's centroid point).
+#'
+#' Generally speaking, block group boundaries align neatly with CCA boundaries
+#' as they tend to follow similar features (e.g. rivers, major roads, rail
+#' lines) but there are cases where the population, households and/or housing
+#' units in a block group are split across multiple CCAs, or else are partially
+#' within the City of Chicago and partially outside of it. For that reason, it
+#' is not appropriate to use a one-to-one block group-to-CCA assignment to
+#' apportion Census data among CCAs, and this crosswalk (or `xwalk_tract2cca`
+#' for tract-level data) should be used instead.
+#'
+#' To use this crosswalk effectively, Census data should be joined to it (not
+#' vice versa, since block group IDs appear multiple times in this table). Once
+#' the data is joined, it should be multiplied by the appropriate factor
+#' (depending whether the data of interest is measured at the housing unit,
+#' household or person level), and then the result should be summed by CCA. If
+#' calculating rates, this should only be done after the counts have been summed
+#' to CCA. The resulting table can then be joined to `cca_sf` for mapping, if
+#' desired.
+#'
+#' If your data is only available at the tract level, you can use
+#' `xwalk_tract2cca` for a tract-level allocation instead.
+#'
+#' @format
+#' A tibble with `r nrow(xwalk_blockgroup2cca)` rows and
+#' `r ncol(xwalk_blockgroup2cca)` variables:
+#' \describe{
+#'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
+#'   Bureau. Corresponds to `blockgroup_sf`. Character.}
+#'   \item{cca_num}{Numeric CCA ID, as assigned by the City of Chicago.
+#'   Corresponds to `cca_sf`. Integer.}
+#'   \item{hu_pct}{Proportion of the block group's housing units (occupied or
+#'   vacant) located in the specified CCA. Multiply this by a block group-level
+#'   measure of a housing attribute (e.g. vacant homes) to estimate the CCA's
+#'   portion. Double.}
+#'   \item{hh_pct}{Proportion of the block group's households (i.e. occupied
+#'   housing units) living in the specified CCA. Multiply this by a block
+#'   group-level measure of a household attribute (e.g. car-free households) to
+#'   estimate the CCA's portion.Double.}
+#'   \item{pop_pct}{Proportion of the block group's total population (including
+#'   group quarters) living in the specified CCA. Multiply this by a block
+#'   group-level measure of a population attribute (e.g. race/ethnicity) to
+#'   estimate the CCA's portion. Double.}
+#' }
+#'
+#' @examples
+#' library(tidyverse)
+#'
+#' # View the block groups with households not fully contained in a single CCA
+#' filter(xwalk_blockgroup2cca, hh_pct < 1)
+#'
+#' # Estimate CCA-level unemployment rate from block group-level ACS data
+#' df_blkgrp <- tidycensus::get_acs(
+#'   "block group", state = "IL", county = "031", table = "B23025",
+#'   year = 2019, survey = "acs5", output = "wide"
+#' ) %>%
+#'   rename(civ_lf = B23025_003E, unemp = B23025_005E) %>%
+#'   select(GEOID, civ_lf, unemp)
+#'
+#' df_cca <- xwalk_blockgroup2cca %>%
+#'   left_join(df_blkgrp, by = c("geoid_blkgrp" = "GEOID")) %>%
+#'   mutate(civ_lf = civ_lf * pop_pct,
+#'          unemp = unemp * pop_pct) %>%
+#'   group_by(cca_num) %>%
+#'   summarize_at(vars(civ_lf, unemp), sum) %>%
+#'   mutate(unemp_rate = unemp / civ_lf)
+#' df_cca
+#'
+#' # Join to cca_sf for mapping
+#' cca_sf %>%
+#'   left_join(df_cca, by = "cca_num") %>%
+#'   ggplot() +
+#'     geom_sf(aes(fill = unemp_rate)) +
+#'     scale_fill_viridis_c(direction = -1) +
+#'     theme_void()
+"xwalk_blockgroup2cca"
