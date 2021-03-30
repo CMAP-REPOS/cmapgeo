@@ -70,6 +70,11 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
+      - name: Set Census API key
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: Rscript -e 'tidycensus::census_api_key("$env:CENSUS_API_KEY", install = TRUE)'
+
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
