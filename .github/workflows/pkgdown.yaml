@@ -41,7 +41,9 @@ jobs:
       - name: Set Census API key
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
-        run: Rscript -e 'tidycensus::census_api_key("${{ env.CENSUS_API_KEY }}", install = TRUE)'
+        run: |
+          tidycensus::census_api_key("${{ env.CENSUS_API_KEY }}", install = TRUE)
+        shell: Rscript {0}
 
       - name: Install package
         run: R CMD INSTALL .
