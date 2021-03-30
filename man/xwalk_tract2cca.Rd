@@ -61,7 +61,7 @@ that you use that with \code{xwalk_blockgroup2cca} instead of the tract-level
 allocation.
 }
 \examples{
-library(tidyverse)
+suppressPackageStartupMessages(library(dplyr))
 
 # View the tracts with population not fully contained in a single CCA
 filter(xwalk_tract2cca, pop_pct < 1)
@@ -69,7 +69,7 @@ filter(xwalk_tract2cca, pop_pct < 1)
 # Estimate CCA-level transit mode share from tract-level ACS data
 df_tract <- tidycensus::get_acs(
   "tract", state = "IL", county = "031", table = "B08006",
-  year = 2019, survey = "acs5", output = "wide"
+  year = 2019, survey = "acs5", output = "wide", cache_table = TRUE
 ) \%>\%
   rename(workers = B08006_001E, transit = B08006_008E) \%>\%
   select(GEOID, workers, transit)
@@ -84,10 +84,11 @@ df_cca <- xwalk_tract2cca \%>\%
 df_cca
 
 # Join to cca_sf for mapping
+library(ggplot2)
 cca_sf \%>\%
   left_join(df_cca, by = "cca_num") \%>\%
   ggplot() +
-    geom_sf(aes(fill = transit_commute_pct)) +
+    geom_sf(aes(fill = transit_commute_pct), lwd = 0.1) +
     scale_fill_viridis_c() +
     theme_void()
 }

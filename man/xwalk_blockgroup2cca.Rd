@@ -61,7 +61,7 @@ If your data is only available at the tract level, you can use
 \code{xwalk_tract2cca} for a tract-level allocation instead.
 }
 \examples{
-library(tidyverse)
+suppressPackageStartupMessages(library(dplyr))
 
 # View the block groups with households not fully contained in a single CCA
 filter(xwalk_blockgroup2cca, hh_pct < 1)
@@ -69,7 +69,7 @@ filter(xwalk_blockgroup2cca, hh_pct < 1)
 # Estimate CCA-level unemployment rate from block group-level ACS data
 df_blkgrp <- tidycensus::get_acs(
   "block group", state = "IL", county = "031", table = "B23025",
-  year = 2019, survey = "acs5", output = "wide"
+  year = 2019, survey = "acs5", output = "wide", cache_table = TRUE
 ) \%>\%
   rename(civ_lf = B23025_003E, unemp = B23025_005E) \%>\%
   select(GEOID, civ_lf, unemp)
@@ -84,10 +84,11 @@ df_cca <- xwalk_blockgroup2cca \%>\%
 df_cca
 
 # Join to cca_sf for mapping
+library(ggplot2)
 cca_sf \%>\%
   left_join(df_cca, by = "cca_num") \%>\%
   ggplot() +
-    geom_sf(aes(fill = unemp_rate)) +
+    geom_sf(aes(fill = unemp_rate), lwd = 0.1) +
     scale_fill_viridis_c(direction = -1) +
     theme_void()
 }

@@ -737,7 +737,7 @@
 #' }
 #'
 #' @examples
-#' library(tidyverse)
+#' suppressPackageStartupMessages(library(dplyr))
 #'
 #' # View the tracts with population not fully contained in a single CCA
 #' filter(xwalk_tract2cca, pop_pct < 1)
@@ -760,6 +760,7 @@
 #' df_cca
 #'
 #' # Join to cca_sf for mapping
+#' library(ggplot2)
 #' cca_sf %>%
 #'   left_join(df_cca, by = "cca_num") %>%
 #'   ggplot() +
@@ -823,7 +824,7 @@
 #' }
 #'
 #' @examples
-#' library(tidyverse)
+#' suppressPackageStartupMessages(library(dplyr))
 #'
 #' # View the block groups with households not fully contained in a single CCA
 #' filter(xwalk_blockgroup2cca, hh_pct < 1)
@@ -846,6 +847,7 @@
 #' df_cca
 #'
 #' # Join to cca_sf for mapping
+#' library(ggplot2)
 #' cca_sf %>%
 #'   left_join(df_cca, by = "cca_num") %>%
 #'   ggplot() +
