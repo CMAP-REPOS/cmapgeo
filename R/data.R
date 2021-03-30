@@ -763,7 +763,7 @@
 #' cca_sf %>%
 #'   left_join(df_cca, by = "cca_num") %>%
 #'   ggplot() +
-#'     geom_sf(aes(fill = transit_commute_pct)) +
+#'     geom_sf(aes(fill = transit_commute_pct), lwd = 0.1) +
 #'     scale_fill_viridis_c() +
 #'     theme_void()
 "xwalk_tract2cca"
@@ -849,7 +849,7 @@
 #' cca_sf %>%
 #'   left_join(df_cca, by = "cca_num") %>%
 #'   ggplot() +
-#'     geom_sf(aes(fill = unemp_rate)) +
+#'     geom_sf(aes(fill = unemp_rate), lwd = 0.1) +
 #'     scale_fill_viridis_c(direction = -1) +
 #'     theme_void()
 "xwalk_blockgroup2cca"
