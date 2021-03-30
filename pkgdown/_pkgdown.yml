@@ -18,8 +18,8 @@ reference:
 - title: Geodata
 - contents:
   - ends_with("_sf")
--title: Crosswalk Tables
--contents:
+- title: Crosswalk Tables
+- contents:
   - starts_with("xwalk_")
 - title: Other Useful Information
 - contents:
