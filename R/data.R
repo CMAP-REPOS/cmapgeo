@@ -745,7 +745,7 @@
 #' # Estimate CCA-level transit mode share from tract-level ACS data
 #' df_tract <- tidycensus::get_acs(
 #'   "tract", state = "IL", county = "031", table = "B08006",
-#'   year = 2019, survey = "acs5", output = "wide"
+#'   year = 2019, survey = "acs5", output = "wide", cache_table = TRUE
 #' ) %>%
 #'   rename(workers = B08006_001E, transit = B08006_008E) %>%
 #'   select(GEOID, workers, transit)
@@ -831,7 +831,7 @@
 #' # Estimate CCA-level unemployment rate from block group-level ACS data
 #' df_blkgrp <- tidycensus::get_acs(
 #'   "block group", state = "IL", county = "031", table = "B23025",
-#'   year = 2019, survey = "acs5", output = "wide"
+#'   year = 2019, survey = "acs5", output = "wide", cache_table = TRUE
 #' ) %>%
 #'   rename(civ_lf = B23025_003E, unemp = B23025_005E) %>%
 #'   select(GEOID, civ_lf, unemp)
