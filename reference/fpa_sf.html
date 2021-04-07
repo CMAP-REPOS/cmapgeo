@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Counties — county_sf • cmapgeo</title>
+<title>CMAP Facility Planning Areas (FPAs) — fpa_sf • cmapgeo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,12 @@
 
 
 
-<meta property="og:title" content="Counties — county_sf" />
-<meta property="og:description" content="The counties that are within the CMAP travel modeling area or the
-&quot;Chicago-Naperville-Elgin, IL-IN-WI&quot; Metropolitan Statistical Area (as
-defined by the United States Office of Management and Budget). From the US
-Census Bureau's TIGER/Line shapefiles, 2019 vintage." />
+<meta property="og:title" content="CMAP Facility Planning Areas (FPAs) — fpa_sf" />
+<meta property="og:description" content="This dataset represents
+wastewater service boundaries (Facility Planning Areas, or FPAs) approved by
+IEPA as of 1 April 2014, after which IEPA ceased approving FPA boundaries. No
+updates to this data set have occurred since that date, and no additional
+updates are anticipated." />
 <meta property="og:image" content="https://cmap-repos.github.io/cmapgeo/logo.png" />
 
 
@@ -119,63 +120,55 @@ Census Bureau's TIGER/Line shapefiles, 2019 vintage." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Counties</h1>
+    <h1>CMAP Facility Planning Areas (FPAs)</h1>
     <small class="dont-index">Source: <a href='https://github.com/CMAP-REPOS/cmapgeo/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>county_sf.Rd</code></div>
+    <div class="hidden name"><code>fpa_sf.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The counties that are within the CMAP travel modeling area <strong>or</strong> the
-"Chicago-Naperville-Elgin, IL-IN-WI" Metropolitan Statistical Area (as
-defined by the United States Office of Management and Budget). From the US
-Census Bureau's TIGER/Line shapefiles, 2019 vintage.</p>
+    <p>This dataset represents
+wastewater service boundaries (Facility Planning Areas, or FPAs) approved by
+IEPA as of 1 April 2014, after which IEPA ceased approving FPA boundaries. No
+updates to this data set have occurred since that date, and no additional
+updates are anticipated.</p>
     </div>
 
-    <pre class="usage"><span class='va'>county_sf</span></pre>
+    <pre class="usage"><span class='va'>fpa_sf</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A polygon <code>sf</code> object with 23 rows and 8
+    <p>A multipolygon <code>sf</code> object with 111 rows and 5
 variables:</p><dl>
-<dt>geoid_county</dt><dd><p>Unique 5-digit county ID (a.k.a. FIPS code), assigned
-by the Census Bureau. Character.</p></dd>
-<dt>county</dt><dd><p>County name. Character.</p></dd>
-<dt>state</dt><dd><p>2-letter state abbreviation. Character.</p></dd>
-<dt>cmap</dt><dd><p>Is the county part of the 7-county CMAP region? Logical.</p></dd>
-<dt>msa</dt><dd><p>Is the county part of the "Chicago-Naperville-Elgin, IL-IN-WI"
-Metropolitan Statistical Area? Logical.</p></dd>
-<dt>travel_model</dt><dd><p>Is the county at least partially covered by CMAP's
-travel modeling area? Logical.</p></dd>
+<dt>fpa</dt><dd><p>Full name of FPA (including parent- and sub-FPA). Character.</p></dd>
+<dt>parent_fpa</dt><dd><p>Name of parent FPA (same as <code>fpa</code> if not part of a
+sub-FPA). Character.</p></dd>
+<dt>sub_fpa</dt><dd><p>Name of sub-FPA, which may have multiple parent FPAs.
+Character.</p></dd>
 <dt>sqmi</dt><dd><p>Area in square miles. Double.</p></dd>
-<dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> polygon.</p></dd>
+<dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> multipolygon.</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>US Census Bureau
-<a href='https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html'>TIGER/Line</a></p>
+    <p><a href='https://datahub.cmap.illinois.gov/dataset/facility-planning-areas-fpa'>CMAP Data Hub</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Census Bureau description:</p>
-<p><em>"Counties are the primary legal divisions of most states. Most counties are
-functioning governmental units, whose powers and functions vary from state to
-state. Legal changes to county boundaries or names are typically infrequent,
-but do occur from time to time."</em></p>
-<p>Note: The Illinois counties of LaSalle, Lee and Ogle are included in their
-entirety, although only portions of these counties are part of the CMAP
-travel modeling area. The precise geographic extent of the CMAP travel
-modeling area is reflected in <code>zone_sf</code> and <code>subzone_sf</code>.</p>
+    <p>CMAP is the designated areawide water-quality management planning agency for
+the seven counties of northeastern Illinois, with responsibility for
+reviewing wastewater permits, facility plans, and related topics to ensure
+consistency with the federally-approved Illinois Water Quality Management
+Plan and the Areawide Water Quality Management Plan.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><a href='https://www.cmap.illinois.gov/programs/water/water-quality/wastewater-planning'>https://www.cmap.illinois.gov/programs/water/water-quality/wastewater-planning</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Display the counties with ggplot2</span>
+    <pre class="examples"><div class='input'><span class='co'># Display the FPAs with ggplot2</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>county_sf</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>travel_model</span>, <span class='va'>msa</span><span class='op'>)</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county_sf</span>, <span class='va'>cmap</span><span class='op'>)</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, lwd <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='county_sf-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>fpa_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='fpa_sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
