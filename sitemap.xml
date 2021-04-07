@@ -28,7 +28,10 @@
     <loc>https://cmap-repos.github.io/cmapgeo/reference/congress_sf.html</loc>
   </url>
   <url>
-    <loc>https://cmap-repos.github.io/cmapgeo/reference/county_fips.html</loc>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/county_fips_codes.html</loc>
+  </url>
+  <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/county_sf.html</loc>
   </url>
   <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/ilga_house_sf.html</loc>
