@@ -13,8 +13,10 @@ temp_cmap_sf <- tigris::counties(state = STATE) %>%
   select(GEOID)
 
 # Get Lake Michigan tracts for erasing
-temp_lakemich_sf <- tigris::tracts(state = STATE, county = c("031", "097")) %>%
-  filter(TRACTCE == "990000") %>%
+temp_lakemich_sf <- tigris::tracts(state = "17") %>%
+  bind_rows(tigris::tracts(state = "18")) %>%
+  bind_rows(tigris::tracts(state = "55")) %>%
+  filter(TRACTCE == "990000") %>%  # Water tracts only
   sf::st_transform(cmap_crs) %>%
   rmapshaper::ms_dissolve()
 
@@ -24,6 +26,25 @@ intersects_cmap <- function(in_sf) {
     apply(sf::st_covers(in_sf, temp_cmap_sf, sparse = FALSE), 1, any) |
     apply(sf::st_covered_by(in_sf, temp_cmap_sf, sparse = FALSE), 1, any)
 }
+
+# Process Census counties
+keep_counties <- unique(unlist(county_fips_codes))
+state_fips <- unique(substr(keep_counties, 1, 2))
+county_sf <- tigris::counties(state = state_fips) %>%
+  filter(GEOID %in% keep_counties) %>%
+  sf::st_transform(cmap_crs) %>%
+  rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
+  rename(geoid_county = GEOID,
+         county = NAME) %>%
+  mutate(state = case_when(STATEFP == "17" ~ "IL",
+                           STATEFP == "18" ~ "IN",
+                           STATEFP == "55" ~ "WI"),
+         cmap = geoid_county %in% county_fips_codes$cmap,
+         msa = geoid_county %in% county_fips_codes$msa,
+         travel_model = geoid_county %in% unlist(county_fips_codes[c("cmap", "xil", "xin", "xwi")]),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_county, county, state, cmap, msa, travel_model, sqmi) %>%
+  arrange(geoid_county)
 
 # Process Census county subdivisions (a.k.a. political townships)
 township_sf <- tigris::county_subdivisions(state = STATE, county = COUNTIES_MPO) %>%
@@ -128,6 +149,7 @@ ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "up
   arrange(dist_num)
 
 # Save processed data to package's data dir
+usethis::use_data(county_sf, overwrite = TRUE)
 usethis::use_data(township_sf, overwrite = TRUE)
 usethis::use_data(municipality_sf, overwrite = TRUE)
 usethis::use_data(tract_sf, overwrite = TRUE)

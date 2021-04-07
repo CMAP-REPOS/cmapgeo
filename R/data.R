@@ -442,6 +442,54 @@
 "township_sf"
 
 
+#' Counties
+#'
+#' The counties that are within the CMAP travel modeling area **or** the
+#' "Chicago-Naperville-Elgin, IL-IN-WI" Metropolitan Statistical Area (as
+#' defined by the United States Office of Management and Budget). From the US
+#' Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+#'
+#' Census Bureau description:
+#'
+#' *"Counties are the primary legal divisions of most states. Most counties are
+#' functioning governmental units, whose powers and functions vary from state to
+#' state. Legal changes to county boundaries or names are typically infrequent,
+#' but do occur from time to time."*
+#'
+#' Note: The Illinois counties of LaSalle, Lee and Ogle are included in their
+#' entirety, although only portions of these counties are part of the CMAP
+#' travel modeling area. The precise geographic extent of the CMAP travel
+#' modeling area is reflected in `zone_sf` and `subzone_sf`.
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(county_sf)` rows and `r ncol(county_sf)`
+#' variables:
+#' \describe{
+#'   \item{geoid_county}{Unique 5-digit county ID (a.k.a. FIPS code), assigned
+#'   by the Census Bureau. Character.}
+#'   \item{county}{County name. Character.}
+#'   \item{state}{2-letter state abbreviation. Character.}
+#'   \item{cmap}{Is the county part of the 7-county CMAP region? Logical.}
+#'   \item{msa}{Is the county part of the "Chicago-Naperville-Elgin, IL-IN-WI"
+#'   Metropolitan Statistical Area? Logical.}
+#'   \item{travel_model}{Is the county at least partially covered by CMAP's
+#'   travel modeling area? Logical.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source US Census Bureau
+#'   [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the counties with ggplot2
+#' library(ggplot2)
+#' ggplot(data = county_sf) +
+#'   geom_sf(aes(fill=paste(cmap, travel_model, msa)), lwd = 0.1) +
+#'   theme_void()
+"county_sf"
+
+
 
 # Geodata created with data-raw/load_chicago_geojson.R --------------------
 
