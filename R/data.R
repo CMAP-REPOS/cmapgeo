@@ -41,7 +41,7 @@
 #' @examples
 #' # Display the blocks with ggplot2
 #' library(ggplot2)
-#' ggplot(data = block_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(block_sf) + geom_sf(lwd = 0.1) + theme_void()
 "block_sf"
 
 
@@ -94,7 +94,7 @@
 #' @examples
 #' # Display the block groups with ggplot2
 #' library(ggplot2)
-#' ggplot(data = blockgroup_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(blockgroup_sf) + geom_sf(lwd = 0.1) + theme_void()
 "blockgroup_sf"
 
 
@@ -154,7 +154,7 @@
 #' @examples
 #' # Display the tracts with ggplot2
 #' library(ggplot2)
-#' ggplot(data = tract_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(tract_sf) + geom_sf(lwd = 0.1) + theme_void()
 "tract_sf"
 
 
@@ -199,7 +199,7 @@
 #' @examples
 #' # Display the PUMAs with ggplot2
 #' library(ggplot2)
-#' ggplot(data = puma_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(puma_sf) + geom_sf(lwd = 0.1) + theme_void()
 "puma_sf"
 
 
@@ -254,7 +254,7 @@
 #' @examples
 #' # Display the ILGA Senate Districts with ggplot2
 #' library(ggplot2)
-#' ggplot(data = ilga_senate_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+#' ggplot(ilga_senate_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 "ilga_senate_sf"
 
 
@@ -309,7 +309,7 @@
 #' @examples
 #' # Display the ILGA House Districts with ggplot2
 #' library(ggplot2)
-#' ggplot(data = ilga_house_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+#' ggplot(ilga_house_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 "ilga_house_sf"
 
 
@@ -349,7 +349,7 @@
 #' @examples
 #' # Display the Congressional Districts with ggplot2
 #' library(ggplot2)
-#' ggplot(data = congress_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+#' ggplot(congress_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 "congress_sf"
 
 
@@ -391,7 +391,7 @@
 #' @examples
 #' # Display the municipalities with ggplot2
 #' library(ggplot2)
-#' ggplot(data = municipality_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(municipality_sf) + geom_sf(lwd = 0.1) + theme_void()
 "municipality_sf"
 
 
@@ -438,7 +438,7 @@
 #' @examples
 #' # Display the townships with ggplot2
 #' library(ggplot2)
-#' ggplot(data = township_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(township_sf) + geom_sf(lwd = 0.1) + theme_void()
 "township_sf"
 
 
@@ -484,10 +484,39 @@
 #' @examples
 #' # Display the counties with ggplot2
 #' library(ggplot2)
-#' ggplot(data = county_sf) +
+#' ggplot(county_sf) +
 #'   geom_sf(aes(fill=paste(cmap, travel_model, msa)), lwd = 0.1) +
 #'   theme_void()
 "county_sf"
+
+
+#' IDOT Districts
+#'
+#' The nine highway districts covering the entire state of Illinois, as defined
+#' by the Illinois Department of Transportation (IDOT). Includes a column
+#' indicating which of the five transportation regions each district belongs to.
+#' Created using the county boundaries in the US Census Bureau's TIGER/Line
+#' shapefiles, 2019 vintage.
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(idot_sf)` rows and `r ncol(idot_sf)`
+#' variables:
+#' \describe{
+#'   \item{district}{District ID, assigned by IDOT. Character.}
+#'   \item{region}{Region ID, assigned by IDOT. Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source US Census Bureau
+#'   [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'   and [IDOT Regions](https://idot.illinois.gov/about-idot/idot-regions/index)
+#'
+#' @examples
+#' # Display the IDOT districts/regions with ggplot2
+#' library(ggplot2)
+#' ggplot(idot_sf) + geom_sf(aes(fill = region), lwd = 0.1) + theme_void()
+"idot_sf"
 
 
 
@@ -513,7 +542,7 @@
 #' @examples
 #' # Display the CCAs with ggplot2
 #' library(ggplot2)
-#' ggplot(data = cca_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(cca_sf) + geom_sf(lwd = 0.1) + theme_void()
 "cca_sf"
 
 
@@ -537,7 +566,7 @@
 #' @examples
 #' # Display the wards with ggplot2
 #' library(ggplot2)
-#' ggplot(data = ward_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(ward_sf) + geom_sf(lwd = 0.1) + theme_void()
 "ward_sf"
 
 
@@ -573,7 +602,7 @@
 #' @examples
 #' # Display the CMAP MPA counties with ggplot2
 #' library(ggplot2)
-#' ggplot(data = cmap_mpa_sf) + geom_sf(aes(fill = whole_county), lwd = 0.1) + theme_void()
+#' ggplot(cmap_mpa_sf) + geom_sf(aes(fill = whole_county), lwd = 0.1) + theme_void()
 "cmap_mpa_sf"
 
 
@@ -623,7 +652,7 @@
 #' @examples
 #' # Display the COMs with ggplot2
 #' library(ggplot2)
-#' ggplot(data = com_sf) + geom_sf(lwd = 0.1) + theme_void()
+#' ggplot(com_sf) + geom_sf(lwd = 0.1) + theme_void()
 "com_sf"
 
 
@@ -684,7 +713,7 @@
 #' @examples
 #' # Display the subzones with ggplot2
 #' library(ggplot2)
-#' ggplot(data = subzone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+#' ggplot(subzone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 "subzone_sf"
 
 
@@ -724,7 +753,7 @@
 #' @examples
 #' # Display the zones with ggplot2
 #' library(ggplot2)
-#' ggplot(data = zone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+#' ggplot(zone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 "zone_sf"
 
 
