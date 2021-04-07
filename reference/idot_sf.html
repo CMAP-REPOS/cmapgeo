@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Townships — township_sf • cmapgeo</title>
+<title>IDOT Districts — idot_sf • cmapgeo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,12 +46,12 @@
 
 
 
-<meta property="og:title" content="Townships — township_sf" />
-<meta property="og:description" content="The political townships (also referred to as &quot;county subdivisions&quot; in Census
-Bureau terminology) that are within the CMAP Metropolitan Planning Area
-(MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
-Grundy County and Sandwich &amp;amp; Somonauk Townships in DeKalb County.) From the
-US Census Bureau's TIGER/Line shapefiles, 2019 vintage." />
+<meta property="og:title" content="IDOT Districts — idot_sf" />
+<meta property="og:description" content="The nine highway districts covering the entire state of Illinois, as defined
+by the Illinois Department of Transportation (IDOT). Includes a column
+indicating which of the five transportation regions each district belongs to.
+Created using the county boundaries in the US Census Bureau's TIGER/Line
+shapefiles, 2019 vintage." />
 <meta property="og:image" content="https://cmap-repos.github.io/cmapgeo/logo.png" />
 
 
@@ -120,60 +120,44 @@ US Census Bureau's TIGER/Line shapefiles, 2019 vintage." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Townships</h1>
+    <h1>IDOT Districts</h1>
     <small class="dont-index">Source: <a href='https://github.com/CMAP-REPOS/cmapgeo/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>township_sf.Rd</code></div>
+    <div class="hidden name"><code>idot_sf.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The political townships (also referred to as "county subdivisions" in Census
-Bureau terminology) that are within the CMAP Metropolitan Planning Area
-(MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
-Grundy County and Sandwich &amp; Somonauk Townships in DeKalb County.) From the
-US Census Bureau's TIGER/Line shapefiles, 2019 vintage.</p>
+    <p>The nine highway districts covering the entire state of Illinois, as defined
+by the Illinois Department of Transportation (IDOT). Includes a column
+indicating which of the five transportation regions each district belongs to.
+Created using the county boundaries in the US Census Bureau's TIGER/Line
+shapefiles, 2019 vintage.</p>
     </div>
 
-    <pre class="usage"><span class='va'>township_sf</span></pre>
+    <pre class="usage"><span class='va'>idot_sf</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A multipolygon <code>sf</code> object with 128 rows and
-5 variables:</p><dl>
-<dt>geoid_cousub</dt><dd><p>Unique 10-digit county subdivision/township ID,
-assigned by the Census Bureau. Character.</p></dd>
-<dt>township</dt><dd><p>Township name. Character.</p></dd>
-<dt>county_fips</dt><dd><p>Unique 5-digit FIPS code of the county the township is
-in. Character.</p></dd>
+    <p>A polygon <code>sf</code> object with 9 rows and 4
+variables:</p><dl>
+<dt>district</dt><dd><p>District ID, assigned by IDOT. Character.</p></dd>
+<dt>region</dt><dd><p>Region ID, assigned by IDOT. Character.</p></dd>
 <dt>sqmi</dt><dd><p>Area in square miles. Double.</p></dd>
-<dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> multipolygon.</p></dd>
+<dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> polygon.</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>US Census Bureau
-<a href='https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html'>TIGER/Line</a></p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Census Bureau description:</p>
-<p><em>"County Subdivisions are the primary divisions of counties and equivalent
-entities. They include census county divisions, census subareas, minor civil
-divisions, and unorganized territories and can be classified as either legal
-or statistical. Each county subdivision is assigned a five-character numeric
-Federal Information Processing Series (FIPS) code based on alphabetical
-sequence within state and an eight-digit National Standard feature
-identifier."</em></p>
-<p>Note: The entire City of Chicago (other than the portion of O'Hare in DuPage
-County) is included as a single township in this dataset, and has not been
-subdivided into the eight theoretical townships defined by the Cook County
-Clerk's Office for the purposes of collecting property tax.</p>
+<a href='https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html'>TIGER/Line</a>
+and <a href='https://idot.illinois.gov/about-idot/idot-regions/index'>IDOT Regions</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Display the townships with ggplot2</span>
+    <pre class="examples"><div class='input'><span class='co'># Display the IDOT districts/regions with ggplot2</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>township_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='township_sf-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>idot_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>region</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='idot_sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
