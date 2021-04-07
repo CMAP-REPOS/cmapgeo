@@ -50,19 +50,20 @@ cmap_crs <- 3435
 #' and Wisconsin.
 #'
 #' @examples
-#' county_fips$cmap  # 7-county CMAP region
-#' county_fips$xil   # External Illinois counties
-#' county_fips$xin   # External Indiana counties
-#' county_fips$xwi   # External Wisconsin counties
+#' county_fips_codes$cmap  # 7-county CMAP region
+#' county_fips_codes$xil   # Travel model external Illinois counties
+#' county_fips_codes$xin   # Travel model external Indiana counties
+#' county_fips_codes$xwi   # Travel model external Wisconsin counties
+#' county_fips_codes$msa   # Chicago-Naperville-Elgin, IL-IN-WI MSA counties
 #'
 #' # Get the names of the CMAP counties
-#' names(county_fips$cmap)
+#' names(county_fips_codes$cmap)
 #'
-#' # Combine all 4 divisions into a single vector
-#' unlist(county_fips)
+#' # Combine the 4 travel model divisions into a single vector
+#' unlist(county_fips_codes[c("cmap", "xil", "xin", "xwi")])
 #'
 #' @export
-county_fips <- list(
+county_fips_codes <- list(
   cmap = c(
     Cook = "17031",
     DuPage = "17043",
@@ -91,6 +92,22 @@ county_fips <- list(
     Kenosha = "55059",
     Racine = "55101",
     Walworth = "55127"
+  ),
+  msa = c(
+    Cook_IL = "17031",
+    DeKalb_IL = "17037",
+    DuPage_IL = "17043",
+    Grundy_IL = "17063",
+    Kane_IL = "17089",
+    Kendall_IL = "17093",
+    Lake_IL = "17097",
+    McHenry_IL = "17111",
+    Will_IL = "17197",
+    Jasper_IN = "18073",
+    Lake_IN = "18089",
+    Newton_IN = "18111",
+    Porter_IN = "18127",
+    Kenosha_WI = "55059"
   )
 )
 
