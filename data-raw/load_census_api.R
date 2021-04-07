@@ -148,6 +148,31 @@ ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "up
   select(dist_num, dist_name, cmap, sqmi) %>%
   arrange(dist_num)
 
+# Process IDOT regions
+county_district = c(
+  `17031`="D1", `17089`="D1", `17197`="D1", `17043`="D1", `17097`="D1", `17111`="D1",
+  `17161`="D2", `17103`="D2", `17177`="D2", `17085`="D2", `17073`="D2", `17201`="D2", `17141`="D2", `17007`="D2", `17195`="D2", `17015`="D2",
+  `17011`="D3", `17093`="D3", `17037`="D3", `17075`="D3", `17053`="D3", `17091`="D3", `17105`="D3", `17063`="D3", `17099`="D3",
+  `17131`="D4", `17057`="D4", `17175`="D4", `17155`="D4", `17109`="D4", `17203`="D4", `17179`="D4", `17123`="D4", `17187`="D4", `17143`="D4", `17095`="D4", `17071`="D4",
+  `17113`="D5", `17147`="D5", `17041`="D5", `17039`="D5", `17183`="D5", `17019`="D5", `17045`="D5",
+  `17067`="D6", `17009`="D6", `17135`="D6", `17001`="D6", `17171`="D6", `17129`="D6", `17169`="D6", `17125`="D6", `17149`="D6", `17017`="D6", `17167`="D6", `17137`="D6", `17117`="D6", `17107`="D6", `17021`="D6",
+  `17025`="D7", `17185`="D7", `17029`="D7", `17049`="D7", `17035`="D7", `17033`="D7", `17115`="D7", `17023`="D7", `17159`="D7", `17191`="D7", `17173`="D7", `17051`="D7", `17139`="D7", `17079`="D7", `17101`="D7", `17047`="D7",
+  `17005`="D8", `17083`="D8", `17163`="D8", `17189`="D8", `17027`="D8", `17061`="D8", `17157`="D8", `17013`="D8", `17121`="D8", `17119`="D8", `17133`="D8",
+  `17151`="D9", `17055`="D9", `17059`="D9", `17065`="D9", `17193`="D9", `17181`="D9", `17199`="D9", `17069`="D9", `17127`="D9", `17145`="D9", `17087`="D9", `17153`="D9", `17003`="D9", `17165`="D9", `17081`="D9", `17077`="D9"
+)
+idot_sf <- tigris::counties(state = STATE) %>%
+  sf::st_transform(cmap_crs) %>%
+  rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
+  mutate(district = recode(GEOID, !!!county_district),
+         region = case_when(district == "D1" ~ "R1",
+                            district %in% c("D2", "D3") ~ "R2",
+                            district %in% c("D4", "D5") ~ "R3",
+                            district %in% c("D6", "D7") ~ "R4",
+                            district %in% c("D8", "D9") ~ "R5"),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  group_by(district, region) %>%
+  summarize(sqmi = sum(sqmi), .groups = "drop")
+
 # Save processed data to package's data dir
 usethis::use_data(county_sf, overwrite = TRUE)
 usethis::use_data(township_sf, overwrite = TRUE)
@@ -159,3 +184,4 @@ usethis::use_data(puma_sf, overwrite = TRUE)
 usethis::use_data(congress_sf, overwrite = TRUE)
 usethis::use_data(ilga_house_sf, overwrite = TRUE)
 usethis::use_data(ilga_senate_sf, overwrite = TRUE)
+usethis::use_data(idot_sf, overwrite = TRUE)
