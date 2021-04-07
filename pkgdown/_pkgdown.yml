@@ -24,4 +24,4 @@ reference:
 - title: Other Useful Information
 - contents:
   - cmap_crs
-  - county_fips
+  - county_fips_codes
