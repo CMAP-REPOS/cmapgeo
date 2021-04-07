@@ -51,6 +51,7 @@ format, and includes boundaries for:
 -   CMAP travel modeling zones and subzones
 -   CMAP subregional Councils of Mayors (COMs)
 -   Legislative districts (state and federal)
+-   IDOT districts
 
 ## Installation
 
