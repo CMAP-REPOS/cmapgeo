@@ -43,6 +43,6 @@ these state-equivalent entities as having a single nonvoting delegate."}
 \examples{
 # Display the Congressional Districts with ggplot2
 library(ggplot2)
-ggplot(data = congress_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+ggplot(congress_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

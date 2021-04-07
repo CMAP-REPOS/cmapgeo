@@ -42,6 +42,6 @@ aggregations of subzones (\code{subzone_sf}).
 \examples{
 # Display the zones with ggplot2
 library(ggplot2)
-ggplot(data = zone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+ggplot(zone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

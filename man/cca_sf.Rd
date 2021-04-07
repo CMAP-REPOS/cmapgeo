@@ -26,6 +26,6 @@ The official boundaries of the Chicago Community Areas. Obtained 3/24/2021.
 \examples{
 # Display the CCAs with ggplot2
 library(ggplot2)
-ggplot(data = cca_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(cca_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

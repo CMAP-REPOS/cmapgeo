@@ -48,6 +48,6 @@ within state."}
 \examples{
 # Display the PUMAs with ggplot2
 library(ggplot2)
-ggplot(data = puma_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(puma_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

@@ -48,6 +48,6 @@ data."}
 \examples{
 # Display the blocks with ggplot2
 library(ggplot2)
-ggplot(data = block_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(block_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

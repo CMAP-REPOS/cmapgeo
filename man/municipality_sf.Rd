@@ -45,6 +45,6 @@ borough, but can have other legal descriptions."}
 \examples{
 # Display the municipalities with ggplot2
 library(ggplot2)
-ggplot(data = municipality_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(municipality_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

@@ -50,7 +50,7 @@ considered “true” for any given point in time.
 \examples{
 # Display the COMs with ggplot2
 library(ggplot2)
-ggplot(data = com_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(com_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \seealso{
 \url{https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils}

@@ -50,7 +50,7 @@ modeling area is reflected in \code{zone_sf} and \code{subzone_sf}.
 \examples{
 # Display the counties with ggplot2
 library(ggplot2)
-ggplot(data = county_sf) +
+ggplot(county_sf) +
   geom_sf(aes(fill=paste(cmap, travel_model, msa)), lwd = 0.1) +
   theme_void()
 }

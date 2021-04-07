@@ -35,6 +35,6 @@ expanded to include Somonauk and Sandwich Townships in DeKalb County.
 \examples{
 # Display the CMAP MPA counties with ggplot2
 library(ggplot2)
-ggplot(data = cmap_mpa_sf) + geom_sf(aes(fill = whole_county), lwd = 0.1) + theme_void()
+ggplot(cmap_mpa_sf) + geom_sf(aes(fill = whole_county), lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

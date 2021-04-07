@@ -63,6 +63,6 @@ groups defined by state and county."}
 \examples{
 # Display the tracts with ggplot2
 library(ggplot2)
-ggplot(data = tract_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(tract_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

@@ -56,6 +56,6 @@ tracts and block groups defined by state and county."}
 \examples{
 # Display the block groups with ggplot2
 library(ggplot2)
-ggplot(data = blockgroup_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(blockgroup_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

@@ -26,6 +26,6 @@ The official boundaries of the current Chicago wards (established in May of
 \examples{
 # Display the wards with ggplot2
 library(ggplot2)
-ggplot(data = ward_sf) + geom_sf(lwd = 0.1) + theme_void()
+ggplot(ward_sf) + geom_sf(lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

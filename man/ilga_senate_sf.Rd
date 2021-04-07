@@ -58,6 +58,6 @@ of Lake Michigan, has been excluded from this dataset.
 \examples{
 # Display the ILGA Senate Districts with ggplot2
 library(ggplot2)
-ggplot(data = ilga_senate_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+ggplot(ilga_senate_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 }
 \keyword{datasets}

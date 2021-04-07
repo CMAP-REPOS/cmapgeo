@@ -63,6 +63,6 @@ corresponding to a PLSS quarter-section. This forms a fairly regular grid of
 \examples{
 # Display the subzones with ggplot2
 library(ggplot2)
-ggplot(data = subzone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
+ggplot(subzone_sf) + geom_sf(aes(fill = cmap), lwd = 0.1) + theme_void()
 }
 \keyword{datasets}
