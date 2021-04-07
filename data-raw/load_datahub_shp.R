@@ -4,6 +4,7 @@ devtools::load_all()
 # Links to zipped shapefiles hosted on the CMAP Data Hub
 CMAP_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/2e8ed4ce-d056-4183-8d97-5f2901edb1f9/resource/832c29a6-9ca8-4459-9ff0-106c56c39a0d/download/mpocountiescmap201409.zip"
 COM_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/a466a0bf-3c3e-48cb-8297-6eb55f49fb50/resource/cbe742e0-2e78-4a54-95c2-d694703e1ae6/download/CoMCMAP201303.zip"
+FPA_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/18c6875e-e0d1-4e97-aa4f-6a7b7d435d16/resource/df877dc8-2924-49ae-b76c-32b9c895f424/download/FPACMAP201404rev1.zip"
 SUBZONE_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/a515b107-bdee-4b4c-b92e-50d3ecc0d971/resource/c4e47fca-0030-4b66-9221-947120c9c24f/download/subzones17CMAP2019.zip"
 ZONE_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/a515b107-bdee-4b4c-b92e-50d3ecc0d971/resource/8dd37215-98dc-4244-9623-2d28c4e1611c/download/zones17.zip"
 
@@ -36,6 +37,22 @@ com_sf <- sf::st_read(paste(unzip_dir, "CoM_CMAP_201303.shp", sep="\\")) %>%
   mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
   select(council, full_name, sqmi) %>%
   arrange(council)
+
+# Process Facility Planning Areas
+fpa_zip <- tempfile()
+download.file(FPA_ZIP_URL, fpa_zip)
+unzip(fpa_zip, exdir = unzip_dir)
+unlink(fpa_zip)
+fpa_sf <- sf::st_read(paste(unzip_dir, "FPA_CMAP_201404rev1.shp", sep="\\")) %>%
+  filter(FPANAME != "Non-FPA") %>%
+  sf::st_transform(cmap_crs) %>%
+  rename(fpa = FPANAME,
+         parent_fpa = PARENT_FPA,
+         sub_fpa = SUB_FPA) %>%
+  mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  group_by(fpa, parent_fpa, sub_fpa) %>%
+  summarize(sqmi = sum(sqmi), .groups = "drop") %>%
+  arrange(parent_fpa, sub_fpa)
 
 # Process subzones
 subzone_zip <- tempfile()
@@ -78,5 +95,6 @@ zone_sf <- sf::st_read(paste(unzip_dir, "zones17.shp", sep="\\")) %>%
 # Save processed data to package's data dir
 usethis::use_data(cmap_mpa_sf, overwrite = TRUE)
 usethis::use_data(com_sf, overwrite = TRUE)
+usethis::use_data(fpa_sf, overwrite = TRUE)
 usethis::use_data(subzone_sf, overwrite = TRUE)
 usethis::use_data(zone_sf, overwrite = TRUE)

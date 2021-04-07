@@ -61,6 +61,7 @@ format, and includes boundaries for:
 - CMAP subregional Councils of Mayors (COMs)
 - Legislative districts (state and federal)
 - IDOT districts
+- Facility Planning Areas (FPAs)
 
 
 ## Installation

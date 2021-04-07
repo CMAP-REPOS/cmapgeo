@@ -657,6 +657,46 @@
 "com_sf"
 
 
+#' CMAP Facility Planning Areas (FPAs)
+#'
+#' This dataset represents
+#' wastewater service boundaries (Facility Planning Areas, or FPAs) approved by
+#' IEPA as of 1 April 2014, after which IEPA ceased approving FPA boundaries. No
+#' updates to this data set have occurred since that date, and no additional
+#' updates are anticipated.
+#'
+#' CMAP is the designated areawide water-quality management planning agency for
+#' the seven counties of northeastern Illinois, with responsibility for
+#' reviewing wastewater permits, facility plans, and related topics to ensure
+#' consistency with the federally-approved Illinois Water Quality Management
+#' Plan and the Areawide Water Quality Management Plan.
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(fpa_sf)` rows and `r ncol(fpa_sf)`
+#' variables:
+#' \describe{
+#'   \item{fpa}{Full name of FPA (including parent- and sub-FPA). Character.}
+#'   \item{parent_fpa}{Name of parent FPA (same as `fpa` if not part of a
+#'   sub-FPA). Character.}
+#'   \item{sub_fpa}{Name of sub-FPA, which may have multiple parent FPAs.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source
+#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/facility-planning-areas-fpa)
+#'
+#' @seealso
+#' <https://www.cmap.illinois.gov/programs/water/water-quality/wastewater-planning>
+#'
+#' @examples
+#' # Display the FPAs with ggplot2
+#' library(ggplot2)
+#' ggplot(fpa_sf) + geom_sf(lwd = 0.1) + theme_void()
+"fpa_sf"
+
+
 #' CMAP Travel Modeling Subzones
 #'
 #' The 2017 subzones (a.k.a. MAZs) used by [CMAP](http://cmap.illinois.gov) for
