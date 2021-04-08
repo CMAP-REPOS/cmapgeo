@@ -155,6 +155,7 @@ xwalk_blockgroup2cca <- block_pct %>%
     pop_pct = sum(pop_pct_blkgrp),
     .groups = "drop"
   )
+summary(xwalk_blockgroup2cca)
 
 xwalk_tract2cca <- block_pct %>%
   select(geoid_block, geoid_tract, ends_with("pct_tract")) %>%
@@ -166,6 +167,7 @@ xwalk_tract2cca <- block_pct %>%
     pop_pct = sum(pop_pct_tract),
     .groups = "drop"
   )
+summary(xwalk_tract2cca)
 
 xwalk_blockgroup2subzone <- block_pct %>%
   select(geoid_block, geoid_blkgrp, ends_with("pct_blkgrp")) %>%
@@ -177,6 +179,7 @@ xwalk_blockgroup2subzone <- block_pct %>%
     pop_pct = sum(pop_pct_blkgrp),
     .groups = "drop"
   )
+summary(xwalk_blockgroup2subzone)
 
 xwalk_tract2subzone <- block_pct %>%
   select(geoid_block, geoid_tract, ends_with("pct_tract")) %>%
@@ -188,6 +191,7 @@ xwalk_tract2subzone <- block_pct %>%
     pop_pct = sum(pop_pct_tract),
     .groups = "drop"
   )
+summary(xwalk_tract2subzone)
 
 xwalk_blockgroup2zone <- block_pct %>%
   select(geoid_block, geoid_blkgrp, ends_with("pct_blkgrp")) %>%
@@ -199,6 +203,7 @@ xwalk_blockgroup2zone <- block_pct %>%
     pop_pct = sum(pop_pct_blkgrp),
     .groups = "drop"
   )
+summary(xwalk_blockgroup2zone)
 
 xwalk_tract2zone <- block_pct %>%
   select(geoid_block, geoid_tract, ends_with("pct_tract")) %>%
@@ -210,6 +215,7 @@ xwalk_tract2zone <- block_pct %>%
     pop_pct = sum(pop_pct_tract),
     .groups = "drop"
   )
+summary(xwalk_tract2zone)
 
 # Save processed data to package's data dir
 usethis::use_data(xwalk_blockgroup2cca, overwrite = TRUE)
