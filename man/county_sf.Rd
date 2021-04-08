@@ -52,7 +52,7 @@ modeling area is reflected in \code{zone_sf} and \code{subzone_sf}.
 library(ggplot2)
 ggplot(county_sf) +
   geom_sf(aes(fill=paste(travel_model, msa)), lwd = 0.1) +
-  geom_sf(data = dplyr::filter(county_sf, cmap), fill = NA, lwd = 1) +
+  geom_sf(data = dplyr::filter(county_sf, cmap), fill = NA, lwd = 0.5) +
   theme_void()
 }
 \keyword{datasets}
