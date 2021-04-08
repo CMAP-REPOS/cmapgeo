@@ -35,7 +35,8 @@
 #'   my_sf_data <- sf::st_transform(my_sf_data, crs = cmap_crs)
 #' }
 #'
-#' sf::st_crs(cmap_crs)  # View projection specification
+#' # View projection specification
+#' sf::st_crs(cmap_crs)
 #'
 #' @export
 cmap_crs <- 3435
@@ -50,16 +51,25 @@ cmap_crs <- 3435
 #' and Wisconsin.
 #'
 #' @examples
-#' county_fips_codes$cmap  # 7-county CMAP region
-#' county_fips_codes$xil   # Travel model external Illinois counties
-#' county_fips_codes$xin   # Travel model external Indiana counties
-#' county_fips_codes$xwi   # Travel model external Wisconsin counties
-#' county_fips_codes$msa   # Chicago-Naperville-Elgin, IL-IN-WI MSA counties
+#' # 7-county CMAP region
+#' county_fips_codes$cmap
+#'
+#' # Travel model non-CMAP Illinois counties
+#' county_fips_codes$xil
+#'
+#' # Travel model Indiana counties
+#' county_fips_codes$xin
+#'
+#' # Travel model Wisconsin counties
+#' county_fips_codes$xwi
+#'
+#' # Chicago-Naperville-Elgin, IL-IN-WI MSA counties
+#' county_fips_codes$msa
 #'
 #' # Get the names of the CMAP counties
 #' names(county_fips_codes$cmap)
 #'
-#' # Combine the 4 travel model divisions into a single vector
+#' # Get all travel model counties in a single vector
 #' unlist(county_fips_codes[c("cmap", "xil", "xin", "xwi")])
 #'
 #' @export

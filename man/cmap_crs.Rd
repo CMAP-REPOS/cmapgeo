@@ -22,7 +22,8 @@ be used as the \code{crs} parameter in \code{sf::st_transform()} to reproject ot
   my_sf_data <- sf::st_transform(my_sf_data, crs = cmap_crs)
 }
 
-sf::st_crs(cmap_crs)  # View projection specification
+# View projection specification
+sf::st_crs(cmap_crs)
 
 }
 \seealso{
