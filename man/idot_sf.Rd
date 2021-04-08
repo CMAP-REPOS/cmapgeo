@@ -17,7 +17,8 @@ variables:
 \source{
 US Census Bureau
 \href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html}{TIGER/Line}
-and \href{https://idot.illinois.gov/about-idot/idot-regions/index}{IDOT Regions}
+counties, aggregated into
+\href{https://idot.illinois.gov/about-idot/idot-regions/index}{IDOT Regions}
 }
 \usage{
 idot_sf

@@ -511,7 +511,8 @@
 #'
 #' @source US Census Bureau
 #'   [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
-#'   and [IDOT Regions](https://idot.illinois.gov/about-idot/idot-regions/index)
+#'   counties, aggregated into
+#'   [IDOT Regions](https://idot.illinois.gov/about-idot/idot-regions/index)
 #'
 #' @examples
 #' # Display the IDOT districts/regions with ggplot2
