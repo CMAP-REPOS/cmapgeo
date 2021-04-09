@@ -141,15 +141,24 @@ and Wisconsin.</p>
     <p>An object of class <code>list</code> of length 5.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>cmap</span>  <span class='co'># 7-county CMAP region</span>
+    <pre class="examples"><div class='input'><span class='co'># 7-county CMAP region</span>
+<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>cmap</span>
 </div><div class='output co'>#&gt;    Cook  DuPage    Kane Kendall    Lake McHenry    Will 
-#&gt; "17031" "17043" "17089" "17093" "17097" "17111" "17197" </div><div class='input'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xil</span>   <span class='co'># Travel model external Illinois counties</span>
+#&gt; "17031" "17043" "17089" "17093" "17097" "17111" "17197" </div><div class='input'>
+<span class='co'># Travel model non-CMAP Illinois counties</span>
+<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xil</span>
 </div><div class='output co'>#&gt;     Boone    DeKalb    Grundy  Kankakee   LaSalle       Lee      Ogle Winnebago 
-#&gt;   "17007"   "17037"   "17063"   "17091"   "17099"   "17103"   "17141"   "17201" </div><div class='input'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xin</span>   <span class='co'># Travel model external Indiana counties</span>
+#&gt;   "17007"   "17037"   "17063"   "17091"   "17099"   "17103"   "17141"   "17201" </div><div class='input'>
+<span class='co'># Travel model Indiana counties</span>
+<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xin</span>
 </div><div class='output co'>#&gt;    Lake LaPorte  Porter 
-#&gt; "18089" "18091" "18127" </div><div class='input'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xwi</span>   <span class='co'># Travel model external Wisconsin counties</span>
+#&gt; "18089" "18091" "18127" </div><div class='input'>
+<span class='co'># Travel model Wisconsin counties</span>
+<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xwi</span>
 </div><div class='output co'>#&gt;  Kenosha   Racine Walworth 
-#&gt;  "55059"  "55101"  "55127" </div><div class='input'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>msa</span>   <span class='co'># Chicago-Naperville-Elgin, IL-IN-WI MSA counties</span>
+#&gt;  "55059"  "55101"  "55127" </div><div class='input'>
+<span class='co'># Chicago-Naperville-Elgin, IL-IN-WI MSA counties</span>
+<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>msa</span>
 </div><div class='output co'>#&gt;    Cook_IL  DeKalb_IL  DuPage_IL  Grundy_IL    Kane_IL Kendall_IL    Lake_IL 
 #&gt;    "17031"    "17037"    "17043"    "17063"    "17089"    "17093"    "17097" 
 #&gt; McHenry_IL    Will_IL  Jasper_IN    Lake_IN  Newton_IN  Porter_IN Kenosha_WI 
@@ -157,7 +166,7 @@ and Wisconsin.</p>
 <span class='co'># Get the names of the CMAP counties</span>
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>cmap</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "Cook"    "DuPage"  "Kane"    "Kendall" "Lake"    "McHenry" "Will"   </div><div class='input'>
-<span class='co'># Combine the 4 travel model divisions into a single vector</span>
+<span class='co'># Get all travel model counties in a single vector</span>
 <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>county_fips_codes</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cmap"</span>, <span class='st'>"xil"</span>, <span class='st'>"xin"</span>, <span class='st'>"xwi"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     cmap.Cook   cmap.DuPage     cmap.Kane  cmap.Kendall     cmap.Lake 
 #&gt;       "17031"       "17043"       "17089"       "17093"       "17097" 

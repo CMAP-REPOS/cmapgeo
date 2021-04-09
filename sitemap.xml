@@ -67,7 +67,19 @@
     <loc>https://cmap-repos.github.io/cmapgeo/reference/xwalk_blockgroup2cca.html</loc>
   </url>
   <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/xwalk_blockgroup2subzone.html</loc>
+  </url>
+  <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/xwalk_blockgroup2zone.html</loc>
+  </url>
+  <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/xwalk_tract2cca.html</loc>
+  </url>
+  <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/xwalk_tract2subzone.html</loc>
+  </url>
+  <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/xwalk_tract2zone.html</loc>
   </url>
   <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/zone_sf.html</loc>
