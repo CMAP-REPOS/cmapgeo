@@ -31,7 +31,7 @@ xwalk_tract2cca
 }
 \description{
 This table contains a set of factors to apportion Census tract-level data
-among Chicago Community Areas (CCAs). Seperate factors are provided for
+among Chicago Community Areas (CCAs). Separate factors are provided for
 apportioning housing unit, household, and population attributes. All factors
 were determined by calculating the percentage of a tract's housing units,
 households and population that were located in each of its component blocks,
@@ -45,8 +45,7 @@ there are cases where the population, households and/or housing units in a
 tract are split across multiple CCAs, or else are partially within the City
 of Chicago and partially outside of it. For that reason, it is not
 appropriate to use a one-to-one tract-to-CCA assignment to apportion Census
-data among CCAs, and this crosswalk (or \code{xwalk_blockgroup2cca} for block
-group-level data) should be used instead.
+data among CCAs, and this crosswalk should be used instead.
 
 To use this crosswalk effectively, Census data should be joined to it (not
 vice versa, since tract IDs appear multiple times in this table). Once the

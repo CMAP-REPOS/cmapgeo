@@ -805,7 +805,7 @@
 #' Tract-to-CCA Crosswalk
 #'
 #' This table contains a set of factors to apportion Census tract-level data
-#' among Chicago Community Areas (CCAs). Seperate factors are provided for
+#' among Chicago Community Areas (CCAs). Separate factors are provided for
 #' apportioning housing unit, household, and population attributes. All factors
 #' were determined by calculating the percentage of a tract's housing units,
 #' households and population that were located in each of its component blocks,
@@ -818,8 +818,7 @@
 #' tract are split across multiple CCAs, or else are partially within the City
 #' of Chicago and partially outside of it. For that reason, it is not
 #' appropriate to use a one-to-one tract-to-CCA assignment to apportion Census
-#' data among CCAs, and this crosswalk (or `xwalk_blockgroup2cca` for block
-#' group-level data) should be used instead.
+#' data among CCAs, and this crosswalk should be used instead.
 #'
 #' To use this crosswalk effectively, Census data should be joined to it (not
 #' vice versa, since tract IDs appear multiple times in this table). Once the
@@ -892,7 +891,7 @@
 #' Block Group-to-CCA Crosswalk
 #'
 #' This table contains a set of factors to apportion Census block group-level
-#' data among Chicago Community Areas (CCAs). Seperate factors are provided for
+#' data among Chicago Community Areas (CCAs). Separate factors are provided for
 #' apportioning housing unit, household, and population attributes. All factors
 #' were determined by calculating the percentage of a block group's housing
 #' units, households and population that were located in each of its component
@@ -905,8 +904,7 @@
 #' units in a block group are split across multiple CCAs, or else are partially
 #' within the City of Chicago and partially outside of it. For that reason, it
 #' is not appropriate to use a one-to-one block group-to-CCA assignment to
-#' apportion Census data among CCAs, and this crosswalk (or `xwalk_tract2cca`
-#' for tract-level data) should be used instead.
+#' apportion Census data among CCAs, and this crosswalk should be used instead.
 #'
 #' To use this crosswalk effectively, Census data should be joined to it (not
 #' vice versa, since block group IDs appear multiple times in this table). Once
@@ -974,3 +972,279 @@
 #'     scale_fill_viridis_c(direction = -1) +
 #'     theme_void()
 "xwalk_blockgroup2cca"
+
+
+#' Tract-to-Subzone Crosswalk
+#'
+#' This table contains a set of factors to apportion Census tract-level data
+#' among the CMAP travel modeling subzones. Separate factors are provided for
+#' apportioning housing unit, household, and population attributes. All factors
+#' were determined by calculating the percentage of a tract's housing units,
+#' households and population that were located in each of its component blocks,
+#' according to the 2010 Decennial Census, and then assigning each block to a
+#' subzone (based on the location of the block's centroid point). Subzones that
+#' do not contain the centroid of any blocks with at least one housing unit,
+#' household or person are not present in this table, and should be considered
+#' unpopulated.
+#'
+#' Other than in certain areas of Chicago, tracts tend to be significantly
+#' larger than subzones and have highly irregular boundaries, so in most cases
+#' the population, households and/or housing units in a tract are split across
+#' multiple subzones. For that reason, it is not appropriate to use a one-to-one
+#' tract-to-subzone assignment to apportion Census data among subzones, and this
+#' crosswalk should be used instead.
+#'
+#' To use this crosswalk effectively, Census data should be joined to it (not
+#' vice versa, since tract IDs appear multiple times in this table). Once the
+#' data is joined, it should be multiplied by the appropriate factor (depending
+#' whether the data of interest is measured at the housing unit, household or
+#' person level), and then the result should be summed by subzone ID. If
+#' calculating rates, this should only be done after the counts have been summed
+#' to subzone. The resulting table can then be joined to `subzone_sf` for
+#' mapping, if desired.
+#'
+#' If your data is also available at the block group level, it is recommended
+#' that you use that with `xwalk_blockgroup2subzone` instead of the tract-level
+#' allocation. If the subzone geography is too granular for your needs, you can
+#' use zones instead with `xwalk_tract2zone` or `xwalk_blockgroup2zone`.
+#'
+#' @format
+#' A tibble with `r nrow(xwalk_tract2subzone)` rows and
+#' `r ncol(xwalk_tract2subzone)` variables:
+#' \describe{
+#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census Bureau.
+#'   Corresponds to `tract_sf` (although that only includes the tracts in the
+#'   7-county CMAP region). Character.}
+#'   \item{subzone17}{Numeric subzone ID. Corresponds to `subzone_sf`. Integer.}
+#'   \item{hu_pct}{Proportion of the tract's housing units (occupied or vacant)
+#'   located in the specified subzone. Multiply this by a tract-level measure of
+#'   a housing attribute (e.g. vacant homes) to estimate the subzone's portion.
+#'   Double.}
+#'   \item{hh_pct}{Proportion of the tract's households (i.e. occupied housing
+#'   units) living in the specified subzone. Multiply this by a tract-level
+#'   measure of a household attribute (e.g. car-free households) to estimate the
+#'   subzone's portion. Double.}
+#'   \item{pop_pct}{Proportion of the tract's total population (including group
+#'   quarters) living in the specified subzone. Multiply this by a tract-level
+#'   measure of a population attribute (e.g. race/ethnicity) to estimate the
+#'   subzone's portion. Double.}
+#' }
+#'
+#' @examples
+#' # View the tract allocations for subzone17 == 1
+#' dplyr::filter(xwalk_tract2subzone, subzone17 == 1)
+#'
+#' # Map the subzones missing from xwalk_tract2subzone (i.e. no HU/HH/pop)
+#' library(ggplot2)
+#' ggplot(dplyr::anti_join(subzone_sf, xwalk_tract2subzone)) +
+#'   geom_sf(fill = "red", lwd = 0.1) +
+#'   geom_sf(data = subzone_sf, fill = NA, lwd = 0.1) +
+#'   theme_void()
+"xwalk_tract2subzone"
+
+
+#' Block Group-to-Subzone Crosswalk
+#'
+#' This table contains a set of factors to apportion Census block group-level
+#' data among the CMAP travel modeling subzones. Separate factors are provided
+#' for apportioning housing unit, household, and population attributes. All
+#' factors were determined by calculating the percentage of a block group's
+#' housing units, households and population that were located in each of its
+#' component blocks, according to the 2010 Decennial Census, and then assigning
+#' each block to a subzone (based on the location of the block's centroid
+#' point). Subzones that do not contain the centroid of any blocks with at least
+#' one housing unit, household or person are not present in this table, and
+#' should be considered unpopulated.
+#'
+#' Other than in certain areas of Chicago, block groups tend to be significantly
+#' larger than subzones and have highly irregular boundaries, so in most cases
+#' the population, households and/or housing units in a block group are split
+#' across multiple subzones. For that reason, it is not appropriate to use a
+#' one-to-one block group-to-subzone assignment to apportion Census data among
+#' subzones, and this crosswalk should be used instead.
+#'
+#' To use this crosswalk effectively, Census data should be joined to it (not
+#' vice versa, since block group IDs appear multiple times in this table). Once
+#' the data is joined, it should be multiplied by the appropriate factor
+#' (depending whether the data of interest is measured at the housing unit,
+#' household or person level), and then the result should be summed by subzone
+#' ID. If calculating rates, this should only be done after the counts have been
+#' summed to subzone. The resulting table can then be joined to `subzone_sf` for
+#' mapping, if desired.
+#'
+#' If your data is only available at the tract level, you can use
+#' `xwalk_tract2subzone` for a tract-level allocation instead. If the subzone
+#' geography is too granular for your needs, you can use zones instead with
+#' `xwalk_blockgroup2zone` or `xwalk_tract2zone`.
+#'
+#' @format
+#' A tibble with `r nrow(xwalk_blockgroup2subzone)` rows and
+#' `r ncol(xwalk_blockgroup2subzone)` variables:
+#' \describe{
+#'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
+#'   Bureau. Corresponds to `blockgroup_sf` (although that only includes the
+#'   block groups in the 7-county CMAP region). Character.}
+#'   \item{subzone17}{Numeric subzone ID. Corresponds to `subzone_sf`. Integer.}
+#'   \item{hu_pct}{Proportion of the block group's housing units (occupied or
+#'   vacant) located in the specified subzone. Multiply this by a block
+#'   group-level measure of a housing attribute (e.g. vacant homes) to estimate
+#'   the subzone's portion. Double.}
+#'   \item{hh_pct}{Proportion of the block group's households (i.e. occupied
+#'   housing units) living in the specified subzone. Multiply this by a block
+#'   group-level measure of a household attribute (e.g. car-free households) to
+#'   estimate the subzone's portion. Double.}
+#'   \item{pop_pct}{Proportion of the block group's total population (including
+#'   group quarters) living in the specified subzone. Multiply this by a block
+#'   group-level measure of a population attribute (e.g. race/ethnicity) to
+#'   estimate the subzone's portion. Double.}
+#' }
+#'
+#' @examples
+#' # View the block group allocations for subzone17 == 1
+#' dplyr::filter(xwalk_blockgroup2subzone, subzone17 == 1)
+#'
+#' # Map the subzones missing from xwalk_blockgroup2subzone (i.e. no HU/HH/pop)
+#' library(ggplot2)
+#' ggplot(dplyr::anti_join(subzone_sf, xwalk_blockgroup2subzone)) +
+#'   geom_sf(fill = "red", lwd = 0.1) +
+#'   geom_sf(data = subzone_sf, fill = NA, lwd = 0.1) +
+#'   theme_void()
+"xwalk_blockgroup2subzone"
+
+
+#' Tract-to-Zone Crosswalk
+#'
+#' This table contains a set of factors to apportion Census tract-level data
+#' among the CMAP travel modeling zones. Separate factors are provided for
+#' apportioning housing unit, household, and population attributes. All factors
+#' were determined by calculating the percentage of a tract's housing units,
+#' households and population that were located in each of its component blocks,
+#' according to the 2010 Decennial Census, and then assigning each block to a
+#' zone (based on the location of the block's centroid point). Zones that
+#' do not contain the centroid of any blocks with at least one housing unit,
+#' household or person are not present in this table, and should be considered
+#' unpopulated.
+#'
+#' Other than in certain areas of Chicago, tracts tend to be larger than zones
+#' and have highly irregular boundaries, so in most cases the population,
+#' households and/or housing units in a tract are split across multiple zones.
+#' For that reason, it is not appropriate to use a one-to-one tract-to-zone
+#' assignment to apportion Census data among zones, and this crosswalk should be
+#' used instead.
+#'
+#' To use this crosswalk effectively, Census data should be joined to it (not
+#' vice versa, since tract IDs appear multiple times in this table). Once the
+#' data is joined, it should be multiplied by the appropriate factor (depending
+#' whether the data of interest is measured at the housing unit, household or
+#' person level), and then the result should be summed by zone ID. If
+#' calculating rates, this should only be done after the counts have been summed
+#' to zone. The resulting table can then be joined to `zone_sf` for mapping, if
+#' desired.
+#'
+#' If your data is also available at the block group level, it is recommended
+#' that you use that with `xwalk_blockgroup2zone` instead of the tract-level
+#' allocation. If the zone geography is too coarse for your needs, you can use
+#' subzones instead with `xwalk_tract2subzone` or `xwalk_blockgroup2subzone`.
+#'
+#' @format
+#' A tibble with `r nrow(xwalk_tract2zone)` rows and `r ncol(xwalk_tract2zone)`
+#' variables:
+#' \describe{
+#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census Bureau.
+#'   Corresponds to `tract_sf` (although that only includes the tracts in the
+#'   7-county CMAP region). Character.}
+#'   \item{zone17}{Numeric zone ID. Corresponds to `zone_sf`. Integer.}
+#'   \item{hu_pct}{Proportion of the tract's housing units (occupied or vacant)
+#'   located in the specified zone. Multiply this by a tract-level measure of a
+#'   housing attribute (e.g. vacant homes) to estimate the zone's portion.
+#'   Double.}
+#'   \item{hh_pct}{Proportion of the tract's households (i.e. occupied housing
+#'   units) living in the specified zone. Multiply this by a tract-level measure
+#'   of a household attribute (e.g. car-free households) to estimate the zone's
+#'   portion. Double.}
+#'   \item{pop_pct}{Proportion of the tract's total population (including group
+#'   quarters) living in the specified zone. Multiply this by a tract-level
+#'   measure of a population attribute (e.g. race/ethnicity) to estimate the
+#'   zone's portion. Double.}
+#' }
+#'
+#' @examples
+#' # View the tract allocations for zone17 == 55
+#' dplyr::filter(xwalk_tract2zone, zone17 == 55)
+#'
+#' # Map the zones missing from xwalk_tract2zone (i.e. no HU/HH/pop)
+#' library(ggplot2)
+#' ggplot(dplyr::anti_join(zone_sf, xwalk_tract2zone)) +
+#'   geom_sf(fill = "red", lwd = 0.1) +
+#'   geom_sf(data = zone_sf, fill = NA, lwd = 0.1) +
+#'   theme_void()
+"xwalk_tract2zone"
+
+
+#' Block Group-to-Zone Crosswalk
+#'
+#' This table contains a set of factors to apportion Census block group-level
+#' data among the CMAP travel modeling zones. Separate factors are provided for
+#' apportioning housing unit, household, and population attributes. All factors
+#' were determined by calculating the percentage of a block group's housing
+#' units, households and population that were located in each of its component
+#' blocks, according to the 2010 Decennial Census, and then assigning each block
+#' to a zone (based on the location of the block's centroid point). Zones that
+#' do not contain the centroid of any blocks with at least one housing unit,
+#' household or person are not present in this table, and should be considered
+#' unpopulated.
+#'
+#' Other than in certain areas of Chicago, block groups tend to be larger than
+#' zones and have highly irregular boundaries, so in most cases the population,
+#' households and/or housing units in a block group are split across multiple
+#' zones. For that reason, it is not appropriate to use a one-to-one block
+#' group-to-zone assignment to apportion Census data among zones, and this
+#' crosswalk should be used instead.
+#'
+#' To use this crosswalk effectively, Census data should be joined to it (not
+#' vice versa, since block group IDs appear multiple times in this table). Once
+#' the data is joined, it should be multiplied by the appropriate factor
+#' (depending whether the data of interest is measured at the housing unit,
+#' household or person level), and then the result should be summed by zone ID.
+#' If calculating rates, this should only be done after the counts have been
+#' summed to zone. The resulting table can then be joined to `zone_sf` for
+#' mapping, if desired.
+#'
+#' If your data is only available at the tract level, you can use
+#' `xwalk_tract2zone` for a tract-level allocation instead. If the zone
+#' geography is too coarse for your needs, you can use subzones instead with
+#' `xwalk_blockgroup2subzone` or `xwalk_tract2subzone`.
+#'
+#' @format
+#' A tibble with `r nrow(xwalk_blockgroup2zone)` rows and
+#' `r ncol(xwalk_blockgroup2zone)` variables:
+#' \describe{
+#'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
+#'   Bureau. Corresponds to `blockgroup_sf` (although that only includes the
+#'   block groups in the 7-county CMAP region). Character.}
+#'   \item{zone17}{Numeric zone ID. Corresponds to `zone_sf`. Integer.}
+#'   \item{hu_pct}{Proportion of the block group's housing units (occupied or
+#'   vacant) located in the specified zone. Multiply this by a block group-level
+#'   measure of a housing attribute (e.g. vacant homes) to estimate the zone's
+#'   portion. Double.}
+#'   \item{hh_pct}{Proportion of the block group's households (i.e. occupied
+#'   housing units) living in the specified zone. Multiply this by a block
+#'   group-level measure of a household attribute (e.g. car-free households) to
+#'   estimate the zone's portion. Double.}
+#'   \item{pop_pct}{Proportion of the block group's total population (including
+#'   group quarters) living in the specified zone. Multiply this by a block
+#'   group-level measure of a population attribute (e.g. race/ethnicity) to
+#'   estimate the zone's portion. Double.}
+#' }
+#'
+#' @examples
+#' # View the block group allocations for zone17 == 55
+#' dplyr::filter(xwalk_blockgroup2zone, zone17 == 55)
+#'
+#' # Map the zones missing from xwalk_blockgroup2zone (i.e. no HU/HH/pop)
+#' library(ggplot2)
+#' ggplot(dplyr::anti_join(zone_sf, xwalk_blockgroup2zone)) +
+#'   geom_sf(fill = "red", lwd = 0.1) +
+#'   geom_sf(data = zone_sf, fill = NA, lwd = 0.1) +
+#'   theme_void()
+"xwalk_blockgroup2zone"
