@@ -50,9 +50,9 @@ eda_sf <- sf::st_read(paste(unzip_dir, "Disinvested_and_EDA.shp", sep="\\")) %>%
   rename(geoid_tract = GEOID10) %>%
   mutate(county_fips = paste0(STATEFP10, COUNTYFP10),
          area_type = case_when(
-           DisplayGro == "Disinvested" ~ "Disinvested Area",
-           DisplayGro == "Both" ~ "Disinvested and Economically Disconnected Area",
-           TRUE ~ DisplayGro  # Economically Disconnected Area
+           DisplayGro == "Disinvested" ~ "Disinvested Area Only",
+           DisplayGro == "Both" ~ "Economically Disconnected and Disinvested Area",
+           TRUE ~ "Economically Disconnected Area Only"
          ),
          eda = DisplayGro %in% c("Economically Disconnected Area", "Both"),
          disinvested = DisplayGro %in% c("Disinvested", "Both"),
