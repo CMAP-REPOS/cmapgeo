@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CMAP Facility Planning Areas (FPAs) — fpa_sf • cmapgeo</title>
+<title>CMAP Economically Disconnected and Disinvested Areas — eda_sf • cmapgeo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,20 @@
 
 
 
-<meta property="og:title" content="CMAP Facility Planning Areas (FPAs) — fpa_sf" />
-<meta property="og:description" content="This dataset represents wastewater service boundaries (Facility Planning
-Areas, or FPAs) approved by IEPA as of 1 April 2014, after which IEPA ceased
-approving FPA boundaries. No updates to this data set have occurred since
-that date, and no additional updates are anticipated." />
+<meta property="og:title" content="CMAP Economically Disconnected and Disinvested Areas — eda_sf" />
+<meta property="og:description" content="To advance ON TO 2050's commitment to
+inclusive growth, CMAP has defined Economically Disconnected and Disinvested
+Areas within the region. These classifications have been made at the Census
+tract level, covering the 7-county CMAP region. Economically Disconnected
+Areas (EDAs) are areas that describe population-based estimates of
+concentrated low-income and minority status, whereas disinvested areas
+outline places with long-term declines in employment and other markers of
+commercial market weakness. Together, these communities experience a
+persistent, long-term lack of market investment, leading to declining
+property values, taxes, employment, and, frequently, population.
+Disinvestment often constrains the ability of any individual community to
+respond effectively to these losses, and high tax rates and low market
+potential limit private investment." />
 <meta property="og:image" content="https://cmap-repos.github.io/cmapgeo/logo.png" />
 
 
@@ -119,54 +128,59 @@ that date, and no additional updates are anticipated." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CMAP Facility Planning Areas (FPAs)</h1>
+    <h1>CMAP Economically Disconnected and Disinvested Areas</h1>
     <small class="dont-index">Source: <a href='https://github.com/CMAP-REPOS/cmapgeo/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>fpa_sf.Rd</code></div>
+    <div class="hidden name"><code>eda_sf.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This dataset represents wastewater service boundaries (Facility Planning
-Areas, or FPAs) approved by IEPA as of 1 April 2014, after which IEPA ceased
-approving FPA boundaries. No updates to this data set have occurred since
-that date, and no additional updates are anticipated.</p>
+    <p>To advance <a href='https://www.cmap.illinois.gov/2050'>ON TO 2050</a>'s commitment to
+inclusive growth, CMAP has defined Economically Disconnected and Disinvested
+Areas within the region. These classifications have been made at the Census
+tract level, covering the 7-county CMAP region. Economically Disconnected
+Areas (EDAs) are areas that describe population-based estimates of
+concentrated low-income and minority status, whereas disinvested areas
+outline places with long-term declines in employment and other markers of
+commercial market weakness. Together, these communities experience a
+persistent, long-term lack of market investment, leading to declining
+property values, taxes, employment, and, frequently, population.
+Disinvestment often constrains the ability of any individual community to
+respond effectively to these losses, and high tax rates and low market
+potential limit private investment.</p>
     </div>
 
-    <pre class="usage"><span class='va'>fpa_sf</span></pre>
+    <pre class="usage"><span class='va'>eda_sf</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A multipolygon <code>sf</code> object with 111 rows and 5
+    <p>A polygon <code>sf</code> object with 856 rows and 7
 variables:</p><dl>
-<dt>fpa</dt><dd><p>Full name of FPA (including parent- and sub-FPA). Character.</p></dd>
-<dt>parent_fpa</dt><dd><p>Name of parent FPA (same as <code>fpa</code> if not part of a
-sub-FPA). Character.</p></dd>
-<dt>sub_fpa</dt><dd><p>Name of sub-FPA, which may have multiple parent FPAs.
+<dt>geoid_tract</dt><dd><p>Unique 11-digit tract ID, assigned by the Census
+Bureau. Character.</p></dd>
+<dt>county_fips</dt><dd><p>Unique 5-digit FIPS code of the county the tract is in.
 Character.</p></dd>
+<dt>area_type</dt><dd><p>Description of the tract's combined EDA and disinvested
+status. Character.</p></dd>
+<dt>eda</dt><dd><p>Is the tract an Economically Disconnected Area (EDA)? Logical.</p></dd>
+<dt>disinvested</dt><dd><p>Is the tract a disinvested area? Logical.</p></dd>
 <dt>sqmi</dt><dd><p>Area in square miles. Double.</p></dd>
-<dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> multipolygon.</p></dd>
+<dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> polygon.</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://datahub.cmap.illinois.gov/dataset/facility-planning-areas-fpa'>CMAP Data Hub</a></p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>CMAP is the designated areawide water-quality management planning agency for
-the seven counties of northeastern Illinois, with responsibility for
-reviewing wastewater permits, facility plans, and related topics to ensure
-consistency with the federally-approved Illinois Water Quality Management
-Plan and the Areawide Water Quality Management Plan.</p>
+    <p><a href='https://datahub.cmap.illinois.gov/dataset/on-to-2050-layer-edas-disinvested-areas'>CMAP Data Hub</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://www.cmap.illinois.gov/programs/water/water-quality/wastewater-planning'>https://www.cmap.illinois.gov/programs/water/water-quality/wastewater-planning</a></p></div>
+    <div class='dont-index'><p><a href='https://www.cmap.illinois.gov/2050/maps/eda'>https://www.cmap.illinois.gov/2050/maps/eda</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Display the FPAs with ggplot2</span>
+    <pre class="examples"><div class='input'><span class='co'># Display the EDAs and disinvested areas with ggplot2</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>fpa_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='fpa_sf-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>eda_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>area_type</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='eda_sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
