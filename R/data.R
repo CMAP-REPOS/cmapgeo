@@ -658,13 +658,57 @@
 "com_sf"
 
 
+#' CMAP Economically Disconnected and Disinvested Areas
+#'
+#' To advance [ON TO 2050](https://www.cmap.illinois.gov/2050)'s commitment to
+#' inclusive growth, CMAP has defined Economically Disconnected and Disinvested
+#' Areas within the region. These classifications have been made at the Census
+#' tract level, covering the 7-county CMAP region. Economically Disconnected
+#' Areas (EDAs) are areas that describe population-based estimates of
+#' concentrated low-income and minority status, whereas disinvested areas
+#' outline places with long-term declines in employment and other markers of
+#' commercial market weakness. Together, these communities experience a
+#' persistent, long-term lack of market investment, leading to declining
+#' property values, taxes, employment, and, frequently, population.
+#' Disinvestment often constrains the ability of any individual community to
+#' respond effectively to these losses, and high tax rates and low market
+#' potential limit private investment.
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(eda_sf)` rows and `r ncol(eda_sf)`
+#' variables:
+#' \describe{
+#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
+#'   Bureau. Character.}
+#'   \item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
+#'   Character.}
+#'   \item{area_type}{Description of the tract's combined EDA and disinvested
+#'   status. Character.}
+#'   \item{eda}{Is the tract an Economically Disconnected Area (EDA)? Logical.}
+#'   \item{disinvested}{Is the tract a disinvested area? Logical.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source
+#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/on-to-2050-layer-edas-disinvested-areas)
+#'
+#' @seealso
+#' <https://www.cmap.illinois.gov/2050/maps/eda>
+#'
+#' @examples
+#' # Display the EDAs and disinvested areas with ggplot2
+#' library(ggplot2)
+#' ggplot(eda_sf) + geom_sf(aes(fill = area_type), lwd = 0.1) + theme_void()
+"eda_sf"
+
+
 #' CMAP Facility Planning Areas (FPAs)
 #'
-#' This dataset represents
-#' wastewater service boundaries (Facility Planning Areas, or FPAs) approved by
-#' IEPA as of 1 April 2014, after which IEPA ceased approving FPA boundaries. No
-#' updates to this data set have occurred since that date, and no additional
-#' updates are anticipated.
+#' This dataset represents wastewater service boundaries (Facility Planning
+#' Areas, or FPAs) approved by IEPA as of 1 April 2014, after which IEPA ceased
+#' approving FPA boundaries. No updates to this data set have occurred since
+#' that date, and no additional updates are anticipated.
 #'
 #' CMAP is the designated areawide water-quality management planning agency for
 #' the seven counties of northeastern Illinois, with responsibility for
