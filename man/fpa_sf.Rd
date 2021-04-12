@@ -24,11 +24,10 @@ Character.}
 fpa_sf
 }
 \description{
-This dataset represents
-wastewater service boundaries (Facility Planning Areas, or FPAs) approved by
-IEPA as of 1 April 2014, after which IEPA ceased approving FPA boundaries. No
-updates to this data set have occurred since that date, and no additional
-updates are anticipated.
+This dataset represents wastewater service boundaries (Facility Planning
+Areas, or FPAs) approved by IEPA as of 1 April 2014, after which IEPA ceased
+approving FPA boundaries. No updates to this data set have occurred since
+that date, and no additional updates are anticipated.
 }
 \details{
 CMAP is the designated areawide water-quality management planning agency for
