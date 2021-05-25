@@ -7,7 +7,7 @@ Authors@R: c(
            email = "npeterson@cmap.illinois.gov",
            comment = c(ORCID = "0000-0003-1290-2362")),
     person("Chicago Metropolitan Agency for Planning",
-           role = "cph"))
+           role = c("cph", "fnd")))
 Description: The cmapgeo package is a repository of geodata files representing
     various geographic and administrative boundaries in the Chicago region,
     maintained by the Chicago Metropolitan Agency for Planning (CMAP). Data is
