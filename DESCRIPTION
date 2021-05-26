@@ -22,6 +22,7 @@ BugReports: https://github.com/CMAP-REPOS/cmapgeo/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+LazyDataCompression: gzip
 Depends:
     R (>= 2.10)
 Suggests:
