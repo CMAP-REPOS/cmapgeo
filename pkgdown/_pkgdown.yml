@@ -16,6 +16,14 @@ authors:
 template:
   params:
     bootswatch: yeti
+  opengraph:
+    image:
+      src: "https://repository-images.githubusercontent.com/350802988/d5e5c380-9488-11eb-8707-868eefde4f4d"
+      alt: "cmapgeo: R-friendly geodata for the Chicago region"
+    twitter:
+      creator: "@nmpeterson"
+      site: "@cmapillinois"
+      card: summary_large_image
 
 reference:
 - title: Geodata
