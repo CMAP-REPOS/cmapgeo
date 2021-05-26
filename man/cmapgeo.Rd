@@ -32,7 +32,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Chicago Metropolitan Agency for Planning [copyright holder]
+  \item Chicago Metropolitan Agency for Planning [copyright holder, funder]
 }
 
 }
