@@ -89,7 +89,7 @@ should be considered unpopulated." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cmapgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -193,20 +193,20 @@ geography is too granular for your needs, you can use zones instead with
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># View the block group allocations for subzone17 == 1</span>
 <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>xwalk_blockgroup2subzone</span>, <span class='va'>subzone17</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span>
 #&gt;   geoid_blkgrp subzone17 hu_pct hh_pct pop_pct
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 170310816001         1  0.284  0.301   0.343
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 170310816002         1  1      1       1    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 170310817001         1  0.877  0.892   0.882
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 170310817002         1  0.288  0.230   0.224</div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> 170310816001         1  0.284  0.301   0.343
+#&gt; <span style='color: #BCBCBC;'>2</span> 170310816002         1  1      1       1    
+#&gt; <span style='color: #BCBCBC;'>3</span> 170310817001         1  0.877  0.892   0.882
+#&gt; <span style='color: #BCBCBC;'>4</span> 170310817002         1  0.288  0.230   0.224</div><div class='input'>
 <span class='co'># Map the subzones missing from xwalk_blockgroup2subzone (i.e. no HU/HH/pop)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='va'>subzone_sf</span>, <span class='va'>xwalk_blockgroup2subzone</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"red"</span>, lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>subzone_sf</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Joining, by = "subzone17"</span></div><div class='img'><img src='xwalk_blockgroup2subzone-1.png' alt='' width='700' height='433' /></div></span></pre>
+</div><div class='output co'>#&gt; <span class='message'>Joining, by = "subzone17"</span></div><div class='img'><img src='xwalk_blockgroup2subzone-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -218,7 +218,8 @@ geography is too granular for your needs, you can use zones instead with
 
       <footer>
       <div class="copyright">
-  <p>Developed by Noel Peterson.</p>
+  <p>Developed by Noel Peterson, <a href='https://www.cmap.illinois.gov'><img src="https://gist.githubusercontent.com/nmpeterson/c0d9b113b9ddbf17dbf5d3f875d58fb6/raw/aba458177da968bef0b5bf896277e5c265a9f726/cmap_logo_long.svg" height="24" alt="Chicago Metropolitan Agency for Planning logo">
+</a>.</p>
 </div>
 
 <div class="pkgdown">

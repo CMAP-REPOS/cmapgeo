@@ -86,7 +86,7 @@ CCA (based on the location of the block's centroid point)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cmapgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -188,20 +188,20 @@ allocation.</p>
 
 <span class='co'># View the tracts with population not fully contained in a single CCA</span>
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>xwalk_tract2cca</span>, <span class='va'>pop_pct</span> <span class='op'>&lt;</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 22 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 22 x 5</span>
 #&gt;    geoid_tract cca_num  hu_pct  hh_pct pop_pct
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 17031090200       9 0.983   0.984   0.987  
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 17031090300       9 0.958   0.956   0.951  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 17031520500      52 0.997   0.997   0.996  
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 17031520500      55 0.002</span><span style='text-decoration: underline;'>61</span><span> 0.002</span><span style='text-decoration: underline;'>70</span><span> 0.003</span><span style='text-decoration: underline;'>95</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 17031520600      52 0.993   0.992   0.992  
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 17031520600      55 0.007</span><span style='text-decoration: underline;'>26</span><span> 0.007</span><span style='text-decoration: underline;'>60</span><span> 0.007</span><span style='text-decoration: underline;'>86</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 17031570500      57 0.992   0.992   0.988  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 17031570500      62 0.007</span><span style='text-decoration: underline;'>75</span><span> 0.008</span><span style='text-decoration: underline;'>44</span><span> 0.012</span><span style='text-decoration: underline;'>2</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 17031770902      76 0.080</span><span style='text-decoration: underline;'>8</span><span>  0.076</span><span style='text-decoration: underline;'>8</span><span>  0.055</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 17031810400      10 0.072</span><span style='text-decoration: underline;'>3</span><span>  0.070</span><span style='text-decoration: underline;'>3</span><span>  0.052</span><span style='text-decoration: underline;'>5</span><span> 
-#&gt; </span><span style='color: #949494;'># … with 12 more rows</span><span></div><div class='input'>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 17031090200       9 0.983   0.984   0.987  
+#&gt; <span style='color: #BCBCBC;'> 2</span> 17031090300       9 0.958   0.956   0.951  
+#&gt; <span style='color: #BCBCBC;'> 3</span> 17031520500      52 0.997   0.997   0.996  
+#&gt; <span style='color: #BCBCBC;'> 4</span> 17031520500      55 0.002<span style='text-decoration: underline;'>61</span> 0.002<span style='text-decoration: underline;'>70</span> 0.003<span style='text-decoration: underline;'>95</span>
+#&gt; <span style='color: #BCBCBC;'> 5</span> 17031520600      52 0.993   0.992   0.992  
+#&gt; <span style='color: #BCBCBC;'> 6</span> 17031520600      55 0.007<span style='text-decoration: underline;'>26</span> 0.007<span style='text-decoration: underline;'>60</span> 0.007<span style='text-decoration: underline;'>86</span>
+#&gt; <span style='color: #BCBCBC;'> 7</span> 17031570500      57 0.992   0.992   0.988  
+#&gt; <span style='color: #BCBCBC;'> 8</span> 17031570500      62 0.007<span style='text-decoration: underline;'>75</span> 0.008<span style='text-decoration: underline;'>44</span> 0.012<span style='text-decoration: underline;'>2</span> 
+#&gt; <span style='color: #BCBCBC;'> 9</span> 17031770902      76 0.080<span style='text-decoration: underline;'>8</span>  0.076<span style='text-decoration: underline;'>8</span>  0.055<span style='text-decoration: underline;'>7</span> 
+#&gt; <span style='color: #BCBCBC;'>10</span> 17031810400      10 0.072<span style='text-decoration: underline;'>3</span>  0.070<span style='text-decoration: underline;'>3</span>  0.052<span style='text-decoration: underline;'>5</span> 
+#&gt; <span style='color: #949494;'># … with 12 more rows</span></div><div class='input'>
 <span class='co'># Estimate CCA-level transit mode share from tract-level ACS data</span>
 <span class='va'>df_tract</span> <span class='op'>&lt;-</span> <span class='fu'>tidycensus</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tidycensus/man/get_acs.html'>get_acs</a></span><span class='op'>(</span>
   <span class='st'>"tract"</span>, state <span class='op'>=</span> <span class='st'>"IL"</span>, county <span class='op'>=</span> <span class='st'>"031"</span>, table <span class='op'>=</span> <span class='st'>"B08006"</span>,
@@ -218,20 +218,20 @@ allocation.</p>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>summarize_at</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>transit</span>, <span class='va'>workers</span><span class='op'>)</span>, <span class='va'>sum</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>transit_commute_pct <span class='op'>=</span> <span class='va'>transit</span> <span class='op'>/</span> <span class='va'>workers</span><span class='op'>)</span>
 <span class='va'>df_cca</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 77 x 4</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 77 x 4</span>
 #&gt;    cca_num transit workers transit_commute_pct
-#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>       1  </span><span style='text-decoration: underline;'>12</span><span>099   </span><span style='text-decoration: underline;'>29</span><span>939               0.404 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>       2   </span><span style='text-decoration: underline;'>6</span><span>226   </span><span style='text-decoration: underline;'>34</span><span>366               0.181 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>       3  </span><span style='text-decoration: underline;'>16</span><span>947   </span><span style='text-decoration: underline;'>35</span><span>707               0.475 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>       4   </span><span style='text-decoration: underline;'>9</span><span>108   </span><span style='text-decoration: underline;'>25</span><span>506               0.357 
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>       5   </span><span style='text-decoration: underline;'>6</span><span>819   </span><span style='text-decoration: underline;'>21</span><span>128               0.323 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>       6  </span><span style='text-decoration: underline;'>38</span><span>035   </span><span style='text-decoration: underline;'>72</span><span>974               0.521 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>       7  </span><span style='text-decoration: underline;'>19</span><span>997   </span><span style='text-decoration: underline;'>45</span><span>003               0.444 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>       8  </span><span style='text-decoration: underline;'>15</span><span>950   </span><span style='text-decoration: underline;'>62</span><span>511               0.255 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>       9    659.   </span><span style='text-decoration: underline;'>6</span><span>092.              0.108 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>      10   </span><span style='text-decoration: underline;'>1</span><span>621.  </span><span style='text-decoration: underline;'>19</span><span>006.              0.085</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #949494;'># … with 67 more rows</span><span></div><div class='input'>
+#&gt;      <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>       1  <span style='text-decoration: underline;'>12</span>099   <span style='text-decoration: underline;'>29</span>939               0.404 
+#&gt; <span style='color: #BCBCBC;'> 2</span>       2   <span style='text-decoration: underline;'>6</span>226   <span style='text-decoration: underline;'>34</span>366               0.181 
+#&gt; <span style='color: #BCBCBC;'> 3</span>       3  <span style='text-decoration: underline;'>16</span>947   <span style='text-decoration: underline;'>35</span>707               0.475 
+#&gt; <span style='color: #BCBCBC;'> 4</span>       4   <span style='text-decoration: underline;'>9</span>108   <span style='text-decoration: underline;'>25</span>506               0.357 
+#&gt; <span style='color: #BCBCBC;'> 5</span>       5   <span style='text-decoration: underline;'>6</span>819   <span style='text-decoration: underline;'>21</span>128               0.323 
+#&gt; <span style='color: #BCBCBC;'> 6</span>       6  <span style='text-decoration: underline;'>38</span>035   <span style='text-decoration: underline;'>72</span>974               0.521 
+#&gt; <span style='color: #BCBCBC;'> 7</span>       7  <span style='text-decoration: underline;'>19</span>997   <span style='text-decoration: underline;'>45</span>003               0.444 
+#&gt; <span style='color: #BCBCBC;'> 8</span>       8  <span style='text-decoration: underline;'>15</span>950   <span style='text-decoration: underline;'>62</span>511               0.255 
+#&gt; <span style='color: #BCBCBC;'> 9</span>       9    659.   <span style='text-decoration: underline;'>6</span>092.              0.108 
+#&gt; <span style='color: #BCBCBC;'>10</span>      10   <span style='text-decoration: underline;'>1</span>621.  <span style='text-decoration: underline;'>19</span>006.              0.085<span style='text-decoration: underline;'>3</span>
+#&gt; <span style='color: #949494;'># … with 67 more rows</span></div><div class='input'>
 <span class='co'># Join to cca_sf for mapping</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 <span class='va'>cca_sf</span> <span class='op'>%&gt;%</span>
@@ -240,7 +240,7 @@ allocation.</p>
     <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>transit_commute_pct</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span>
     <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_c</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
     <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='xwalk_tract2cca-1.png' alt='' width='700' height='433' /></div></span></pre>
+</div><div class='img'><img src='xwalk_tract2cca-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -252,7 +252,8 @@ allocation.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Noel Peterson.</p>
+  <p>Developed by Noel Peterson, <a href='https://www.cmap.illinois.gov'><img src="https://gist.githubusercontent.com/nmpeterson/c0d9b113b9ddbf17dbf5d3f875d58fb6/raw/aba458177da968bef0b5bf896277e5c265a9f726/cmap_logo_long.svg" height="24" alt="Chicago Metropolitan Agency for Planning logo">
+</a>.</p>
 </div>
 
 <div class="pkgdown">
