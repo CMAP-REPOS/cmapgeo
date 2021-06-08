@@ -56,7 +56,8 @@ format, and includes boundaries for:
 - Counties
 - Municipalities
 - Chicago community areas (CCAs) and wards
-- Census tracts, block groups, blocks and public use microdata areas (PUMAs)
+- Census tracts, block groups, blocks, public use microdata areas (PUMAs) and
+  ZIP code tabulation areas (ZCTAs)
 - CMAP travel modeling zones and subzones
 - CMAP subregional Councils of Mayors (COMs)
 - Legislative districts (state and federal)
