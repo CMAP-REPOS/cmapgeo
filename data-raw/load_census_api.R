@@ -148,6 +148,15 @@ ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "up
   select(dist_num, dist_name, cmap, sqmi) %>%
   arrange(dist_num)
 
+# Process ZIP Code Tabulation Areas (ZCTAs)
+zcta_sf <- tigris::zctas(starts_with = "6") %>%
+  sf::st_transform(cmap_crs) %>%
+  filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
+  rename(geoid_zcta = GEOID10) %>%
+  mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_zcta, sqmi) %>%
+  arrange(geoid_zcta)
+
 # Process IDOT regions
 county_district = c(
   `17031`="D1", `17089`="D1", `17197`="D1", `17043`="D1", `17097`="D1", `17111`="D1",
@@ -184,4 +193,5 @@ usethis::use_data(puma_sf, overwrite = TRUE)
 usethis::use_data(congress_sf, overwrite = TRUE)
 usethis::use_data(ilga_house_sf, overwrite = TRUE)
 usethis::use_data(ilga_senate_sf, overwrite = TRUE)
+usethis::use_data(zcta_sf, overwrite = TRUE)
 usethis::use_data(idot_sf, overwrite = TRUE)
