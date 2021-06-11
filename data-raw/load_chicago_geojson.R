@@ -6,7 +6,7 @@ CCA_GEOJSON_URL <- "https://data.cityofchicago.org/api/geospatial/cauq-8yn6?meth
 WARD_GEOJSON_URL <- "https://data.cityofchicago.org/api/geospatial/sp34-6z76?method=export&format=GeoJSON"
 
 # Process Chicago Community Areas
-cca_sf <- sf::read_sf(CCA_GEOJSON_URL) %>%
+cca_sf <- sf::st_read(CCA_GEOJSON_URL) %>%
   sf::st_transform(cmap_crs) %>%
   mutate(
     cca_name = case_when(community == "OHARE" ~ "O'Hare",
@@ -19,7 +19,7 @@ cca_sf <- sf::read_sf(CCA_GEOJSON_URL) %>%
   arrange(cca_name)
 
 # Process Chicago Wards
-ward_sf <- sf::read_sf(WARD_GEOJSON_URL) %>%
+ward_sf <- sf::st_read(WARD_GEOJSON_URL) %>%
   sf::st_transform(cmap_crs) %>%
   mutate(ward_num = as.integer(ward),
          sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%

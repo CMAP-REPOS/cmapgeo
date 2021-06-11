@@ -1,3 +1,10 @@
+# cmapgeo 0.1.2
+June 11, 2021
+
+* Changed class of `cca_sf` and `ward_sf` from `sf-tibble` to `sf-data.frame`,
+  for consistency with all other cmapgeo datasets.
+
+
 # cmapgeo 0.1.1
 June 8, 2021
 
