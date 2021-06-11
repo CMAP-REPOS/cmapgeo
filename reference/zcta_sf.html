@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Census Blocks — block_sf • cmapgeo</title>
+<title>Census ZIP Code Tabulation Areas (ZCTAs) — zcta_sf • cmapgeo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Census Blocks — block_sf" />
-<meta property="og:description" content="The Census Blocks within the 7-county Chicago Metropolitan Agency for
+<meta property="og:title" content="Census ZIP Code Tabulation Areas (ZCTAs) — zcta_sf" />
+<meta property="og:description" content="The Census ZCTAs covering the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 2019 vintage." />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/350802988/d5e5c380-9488-11eb-8707-868eefde4f4d" />
@@ -125,29 +125,26 @@ Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Census Blocks</h1>
+    <h1>Census ZIP Code Tabulation Areas (ZCTAs)</h1>
     <small class="dont-index">Source: <a href='https://github.com/CMAP-REPOS/cmapgeo/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>block_sf.Rd</code></div>
+    <div class="hidden name"><code>zcta_sf.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The Census Blocks within the 7-county Chicago Metropolitan Agency for
+    <p>The Census ZCTAs covering the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 2019 vintage.</p>
     </div>
 
-    <pre class="usage"><span class='va'>block_sf</span></pre>
+    <pre class="usage"><span class='va'>zcta_sf</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A multipolygon <code>sf</code> object with 169469 rows and 4
+    <p>A multipolygon <code>sf</code> object with 316 rows and 3
 variables:</p><dl>
-<dt>geoid_block</dt><dd><p>Unique 15-digit block ID, assigned by the Census Bureau.
-The parent tract and block group can be identified from the first 11 and 12
-digits, respectively. Character.</p></dd>
-<dt>county_fips</dt><dd><p>Unique 5-digit FIPS code of the county the block is in.
-Character.</p></dd>
+<dt>geoid_zcta</dt><dd><p>Unique 5-digit ZCTA ID, corresponding to a 5-digit USPS
+ZIP Code. Character.</p></dd>
 <dt>sqmi</dt><dd><p>Area in square miles. Double.</p></dd>
 <dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> multipolygon.</p></dd>
 
@@ -160,24 +157,41 @@ Character.</p></dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Census Bureau description:</p>
-<p><em>"Blocks are statistical areas bounded by visible features, such as streets,
-roads, streams, and railroad tracks, and by nonvisible boundaries, such as
-selected property lines and city, township, school district, and county
-limits and short line-of-sight extensions of streets and roads. Generally,
-census blocks are small in area; for example, a block in a city bounded on
-all sides by streets. Census blocks in suburban and rural areas may be large,
-irregular, and bounded by a variety of features, such as roads, streams, and
-transmission lines. In remote areas, census blocks may encompass hundreds of
-square miles. Census blocks cover the entire territory of the United States,
-Puerto Rico, and the Island Areas. Census blocks nest within all other
-tabulated census geographic entities and are the basis for all tabulated
-data."</em></p>
+<p><em>ZIP Code Tabulation Areas (ZCTAs) are approximate area representations of
+U.S. Postal Service (USPS) five-digit ZIP Code service areas that the Census
+Bureau creates using whole blocks to present statistical data from censuses
+and surveys. The Census Bureau defines ZCTAs by allocating each block that
+contains addresses to a single ZCTA, usually to the ZCTA that reflects the
+most frequently occurring ZIP Code for the addresses within that tabulation
+block. Blocks that do not contain addresses but are completely surrounded by
+a single ZCTA (enclaves) are assigned to the surrounding ZCTA; those
+surrounded by multiple ZCTAs will be added to a single ZCTA based on limited
+buffering performed between multiple ZCTAs. The Census Bureau identifies
+five-digit ZCTAs using a five-character numeric code that represents the most
+frequently occurring USPS ZIP Code within that ZCTA, and this code may
+contain leading zeros.</em></p>
+<p><em>There are significant changes to the 2010 ZCTA delineation from that used in
+2000. Coverage was extended to include the Island Areas for 2010 so that the
+United States, Puerto Rico, and the Island Areas have ZCTAs. Unlike 2000,
+when areas that could not be assigned to a ZCTA were given a generic code
+ending in "XX" (land area) or "HH" (water area), for 2010 there is no
+universal coverage by ZCTAs, and only legitimate five-digit areas are
+defined. The 2010 ZCTAs will better represent the actual Zip Code service
+areas because the Census Bureau initiated a process before creation of 2010
+blocks to add block boundaries that split polygons with large numbers of
+addresses using different ZIP Codes.</em></p>
+<p><em>Data users should not use ZCTAs to identify the official USPS ZIP Code for
+mail delivery. The USPS makes periodic changes to ZIP Codes to support more
+efficient mail delivery. The ZCTAs process used primarily residential
+addresses and was biased towards ZIP Codes used for city-style mail delivery,
+thus there may be ZIP Codes that are primarily nonresidential or boxes only
+that may not have a corresponding ZCTA.</em></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Display the blocks with ggplot2</span>
+    <pre class="examples"><div class='input'><span class='co'># Display the ZCTAs with ggplot2</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>block_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='block_sf-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>zcta_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='zcta_sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
