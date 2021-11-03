@@ -182,6 +182,37 @@ idot_sf <- tigris::counties(state = STATE) %>%
   group_by(district, region) %>%
   summarize(sqmi = sum(sqmi), .groups = "drop")
 
+
+# Process 2020 Census geographies (block, block group, tract).
+# (These should replace the 2019 vintage once 2020 ACS data is published.)
+tract_sf_2020 <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 2020) %>%
+  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
+  sf::st_transform(cmap_crs) %>%
+  rename(geoid_tract = GEOID) %>%
+  mutate(county_fips = paste0(STATEFP, COUNTYFP),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_tract, county_fips, sqmi) %>%
+  arrange(geoid_tract)
+
+blockgroup_sf_2020 <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, year = 2020) %>%
+  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
+  sf::st_transform(cmap_crs) %>%
+  rename(geoid_blkgrp = GEOID) %>%
+  mutate(county_fips = paste0(STATEFP, COUNTYFP),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_blkgrp, county_fips, sqmi) %>%
+  arrange(geoid_blkgrp)
+
+block_sf_2020 <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = 2020) %>%
+  filter(TRACTCE20 != "990000") %>%  # Exclude Lake Michigan tracts
+  sf::st_transform(cmap_crs) %>%
+  rename(geoid_block = GEOID20) %>%
+  mutate(county_fips = paste0(STATEFP20, COUNTYFP20),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_block, county_fips, sqmi) %>%
+  arrange(geoid_block)
+
+
 # Save processed data to package's data dir
 usethis::use_data(county_sf, overwrite = TRUE)
 usethis::use_data(township_sf, overwrite = TRUE)
@@ -195,3 +226,6 @@ usethis::use_data(ilga_house_sf, overwrite = TRUE)
 usethis::use_data(ilga_senate_sf, overwrite = TRUE)
 usethis::use_data(zcta_sf, overwrite = TRUE)
 usethis::use_data(idot_sf, overwrite = TRUE)
+usethis::use_data(tract_sf_2020, overwrite = TRUE)
+usethis::use_data(blockgroup_sf_2020, overwrite = TRUE)
+usethis::use_data(block_sf_2020, overwrite = TRUE)

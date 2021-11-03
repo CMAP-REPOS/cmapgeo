@@ -1,10 +1,13 @@
 # Geodata created with data-raw/load_census_api.R ------------------------
 
-#' Census Blocks
+#' Census Blocks (2019 vintage)
 #'
 #' The Census Blocks within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2019 vintage.
+#' 2019 vintage. **Use this version with data from the 2010 decennial census or
+#' the American Community Survey (ACS) from 2010 through 2019. For data from the
+#' 2020 decennial census, use `block_sf_2020` (which will replace this dataset
+#' once the 2016-2020 ACS 5-year data is published).**
 #'
 #' Census Bureau description:
 #'
@@ -22,8 +25,8 @@
 #' data."*
 #'
 #' @format
-#' A multipolygon `sf` object with `r nrow(block_sf)` rows and `r ncol(block_sf)`
-#' variables:
+#' A multipolygon `sf` object with `r nrow(block_sf)` rows and
+#' `r ncol(block_sf)` variables:
 #' \describe{
 #'   \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
 #'   The parent tract and block group can be identified from the first 11 and 12
@@ -45,11 +48,62 @@
 "block_sf"
 
 
-#' Census Block Groups
+#' Census Blocks (2020 vintage)
+#'
+#' The Census Blocks within the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2020 vintage. **Use this version for data from the 2020 decennial census. For
+#' data from the 2010 decennial census or the American Community Survey (ACS)
+#' from 2010 through 2019, use `block_sf` (which will be replaced by this
+#' dataset once the 2016-2020 ACS 5-year data is published).**
+#'
+#' Census Bureau description:
+#'
+#' *"Blocks are statistical areas bounded by visible features, such as streets,
+#' roads, streams, and railroad tracks, and by nonvisible boundaries, such as
+#' selected property lines and city, township, school district, and county
+#' limits and short line-of-sight extensions of streets and roads. Generally,
+#' census blocks are small in area; for example, a block in a city bounded on
+#' all sides by streets. Census blocks in suburban and rural areas may be large,
+#' irregular, and bounded by a variety of features, such as roads, streams, and
+#' transmission lines. In remote areas, census blocks may encompass hundreds of
+#' square miles. Census blocks cover the entire territory of the United States,
+#' Puerto Rico, and the Island Areas. Census blocks nest within all other
+#' tabulated census geographic entities and are the basis for all tabulated
+#' data."*
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(block_sf_2020)` rows and
+#' `r ncol(block_sf_2020)` variables:
+#' \describe{
+#'   \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
+#'   The parent tract and block group can be identified from the first 11 and 12
+#'   digits, respectively. Character.}
+#'   \item{county_fips}{Unique 5-digit FIPS code of the county the block is in.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the blocks with ggplot2
+#' library(ggplot2)
+#' ggplot(block_sf_2020) + geom_sf(lwd = 0.1) + theme_void()
+"block_sf_2020"
+
+
+#' Census Block Groups (2019 vintage)
 #'
 #' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2019 vintage.
+#' 2019 vintage. **Use this version with data from the 2010 decennial census or
+#' the American Community Survey (ACS) from 2010 through 2019. For data from the
+#' 2020 decennial census, use `blockgroup_sf_2020` (which will replace this
+#' dataset once the 2016-2020 ACS 5-year data is published).**
 #'
 #' Census Bureau description:
 #'
@@ -98,11 +152,70 @@
 "blockgroup_sf"
 
 
-#' Census Tracts
+#' Census Block Groups (2020 vintage)
+#'
+#' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2020 vintage. **Use this version for data from the 2020 decennial census. For
+#' data from the 2010 decennial census or the American Community Survey (ACS)
+#' from 2010 through 2019, use `blockgroup_sf` (which will be replaced by this
+#' dataset once the 2016-2020 ACS 5-year data is published).**
+#'
+#' Census Bureau description:
+#'
+#' *"Block Groups (BGs) are statistical divisions of census tracts, are
+#' generally defined to contain between 600 and 3,000 people, and are used to
+#' present data and control block numbering. A block group consists of clusters
+#' of blocks within the same census tract that have the same first digit of
+#' their four-digit census block number. For example, blocks 3001, 3002, 3003,
+#' ..., 3999 in census tract 1210.02 belong to BG 3 in that census tract. Most
+#' BGs were delineated by local participants in the Census Bureau's Participant
+#' Statistical Areas Program. The Census Bureau delineated BGs only where a
+#' local or tribal government declined to participate, and a regional
+#' organization or State Data Center was not available to participate.*
+#'
+#' *"A BG usually covers a contiguous area. Each census tract contains at least
+#' one BG, and BGs are uniquely numbered within the census tract. Within the
+#' standard census geographic hierarchy, BGs never cross state, county, or
+#' census tract boundaries but may cross the boundaries of any other geographic
+#' entity. Tribal census tracts and tribal BGs are separate and unique
+#' geographic areas defined within federally recognized American Indian
+#' reservations and can cross state and county boundaries. The tribal census
+#' tracts and tribal block groups may be completely different from the census
+#' tracts and block groups defined by state and county."*
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(blockgroup_sf_2020)` rows and
+#' `r ncol(blockgroup_sf_2020)` variables:
+#' \describe{
+#'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
+#'   Bureau. The parent tract can be identified from the first 11 digits.
+#'   Character.}
+#'   \item{county_fips}{Unique 5-digit FIPS code of the county the block group
+#'   is in. Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the block groups with ggplot2
+#' library(ggplot2)
+#' ggplot(blockgroup_sf_2020) + geom_sf(lwd = 0.1) + theme_void()
+"blockgroup_sf_2020"
+
+
+#' Census Tracts (2019 vintage)
 #'
 #' The Census Tracts within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2019 vintage.
+#' 2019 vintage. **Use this version with data from the 2010 decennial census or
+#' the American Community Survey (ACS) from 2010 through 2019. For data from the
+#' 2020 decennial census, use `tract_sf_2020` (which will replace this dataset
+#' once the 2016-2020 ACS 5-year data is published).**
 #'
 #' Census Bureau description:
 #'
@@ -156,6 +269,69 @@
 #' library(ggplot2)
 #' ggplot(tract_sf) + geom_sf(lwd = 0.1) + theme_void()
 "tract_sf"
+
+
+#' Census Tracts (2020 vintage)
+#'
+#' The Census Tracts within the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2020 vintage. **Use this version for data from the 2020 decennial census. For
+#' data from the 2010 decennial census or the American Community Survey (ACS)
+#' from 2010 through 2019, use `tract_sf` (which will be replaced by this
+#' dataset once the 2016-2020 ACS 5-year data is published).**
+#'
+#' Census Bureau description:
+#'
+#' *"Census Tracts are small, relatively permanent statistical subdivisions of a
+#' county or equivalent entity that are updated by local participants prior to
+#' each decennial census as part of the Census Bureau's Participant Statistical
+#' Areas Program. The Census Bureau delineates census tracts in situations where
+#' no local participant existed or where state, local, or tribal governments
+#' declined to participate. The primary purpose of census tracts is to provide a
+#' stable set of geographic units for the presentation of statistical data.*
+#'
+#' *"Census tracts generally have a population size between 1,200 and 8,000
+#' people, with an optimum size of 4,000 people. A census tract usually covers a
+#' contiguous area; however, the spatial size of census tracts varies widely
+#' depending on the density of settlement. Census tract boundaries are
+#' delineated with the intention of being maintained over a long time so that
+#' statistical comparisons can be made from census to census. Census tracts
+#' occasionally are split due to population growth or merged as a result of
+#' substantial population decline.*
+#'
+#' *"Census tract boundaries generally follow visible and identifiable features.
+#' They may follow nonvisible legal boundaries, such as minor civil division
+#' (MCD) or incorporated place boundaries in some states and situations, to
+#' allow for census-tract-to-governmental-unit relationships where the
+#' governmental boundaries tend to remain unchanged between censuses. State and
+#' county boundaries always are census tract boundaries in the standard census
+#' geographic hierarchy. Tribal census tracts are a unique geographic entity
+#' defined within federally recognized American Indian reservations and
+#' off-reservation trust lands and can cross state and county boundaries. Tribal
+#' census tracts may be completely different from the census tracts and block
+#' groups defined by state and county."*
+#'
+#' @format
+#' A polygon `sf` object with `r nrow(tract_sf_2020)` rows and
+#' `r ncol(tract_sf_2020)` variables:
+#' \describe{
+#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
+#'   Bureau. Character.}
+#'   \item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source
+#' US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the tracts with ggplot2
+#' library(ggplot2)
+#' ggplot(tract_sf_2020) + geom_sf(lwd = 0.1) + theme_void()
+"tract_sf_2020"
 
 
 #' Census Public Use Microdata Areas (PUMAs)

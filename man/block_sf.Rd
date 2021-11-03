@@ -3,10 +3,10 @@
 \docType{data}
 \name{block_sf}
 \alias{block_sf}
-\title{Census Blocks}
+\title{Census Blocks (2019 vintage)}
 \format{
-A multipolygon \code{sf} object with 169469 rows and 4
-variables:
+A multipolygon \code{sf} object with 169469 rows and
+4 variables:
 \describe{
 \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
 The parent tract and block group can be identified from the first 11 and 12
@@ -27,7 +27,10 @@ block_sf
 \description{
 The Census Blocks within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2019 vintage.
+2019 vintage. \strong{Use this version with data from the 2010 decennial census or
+the American Community Survey (ACS) from 2010 through 2019. For data from the
+2020 decennial census, use \code{block_sf_2020} (which will replace this dataset
+once the 2016-2020 ACS 5-year data is published).}
 }
 \details{
 Census Bureau description:

@@ -3,7 +3,7 @@
 \docType{data}
 \name{blockgroup_sf}
 \alias{blockgroup_sf}
-\title{Census Block Groups}
+\title{Census Block Groups (2019 vintage)}
 \format{
 A polygon \code{sf} object with 5880 rows and
 4 variables:
@@ -27,7 +27,10 @@ blockgroup_sf
 \description{
 The Census Block Groups within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2019 vintage.
+2019 vintage. \strong{Use this version with data from the 2010 decennial census or
+the American Community Survey (ACS) from 2010 through 2019. For data from the
+2020 decennial census, use \code{blockgroup_sf_2020} (which will replace this
+dataset once the 2016-2020 ACS 5-year data is published).}
 }
 \details{
 Census Bureau description:

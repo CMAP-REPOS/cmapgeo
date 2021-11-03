@@ -1,6 +1,6 @@
 Package: cmapgeo
 Title: R-Friendly Geodata for the Chicago Region
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: c(
     person("Noel", "Peterson",
            role = c("aut", "cre"),
@@ -31,4 +31,4 @@ Suggests:
     sf,
     tidycensus
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
