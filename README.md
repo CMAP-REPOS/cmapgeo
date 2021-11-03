@@ -47,10 +47,10 @@ format, and includes boundaries for:
 -   Municipalities
 -   Chicago community areas (CCAs) and wards
 -   Census tracts, block groups, blocks, public use microdata areas
-    (PUMAs) and ZIP code tabulation areas (ZCTAs) *\[2019 vintage, for
-    use with most recent ACS data\]*
--   Census tracts, block groups and blocks *\[2020 vintage, for use with
-    2020 Census data\]*
+    (PUMAs) and ZIP code tabulation areas (ZCTAs) — *2019 vintage, for
+    use with most recent ACS data*
+-   Census tracts, block groups and blocks — *2020 vintage, for use with
+    2020 Census data*
 -   CMAP travel modeling zones and subzones
 -   CMAP subregional Councils of Mayors (COMs)
 -   Legislative districts (state and federal)

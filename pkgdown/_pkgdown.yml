@@ -29,6 +29,7 @@ reference:
 - title: Geodata
 - contents:
   - ends_with("_sf")
+  - ends_with("_2020")
 - title: Crosswalk Tables
 - contents:
   - starts_with("xwalk_")
