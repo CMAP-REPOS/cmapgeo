@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CMAP Facility Planning Areas (FPAs) — fpa_sf • cmapgeo</title>
+<title>Census Blocks (2020 vintage) — block_sf_2020 • cmapgeo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,13 @@
 
 
 
-<meta property="og:title" content="CMAP Facility Planning Areas (FPAs) — fpa_sf" />
-<meta property="og:description" content="This dataset represents wastewater service boundaries (Facility Planning
-Areas, or FPAs) approved by IEPA as of 1 April 2014, after which IEPA ceased
-approving FPA boundaries. No updates to this data set have occurred since
-that date, and no additional updates are anticipated." />
+<meta property="og:title" content="Census Blocks (2020 vintage) — block_sf_2020" />
+<meta property="og:description" content="The Census Blocks within the 7-county Chicago Metropolitan Agency for
+Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+2020 vintage. Use this version for data from the 2020 decennial census. For
+data from the 2010 decennial census or the American Community Survey (ACS)
+from 2010 through 2019, use block_sf (which will be replaced by this
+dataset once the 2016-2020 ACS 5-year data is published)." />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/350802988/d5e5c380-9488-11eb-8707-868eefde4f4d" />
 <meta property="og:image:alt" content="cmapgeo: R-friendly geodata for the Chicago region" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -126,29 +128,31 @@ that date, and no additional updates are anticipated." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CMAP Facility Planning Areas (FPAs)</h1>
+    <h1>Census Blocks (2020 vintage)</h1>
     <small class="dont-index">Source: <a href='https://github.com/CMAP-REPOS/cmapgeo/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>fpa_sf.Rd</code></div>
+    <div class="hidden name"><code>block_sf_2020.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This dataset represents wastewater service boundaries (Facility Planning
-Areas, or FPAs) approved by IEPA as of 1 April 2014, after which IEPA ceased
-approving FPA boundaries. No updates to this data set have occurred since
-that date, and no additional updates are anticipated.</p>
+    <p>The Census Blocks within the 7-county Chicago Metropolitan Agency for
+Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+2020 vintage. <strong>Use this version for data from the 2020 decennial census. For
+data from the 2010 decennial census or the American Community Survey (ACS)
+from 2010 through 2019, use <code>block_sf</code> (which will be replaced by this
+dataset once the 2016-2020 ACS 5-year data is published).</strong></p>
     </div>
 
-    <pre class="usage"><span class='va'>fpa_sf</span></pre>
+    <pre class="usage"><span class='va'>block_sf_2020</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A multipolygon <code>sf</code> object with 111 rows and 5
-variables:</p><dl>
-<dt>fpa</dt><dd><p>Full name of FPA (including parent- and sub-FPA). Character.</p></dd>
-<dt>parent_fpa</dt><dd><p>Name of parent FPA (same as <code>fpa</code> if not part of a
-sub-FPA). Character.</p></dd>
-<dt>sub_fpa</dt><dd><p>Name of sub-FPA, which may have multiple parent FPAs.
+    <p>A multipolygon <code>sf</code> object with 144082 rows and
+4 variables:</p><dl>
+<dt>geoid_block</dt><dd><p>Unique 15-digit block ID, assigned by the Census Bureau.
+The parent tract and block group can be identified from the first 11 and 12
+digits, respectively. Character.</p></dd>
+<dt>county_fips</dt><dd><p>Unique 5-digit FIPS code of the county the block is in.
 Character.</p></dd>
 <dt>sqmi</dt><dd><p>Area in square miles. Double.</p></dd>
 <dt>geometry</dt><dd><p>Feature geometry. <code>sf</code> multipolygon.</p></dd>
@@ -157,23 +161,29 @@ Character.</p></dd>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://datahub.cmap.illinois.gov/dataset/facility-planning-areas-fpa'>CMAP Data Hub</a></p>
+    <p>US Census Bureau
+<a href='https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html'>TIGER/Line</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>CMAP is the designated areawide water-quality management planning agency for
-the seven counties of northeastern Illinois, with responsibility for
-reviewing wastewater permits, facility plans, and related topics to ensure
-consistency with the federally-approved Illinois Water Quality Management
-Plan and the Areawide Water Quality Management Plan.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='https://www.cmap.illinois.gov/programs/water/water-quality/wastewater-planning'>https://www.cmap.illinois.gov/programs/water/water-quality/wastewater-planning</a></p></div>
+    <p>Census Bureau description:</p>
+<p><em>"Blocks are statistical areas bounded by visible features, such as streets,
+roads, streams, and railroad tracks, and by nonvisible boundaries, such as
+selected property lines and city, township, school district, and county
+limits and short line-of-sight extensions of streets and roads. Generally,
+census blocks are small in area; for example, a block in a city bounded on
+all sides by streets. Census blocks in suburban and rural areas may be large,
+irregular, and bounded by a variety of features, such as roads, streams, and
+transmission lines. In remote areas, census blocks may encompass hundreds of
+square miles. Census blocks cover the entire territory of the United States,
+Puerto Rico, and the Island Areas. Census blocks nest within all other
+tabulated census geographic entities and are the basis for all tabulated
+data."</em></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># Display the FPAs with ggplot2</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># Display the blocks with ggplot2</span></span>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>fpa_sf</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-plt img'><img src='fpa_sf-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>block_sf_2020</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='block_sf_2020-1.png' alt='' width='700' height='433' /></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

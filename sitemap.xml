@@ -7,7 +7,13 @@
     <loc>https://cmap-repos.github.io/cmapgeo/reference/block_sf.html</loc>
   </url>
   <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/block_sf_2020.html</loc>
+  </url>
+  <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/blockgroup_sf.html</loc>
+  </url>
+  <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/blockgroup_sf_2020.html</loc>
   </url>
   <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/cca_sf.html</loc>
@@ -62,6 +68,9 @@
   </url>
   <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/tract_sf.html</loc>
+  </url>
+  <url>
+    <loc>https://cmap-repos.github.io/cmapgeo/reference/tract_sf_2020.html</loc>
   </url>
   <url>
     <loc>https://cmap-repos.github.io/cmapgeo/reference/ward_sf.html</loc>

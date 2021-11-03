@@ -88,7 +88,7 @@ and Wisconsin." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cmapgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
       </span>
     </div>
 
@@ -148,44 +148,51 @@ and Wisconsin.</p>
     <p>An object of class <code>list</code> of length 5.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># 7-county CMAP region</span>
-<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>cmap</span>
-</div><div class='output co'>#&gt;    Cook  DuPage    Kane Kendall    Lake McHenry    Will 
-#&gt; "17031" "17043" "17089" "17093" "17097" "17111" "17197" </div><div class='input'>
-<span class='co'># Travel model non-CMAP Illinois counties</span>
-<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xil</span>
-</div><div class='output co'>#&gt;     Boone    DeKalb    Grundy  Kankakee   LaSalle       Lee      Ogle Winnebago 
-#&gt;   "17007"   "17037"   "17063"   "17091"   "17099"   "17103"   "17141"   "17201" </div><div class='input'>
-<span class='co'># Travel model Indiana counties</span>
-<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xin</span>
-</div><div class='output co'>#&gt;    Lake LaPorte  Porter 
-#&gt; "18089" "18091" "18127" </div><div class='input'>
-<span class='co'># Travel model Wisconsin counties</span>
-<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xwi</span>
-</div><div class='output co'>#&gt;  Kenosha   Racine Walworth 
-#&gt;  "55059"  "55101"  "55127" </div><div class='input'>
-<span class='co'># Chicago-Naperville-Elgin, IL-IN-WI MSA counties</span>
-<span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>msa</span>
-</div><div class='output co'>#&gt;    Cook_IL  DeKalb_IL  DuPage_IL  Grundy_IL    Kane_IL Kendall_IL    Lake_IL 
-#&gt;    "17031"    "17037"    "17043"    "17063"    "17089"    "17093"    "17097" 
-#&gt; McHenry_IL    Will_IL  Jasper_IN    Lake_IN  Newton_IN  Porter_IN Kenosha_WI 
-#&gt;    "17111"    "17197"    "18073"    "18089"    "18111"    "18127"    "55059" </div><div class='input'>
-<span class='co'># Get the names of the CMAP counties</span>
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>cmap</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Cook"    "DuPage"  "Kane"    "Kendall" "Lake"    "McHenry" "Will"   </div><div class='input'>
-<span class='co'># Get all travel model counties in a single vector</span>
-<span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>county_fips_codes</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cmap"</span>, <span class='st'>"xil"</span>, <span class='st'>"xin"</span>, <span class='st'>"xwi"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     cmap.Cook   cmap.DuPage     cmap.Kane  cmap.Kendall     cmap.Lake 
-#&gt;       "17031"       "17043"       "17089"       "17093"       "17097" 
-#&gt;  cmap.McHenry     cmap.Will     xil.Boone    xil.DeKalb    xil.Grundy 
-#&gt;       "17111"       "17197"       "17007"       "17037"       "17063" 
-#&gt;  xil.Kankakee   xil.LaSalle       xil.Lee      xil.Ogle xil.Winnebago 
-#&gt;       "17091"       "17099"       "17103"       "17141"       "17201" 
-#&gt;      xin.Lake   xin.LaPorte    xin.Porter   xwi.Kenosha    xwi.Racine 
-#&gt;       "18089"       "18091"       "18127"       "55059"       "55101" 
-#&gt;  xwi.Walworth 
-#&gt;       "55127" </div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># 7-county CMAP region</span></span>
+<span class='r-in'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>cmap</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Cook  DuPage    Kane Kendall    Lake McHenry    Will </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> "17031" "17043" "17089" "17093" "17097" "17111" "17197" </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Travel model non-CMAP Illinois counties</span></span>
+<span class='r-in'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xil</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Boone    DeKalb    Grundy  Kankakee   LaSalle       Lee      Ogle Winnebago </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "17007"   "17037"   "17063"   "17091"   "17099"   "17103"   "17141"   "17201" </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Travel model Indiana counties</span></span>
+<span class='r-in'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xin</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Lake LaPorte  Porter </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> "18089" "18091" "18127" </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Travel model Wisconsin counties</span></span>
+<span class='r-in'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>xwi</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Kenosha   Racine Walworth </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  "55059"  "55101"  "55127" </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Chicago-Naperville-Elgin, IL-IN-WI MSA counties</span></span>
+<span class='r-in'><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>msa</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Cook_IL  DeKalb_IL  DuPage_IL  Grundy_IL    Kane_IL Kendall_IL    Lake_IL </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    "17031"    "17037"    "17043"    "17063"    "17089"    "17093"    "17097" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> McHenry_IL    Will_IL  Jasper_IN    Lake_IN  Newton_IN  Porter_IN Kenosha_WI </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    "17111"    "17197"    "18073"    "18089"    "18111"    "18127"    "55059" </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Get the names of the CMAP counties</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>county_fips_codes</span><span class='op'>$</span><span class='va'>cmap</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Cook"    "DuPage"  "Kane"    "Kendall" "Lake"    "McHenry" "Will"   </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Get all travel model counties in a single vector</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>county_fips_codes</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cmap"</span>, <span class='st'>"xil"</span>, <span class='st'>"xin"</span>, <span class='st'>"xwi"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     cmap.Cook   cmap.DuPage     cmap.Kane  cmap.Kendall     cmap.Lake </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       "17031"       "17043"       "17089"       "17093"       "17097" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  cmap.McHenry     cmap.Will     xil.Boone    xil.DeKalb    xil.Grundy </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       "17111"       "17197"       "17007"       "17037"       "17063" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  xil.Kankakee   xil.LaSalle       xil.Lee      xil.Ogle xil.Winnebago </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       "17091"       "17099"       "17103"       "17141"       "17201" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      xin.Lake   xin.LaPorte    xin.Porter   xwi.Kenosha    xwi.Racine </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       "18089"       "18091"       "18127"       "55059"       "55101" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  xwi.Walworth </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       "55127" </span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
