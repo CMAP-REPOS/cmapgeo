@@ -1,6 +1,6 @@
 Package: cmapgeo
 Title: R-Friendly Geodata for the Chicago Region
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: c(
     person("Noel", "Peterson",
            role = c("aut", "cre"),
