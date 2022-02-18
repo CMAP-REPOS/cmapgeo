@@ -41,8 +41,8 @@ Will County. Example 2: Buffalo Grove belongs to both the Lake County and
 Northwest subregional councils; in this case, the subregional boundary
 follows the county boundary through Buffalo Grove.
 
-It is important to note here that the portions of COM boundaries, defined by
-municipalities, are fluid: they change as a village annexes adjacent
+It is important to note here that the portions of COM boundaries defined by
+municipalities are fluid: they change as a village annexes adjacent
 unincorporated land. The boundaries depicted in this dataset reflect
 municipal boundaries of varying vintages and sources, and cannot be
 considered “true” for any given point in time.

@@ -3,9 +3,9 @@
 \docType{data}
 \name{blockgroup_sf}
 \alias{blockgroup_sf}
-\title{Census Block Groups (2019 vintage)}
+\title{Census Block Groups, 2020}
 \format{
-A polygon \code{sf} object with 5880 rows and
+A multipolygon \code{sf} object with 6077 rows and
 4 variables:
 \describe{
 \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
@@ -14,7 +14,7 @@ Character.}
 \item{county_fips}{Unique 5-digit FIPS code of the county the block group
 is in. Character.}
 \item{sqmi}{Area in square miles. Double.}
-\item{geometry}{Feature geometry. \code{sf} polygon.}
+\item{geometry}{Feature geometry. \code{sf} multipolygon.}
 }
 }
 \source{
@@ -27,10 +27,9 @@ blockgroup_sf
 \description{
 The Census Block Groups within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2019 vintage. \strong{Use this version with data from the 2010 decennial census or
-the American Community Survey (ACS) from 2010 through 2019. For data from the
-2020 decennial census, use \code{blockgroup_sf_2020} (which will replace this
-dataset once the 2016-2020 ACS 5-year data is published).}
+2021 vintage. \strong{Use this version for data from the 2020 decennial census or
+the American Community Survey (ACS) from 2020 onward. For data from the 2010
+decennial census or ACS from 2010 through 2019, use \code{blockgroup2010_sf}.}
 }
 \details{
 Census Bureau description:
@@ -41,20 +40,19 @@ present data and control block numbering. A block group consists of clusters
 of blocks within the same census tract that have the same first digit of
 their four-digit census block number. For example, blocks 3001, 3002, 3003,
 ..., 3999 in census tract 1210.02 belong to BG 3 in that census tract. Most
-BGs were delineated by local participants in the Census Bureau's Participant
-Statistical Areas Program. The Census Bureau delineated BGs only where a
-local or tribal government declined to participate, and a regional
-organization or State Data Center was not available to participate.}
-
-\emph{"A BG usually covers a contiguous area. Each census tract contains at least
-one BG, and BGs are uniquely numbered within the census tract. Within the
-standard census geographic hierarchy, BGs never cross state, county, or
-census tract boundaries but may cross the boundaries of any other geographic
-entity. Tribal census tracts and tribal BGs are separate and unique
-geographic areas defined within federally recognized American Indian
-reservations and can cross state and county boundaries. The tribal census
-tracts and tribal block groups may be completely different from the census
-tracts and block groups defined by state and county."}
+BGs were delineated by local participants in the Census Bureau’s Participant
+Statistical Areas Program (PSAP). The Census Bureau delineated BGs only where
+a local or tribal government declined to participate in PSAP, and a regional
+organization or the State Data Center was not available to participate. A BG
+usually covers a contiguous area. Each census tract contains at least one BG,
+and BGs are uniquely numbered within the census tract. Within the standard
+census geographic hierarchy, BGs never cross state, county, or census tract
+boundaries, but may cross the boundaries of any other geographic entity.
+Tribal census tracts and tribal BGs are separate and unique geographic areas
+defined within federally recognized American Indian reservations and can
+cross state and county boundaries. The tribal census tracts and tribal block
+groups may be completely different from the standard county-based census
+tracts and block groups defined for the same area."}
 }
 \examples{
 # Display the block groups with ggplot2

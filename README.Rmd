@@ -57,8 +57,7 @@ format, and includes boundaries for:
 - Municipalities
 - Chicago community areas (CCAs) and wards
 - Census tracts, block groups, blocks, public use microdata areas (PUMAs) and
-  ZIP code tabulation areas (ZCTAs) — *2019 vintage, for use with most recent ACS data*
-- Census tracts, block groups and blocks — *2020 vintage, for use with 2020 Census data*
+  ZIP code tabulation areas (ZCTAs)
 - CMAP travel modeling zones and subzones
 - CMAP subregional Councils of Mayors (COMs)
 - Legislative districts (state and federal)
@@ -72,7 +71,7 @@ Run the following to install or update cmapgeo:
 
 ```{r install, eval=FALSE, message=FALSE, warning=FALSE}
 ## Install current version from GitHub
-devtools::install_github("CMAP-REPOS/cmapgeo", build_vignettes=TRUE)
+devtools::install_github("CMAP-REPOS/cmapgeo")
 
 ## Then load the package as you would any other
 library(cmapgeo)

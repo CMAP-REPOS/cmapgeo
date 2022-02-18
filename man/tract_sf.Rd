@@ -3,17 +3,17 @@
 \docType{data}
 \name{tract_sf}
 \alias{tract_sf}
-\title{Census Tracts (2019 vintage)}
+\title{Census Tracts, 2020}
 \format{
-A polygon \code{sf} object with 1983 rows and 4
-variables:
+A multipolygon \code{sf} object with 2070 rows and
+4 variables:
 \describe{
 \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
 Bureau. Character.}
 \item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
 Character.}
 \item{sqmi}{Area in square miles. Double.}
-\item{geometry}{Feature geometry. \code{sf} polygon.}
+\item{geometry}{Feature geometry. \code{sf} multipolygon.}
 }
 }
 \source{
@@ -26,42 +26,42 @@ tract_sf
 \description{
 The Census Tracts within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2019 vintage. \strong{Use this version with data from the 2010 decennial census or
-the American Community Survey (ACS) from 2010 through 2019. For data from the
-2020 decennial census, use \code{tract_sf_2020} (which will replace this dataset
-once the 2016-2020 ACS 5-year data is published).}
+2021 vintage. \strong{Use this version for data from the 2020 decennial census or
+the American Community Survey (ACS) from 2020 onward. For data from the 2010
+decennial census or ACS from 2010 through 2019, use \code{tract2010_sf}.}
 }
 \details{
 Census Bureau description:
 
-\emph{"Census Tracts are small, relatively permanent statistical subdivisions of a
-county or equivalent entity that are updated by local participants prior to
-each decennial census as part of the Census Bureau's Participant Statistical
-Areas Program. The Census Bureau delineates census tracts in situations where
-no local participant existed or where state, local, or tribal governments
-declined to participate. The primary purpose of census tracts is to provide a
-stable set of geographic units for the presentation of statistical data.}
+*"Census Tracts are small, relatively permanent statistical subdivisions of a
+county or statistically equivalent entity that can be updated by local
+participants prior to each decennial census as part of the Census Bureau’s
+Participant Statistical Areas Program (PSAP). The Census Bureau delineates
+census tracts in situations where no local participant responded or where
+state, local, or tribal governments declined to participate. The primary
+purpose of census tracts is to provide a stable set of geographic units for
+the presentation of statistical data.
 
-\emph{"Census tracts generally have a population size between 1,200 and 8,000
+*"Census tracts generally have a population size between 1,200 and 8,000
 people, with an optimum size of 4,000 people. A census tract usually covers a
 contiguous area; however, the spatial size of census tracts varies widely
 depending on the density of settlement. Census tract boundaries are
 delineated with the intention of being maintained over a long time so that
 statistical comparisons can be made from census to census. Census tracts
 occasionally are split due to population growth or merged as a result of
-substantial population decline.}
+substantial population decline.
 
 \emph{"Census tract boundaries generally follow visible and identifiable features.
 They may follow nonvisible legal boundaries, such as minor civil division
 (MCD) or incorporated place boundaries in some states and situations, to
-allow for census-tract-to-governmental-unit relationships where the
+allow for census tract-to-governmental unit relationships where the
 governmental boundaries tend to remain unchanged between censuses. State and
 county boundaries always are census tract boundaries in the standard census
 geographic hierarchy. Tribal census tracts are a unique geographic entity
 defined within federally recognized American Indian reservations and
-off-reservation trust lands and can cross state and county boundaries. Tribal
-census tracts may be completely different from the census tracts and block
-groups defined by state and county."}
+off-reservation trust lands and can cross state and county boundaries. The
+tribal census tracts may be completely different from the standard
+county-based census tracts defined for the same area."}
 }
 \examples{
 # Display the tracts with ggplot2

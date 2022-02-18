@@ -5,8 +5,8 @@
 \alias{county_sf}
 \title{Counties}
 \format{
-A polygon \code{sf} object with 23 rows and 8
-variables:
+A polygon \code{sf} object with 23 rows and
+8 variables:
 \describe{
 \item{geoid_county}{Unique 5-digit county ID (a.k.a. FIPS code), assigned
 by the Census Bureau. Character.}
@@ -32,15 +32,16 @@ county_sf
 The counties that are within the CMAP travel modeling area \strong{or} the
 "Chicago-Naperville-Elgin, IL-IN-WI" Metropolitan Statistical Area (as
 defined by the United States Office of Management and Budget). From the US
-Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+Census Bureau's TIGER/Line shapefiles, 2021 vintage.
 }
 \details{
 Census Bureau description:
 
-\emph{"Counties are the primary legal divisions of most states. Most counties are
-functioning governmental units, whose powers and functions vary from state to
-state. Legal changes to county boundaries or names are typically infrequent,
-but do occur from time to time."}
+\emph{"The primary legal divisions of most states are termed counties. Each county
+or statistically equivalent entity is assigned a three-character numeric
+Federal Information Processing Series (FIPS) code based on alphabetical
+sequence that is unique within state, and an eight-digit National Standard
+(NS) code."}
 
 Note: The Illinois counties of LaSalle, Lee and Ogle are included in their
 entirety, although only portions of these counties are part of the CMAP

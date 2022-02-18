@@ -3,7 +3,7 @@
 \docType{data}
 \name{subzone_sf}
 \alias{subzone_sf}
-\title{CMAP Travel Modeling Subzones}
+\title{CMAP Travel Modeling Subzones, 2017}
 \format{
 A polygon \code{sf} object with 17418 rows and 11
 variables:

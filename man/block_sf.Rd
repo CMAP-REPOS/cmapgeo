@@ -3,9 +3,9 @@
 \docType{data}
 \name{block_sf}
 \alias{block_sf}
-\title{Census Blocks (2019 vintage)}
+\title{Census Blocks, 2020}
 \format{
-A multipolygon \code{sf} object with 169469 rows and
+A multipolygon \code{sf} object with 144082 rows and
 4 variables:
 \describe{
 \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
@@ -27,26 +27,31 @@ block_sf
 \description{
 The Census Blocks within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2019 vintage. \strong{Use this version with data from the 2010 decennial census or
-the American Community Survey (ACS) from 2010 through 2019. For data from the
-2020 decennial census, use \code{block_sf_2020} (which will replace this dataset
-once the 2016-2020 ACS 5-year data is published).}
+2021 vintage. \strong{Use this version for data from the 2020 decennial census or
+the American Community Survey (ACS) from 2020 onward. For data from the 2010
+decennial census or ACS from 2010 through 2019, use \code{block2010_sf}.}
 }
 \details{
 Census Bureau description:
 
-\emph{"Blocks are statistical areas bounded by visible features, such as streets,
-roads, streams, and railroad tracks, and by nonvisible boundaries, such as
-selected property lines and city, township, school district, and county
-limits and short line-of-sight extensions of streets and roads. Generally,
-census blocks are small in area; for example, a block in a city bounded on
-all sides by streets. Census blocks in suburban and rural areas may be large,
-irregular, and bounded by a variety of features, such as roads, streams, and
-transmission lines. In remote areas, census blocks may encompass hundreds of
-square miles. Census blocks cover the entire territory of the United States,
-Puerto Rico, and the Island Areas. Census blocks nest within all other
-tabulated census geographic entities and are the basis for all tabulated
-data."}
+\emph{"Blocks (Census Blocks or Tabulation Blocks) are statistical areas bounded
+by visible features, such as streets, roads, streams, and railroad tracks,
+and by nonvisible boundaries, such as selected property lines and city,
+township, school district, and county limits and short line-of-sight
+extensions of streets and roads. Generally, blocks are small in area; for
+example, a city block bounded on all sides by streets. Blocks in suburban and
+rural areas may be larger, more irregular in shape, and bounded by a variety
+of features, such as roads, streams, and transmission lines. In remote areas,
+blocks may even encompass hundreds of square miles. Blocks cover the entire
+territory of the United States, Puerto Rico, and the Island Areas. Blocks
+nest within all other tabulated census geographic entities at the time of the
+decennial census and are the basis for all tabulated data from that census.
+Census Block Numbers—Blocks are numbered uniquely with a four-digit census
+block number from 0000 to 9999 within census tract, which nest within state
+and county. The first digit of the census block number identifies the block
+group. Block numbers beginning with a zero (in Block Group 0) are intended to
+include only water area, but not all water-only blocks have block numbers
+beginning with 0 (zero)."}
 }
 \examples{
 # Display the blocks with ggplot2

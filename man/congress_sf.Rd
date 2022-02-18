@@ -3,17 +3,17 @@
 \docType{data}
 \name{congress_sf}
 \alias{congress_sf}
-\title{U.S. Congressional Districts}
+\title{U.S. Congressional Districts, 2012}
 \format{
-A multipolygon \code{sf} object with 18 rows and 6
-variables:
+A multipolygon \code{sf} object with 18 rows and
+6 variables:
 \describe{
 \item{dist_num}{Congressional District number. Integer.}
 \item{dist_name}{Name of the district (full). Character.}
 \item{dist_name_short}{Name of the district (short). Character.}
 \item{cmap}{Does the district overlap the 7-county CMAP region? Logical.}
-\item{sqmi}{Area in square miles. Double.}
-\item{geometry}{Feature geometry. \code{sf} multipolygon.}
+\item{sqmi}{Area in square miles. Double.} \item{geometry}{Feature
+geometry. \code{sf} multipolygon.}
 }
 }
 \source{
@@ -25,7 +25,10 @@ congress_sf
 }
 \description{
 The United States Congressional Districts in the state of Illinois. From the
-US Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+US Census Bureau's TIGER/Line shapefiles, 2021 vintage. \strong{These districts
+were in effect for elections from 2012 through 2020 (i.e. the 113th through
+117th Congresses). They will be superseded by new district boundaries for the
+2022 election (for the 118th Congress).}
 }
 \details{
 Census Bureau description:

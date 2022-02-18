@@ -1,31 +1,89 @@
 # Geodata created with data-raw/load_census_api.R ------------------------
 
-#' Census Blocks (2019 vintage)
+# NOTE: Census geography glossary is located at
+# <https://www.census.gov/programs-surveys/geography/about/glossary.html>
+
+#' Census Blocks, 2010
 #'
 #' The Census Blocks within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 #' 2019 vintage. **Use this version with data from the 2010 decennial census or
 #' the American Community Survey (ACS) from 2010 through 2019. For data from the
-#' 2020 decennial census, use `block_sf_2020` (which will replace this dataset
-#' once the 2016-2020 ACS 5-year data is published).**
+#' 2020 decennial census or ACS from 2020 onward, use `block_sf`.**
 #'
 #' Census Bureau description:
 #'
-#' *"Blocks are statistical areas bounded by visible features, such as streets,
-#' roads, streams, and railroad tracks, and by nonvisible boundaries, such as
-#' selected property lines and city, township, school district, and county
-#' limits and short line-of-sight extensions of streets and roads. Generally,
-#' census blocks are small in area; for example, a block in a city bounded on
-#' all sides by streets. Census blocks in suburban and rural areas may be large,
-#' irregular, and bounded by a variety of features, such as roads, streams, and
-#' transmission lines. In remote areas, census blocks may encompass hundreds of
-#' square miles. Census blocks cover the entire territory of the United States,
-#' Puerto Rico, and the Island Areas. Census blocks nest within all other
-#' tabulated census geographic entities and are the basis for all tabulated
-#' data."*
+#' *"Blocks (Census Blocks or Tabulation Blocks) are statistical areas bounded
+#' by visible features, such as streets, roads, streams, and railroad tracks,
+#' and by nonvisible boundaries, such as selected property lines and city,
+#' township, school district, and county limits and short line-of-sight
+#' extensions of streets and roads. Generally, blocks are small in area; for
+#' example, a city block bounded on all sides by streets. Blocks in suburban and
+#' rural areas may be larger, more irregular in shape, and bounded by a variety
+#' of features, such as roads, streams, and transmission lines. In remote areas,
+#' blocks may even encompass hundreds of square miles. Blocks cover the entire
+#' territory of the United States, Puerto Rico, and the Island Areas. Blocks
+#' nest within all other tabulated census geographic entities at the time of the
+#' decennial census and are the basis for all tabulated data from that census.
+#' Census Block Numbers—Blocks are numbered uniquely with a four-digit census
+#' block number from 0000 to 9999 within census tract, which nest within state
+#' and county. The first digit of the census block number identifies the block
+#' group. Block numbers beginning with a zero (in Block Group 0) are intended to
+#' include only water area, but not all water-only blocks have block numbers
+#' beginning with 0 (zero)."*
 #'
-#' @format
-#' A multipolygon `sf` object with `r nrow(block_sf)` rows and
+#' @format A multipolygon `sf` object with `r nrow(block2010_sf)` rows and
+#' `r ncol(block2010_sf)` variables:
+#' \describe{
+#'   \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
+#'   The parent tract and block group can be identified from the first 11 and 12
+#'   digits, respectively. Character.}
+#'   \item{county_fips}{Unique 5-digit FIPS code of the county the block is in.
+#'   Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#' }
+#'
+#' @source US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the blocks with ggplot2
+#' library(ggplot2)
+#' ggplot(block2010_sf) + geom_sf(lwd = 0.1) + theme_void()
+"block2010_sf"
+
+
+#' Census Blocks, 2020
+#'
+#' The Census Blocks within the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2021 vintage. **Use this version for data from the 2020 decennial census or
+#' the American Community Survey (ACS) from 2020 onward. For data from the 2010
+#' decennial census or ACS from 2010 through 2019, use `block2010_sf`.**
+#'
+#' Census Bureau description:
+#'
+#' *"Blocks (Census Blocks or Tabulation Blocks) are statistical areas bounded
+#' by visible features, such as streets, roads, streams, and railroad tracks,
+#' and by nonvisible boundaries, such as selected property lines and city,
+#' township, school district, and county limits and short line-of-sight
+#' extensions of streets and roads. Generally, blocks are small in area; for
+#' example, a city block bounded on all sides by streets. Blocks in suburban and
+#' rural areas may be larger, more irregular in shape, and bounded by a variety
+#' of features, such as roads, streams, and transmission lines. In remote areas,
+#' blocks may even encompass hundreds of square miles. Blocks cover the entire
+#' territory of the United States, Puerto Rico, and the Island Areas. Blocks
+#' nest within all other tabulated census geographic entities at the time of the
+#' decennial census and are the basis for all tabulated data from that census.
+#' Census Block Numbers—Blocks are numbered uniquely with a four-digit census
+#' block number from 0000 to 9999 within census tract, which nest within state
+#' and county. The first digit of the census block number identifies the block
+#' group. Block numbers beginning with a zero (in Block Group 0) are intended to
+#' include only water area, but not all water-only blocks have block numbers
+#' beginning with 0 (zero)."*
+#'
+#' @format A multipolygon `sf` object with `r nrow(block_sf)` rows and
 #' `r ncol(block_sf)` variables:
 #' \describe{
 #'   \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
@@ -37,8 +95,7 @@
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source
-#' US Census Bureau
+#' @source US Census Bureau
 #' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
 #' @examples
@@ -48,62 +105,13 @@
 "block_sf"
 
 
-#' Census Blocks (2020 vintage)
-#'
-#' The Census Blocks within the 7-county Chicago Metropolitan Agency for
-#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2020 vintage. **Use this version for data from the 2020 decennial census. For
-#' data from the 2010 decennial census or the American Community Survey (ACS)
-#' from 2010 through 2019, use `block_sf` (which will be replaced by this
-#' dataset once the 2016-2020 ACS 5-year data is published).**
-#'
-#' Census Bureau description:
-#'
-#' *"Blocks are statistical areas bounded by visible features, such as streets,
-#' roads, streams, and railroad tracks, and by nonvisible boundaries, such as
-#' selected property lines and city, township, school district, and county
-#' limits and short line-of-sight extensions of streets and roads. Generally,
-#' census blocks are small in area; for example, a block in a city bounded on
-#' all sides by streets. Census blocks in suburban and rural areas may be large,
-#' irregular, and bounded by a variety of features, such as roads, streams, and
-#' transmission lines. In remote areas, census blocks may encompass hundreds of
-#' square miles. Census blocks cover the entire territory of the United States,
-#' Puerto Rico, and the Island Areas. Census blocks nest within all other
-#' tabulated census geographic entities and are the basis for all tabulated
-#' data."*
-#'
-#' @format
-#' A multipolygon `sf` object with `r nrow(block_sf_2020)` rows and
-#' `r ncol(block_sf_2020)` variables:
-#' \describe{
-#'   \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
-#'   The parent tract and block group can be identified from the first 11 and 12
-#'   digits, respectively. Character.}
-#'   \item{county_fips}{Unique 5-digit FIPS code of the county the block is in.
-#'   Character.}
-#'   \item{sqmi}{Area in square miles. Double.}
-#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
-#' }
-#'
-#' @source
-#' US Census Bureau
-#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
-#'
-#' @examples
-#' # Display the blocks with ggplot2
-#' library(ggplot2)
-#' ggplot(block_sf_2020) + geom_sf(lwd = 0.1) + theme_void()
-"block_sf_2020"
-
-
-#' Census Block Groups (2019 vintage)
+#' Census Block Groups, 2010
 #'
 #' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 #' 2019 vintage. **Use this version with data from the 2010 decennial census or
 #' the American Community Survey (ACS) from 2010 through 2019. For data from the
-#' 2020 decennial census, use `blockgroup_sf_2020` (which will replace this
-#' dataset once the 2016-2020 ACS 5-year data is published).**
+#' 2020 decennial census or ACS from 2020 onward, use `blockgroup_sf`.**
 #'
 #' Census Bureau description:
 #'
@@ -113,24 +121,22 @@
 #' of blocks within the same census tract that have the same first digit of
 #' their four-digit census block number. For example, blocks 3001, 3002, 3003,
 #' ..., 3999 in census tract 1210.02 belong to BG 3 in that census tract. Most
-#' BGs were delineated by local participants in the Census Bureau's Participant
-#' Statistical Areas Program. The Census Bureau delineated BGs only where a
-#' local or tribal government declined to participate, and a regional
-#' organization or State Data Center was not available to participate.*
+#' BGs were delineated by local participants in the Census Bureau’s Participant
+#' Statistical Areas Program (PSAP). The Census Bureau delineated BGs only where
+#' a local or tribal government declined to participate in PSAP, and a regional
+#' organization or the State Data Center was not available to participate. A BG
+#' usually covers a contiguous area. Each census tract contains at least one BG,
+#' and BGs are uniquely numbered within the census tract. Within the standard
+#' census geographic hierarchy, BGs never cross state, county, or census tract
+#' boundaries, but may cross the boundaries of any other geographic entity.
+#' Tribal census tracts and tribal BGs are separate and unique geographic areas
+#' defined within federally recognized American Indian reservations and can
+#' cross state and county boundaries. The tribal census tracts and tribal block
+#' groups may be completely different from the standard county-based census
+#' tracts and block groups defined for the same area."*
 #'
-#' *"A BG usually covers a contiguous area. Each census tract contains at least
-#' one BG, and BGs are uniquely numbered within the census tract. Within the
-#' standard census geographic hierarchy, BGs never cross state, county, or
-#' census tract boundaries but may cross the boundaries of any other geographic
-#' entity. Tribal census tracts and tribal BGs are separate and unique
-#' geographic areas defined within federally recognized American Indian
-#' reservations and can cross state and county boundaries. The tribal census
-#' tracts and tribal block groups may be completely different from the census
-#' tracts and block groups defined by state and county."*
-#'
-#' @format
-#' A polygon `sf` object with `r nrow(blockgroup_sf)` rows and
-#' `r ncol(blockgroup_sf)` variables:
+#' @format A polygon `sf` object with `r nrow(blockgroup2010_sf)` rows and
+#' `r ncol(blockgroup2010_sf)` variables:
 #' \describe{
 #'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 #'   Bureau. The parent tract can be identified from the first 11 digits.
@@ -139,6 +145,59 @@
 #'   is in. Character.}
 #'   \item{sqmi}{Area in square miles. Double.}
 #'   \item{geometry}{Feature geometry. `sf` polygon.}
+#' }
+#'
+#' @source US Census Bureau
+#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#'
+#' @examples
+#' # Display the block groups with ggplot2
+#' library(ggplot2)
+#' ggplot(blockgroup2010_sf) + geom_sf(lwd = 0.1) + theme_void()
+"blockgroup2010_sf"
+
+
+#' Census Block Groups, 2020
+#'
+#' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
+#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
+#' 2021 vintage. **Use this version for data from the 2020 decennial census or
+#' the American Community Survey (ACS) from 2020 onward. For data from the 2010
+#' decennial census or ACS from 2010 through 2019, use `blockgroup2010_sf`.**
+#'
+#' Census Bureau description:
+#'
+#' *"Block Groups (BGs) are statistical divisions of census tracts, are
+#' generally defined to contain between 600 and 3,000 people, and are used to
+#' present data and control block numbering. A block group consists of clusters
+#' of blocks within the same census tract that have the same first digit of
+#' their four-digit census block number. For example, blocks 3001, 3002, 3003,
+#' ..., 3999 in census tract 1210.02 belong to BG 3 in that census tract. Most
+#' BGs were delineated by local participants in the Census Bureau’s Participant
+#' Statistical Areas Program (PSAP). The Census Bureau delineated BGs only where
+#' a local or tribal government declined to participate in PSAP, and a regional
+#' organization or the State Data Center was not available to participate. A BG
+#' usually covers a contiguous area. Each census tract contains at least one BG,
+#' and BGs are uniquely numbered within the census tract. Within the standard
+#' census geographic hierarchy, BGs never cross state, county, or census tract
+#' boundaries, but may cross the boundaries of any other geographic entity.
+#' Tribal census tracts and tribal BGs are separate and unique geographic areas
+#' defined within federally recognized American Indian reservations and can
+#' cross state and county boundaries. The tribal census tracts and tribal block
+#' groups may be completely different from the standard county-based census
+#' tracts and block groups defined for the same area."*
+#'
+#' @format
+#' A multipolygon `sf` object with `r nrow(blockgroup_sf)` rows and
+#' `r ncol(blockgroup_sf)` variables:
+#' \describe{
+#'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
+#'   Bureau. The parent tract can be identified from the first 11 digits.
+#'   Character.}
+#'   \item{county_fips}{Unique 5-digit FIPS code of the county the block group
+#'   is in. Character.}
+#'   \item{sqmi}{Area in square miles. Double.}
+#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
 #' @source
@@ -152,80 +211,24 @@
 "blockgroup_sf"
 
 
-#' Census Block Groups (2020 vintage)
-#'
-#' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
-#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2020 vintage. **Use this version for data from the 2020 decennial census. For
-#' data from the 2010 decennial census or the American Community Survey (ACS)
-#' from 2010 through 2019, use `blockgroup_sf` (which will be replaced by this
-#' dataset once the 2016-2020 ACS 5-year data is published).**
-#'
-#' Census Bureau description:
-#'
-#' *"Block Groups (BGs) are statistical divisions of census tracts, are
-#' generally defined to contain between 600 and 3,000 people, and are used to
-#' present data and control block numbering. A block group consists of clusters
-#' of blocks within the same census tract that have the same first digit of
-#' their four-digit census block number. For example, blocks 3001, 3002, 3003,
-#' ..., 3999 in census tract 1210.02 belong to BG 3 in that census tract. Most
-#' BGs were delineated by local participants in the Census Bureau's Participant
-#' Statistical Areas Program. The Census Bureau delineated BGs only where a
-#' local or tribal government declined to participate, and a regional
-#' organization or State Data Center was not available to participate.*
-#'
-#' *"A BG usually covers a contiguous area. Each census tract contains at least
-#' one BG, and BGs are uniquely numbered within the census tract. Within the
-#' standard census geographic hierarchy, BGs never cross state, county, or
-#' census tract boundaries but may cross the boundaries of any other geographic
-#' entity. Tribal census tracts and tribal BGs are separate and unique
-#' geographic areas defined within federally recognized American Indian
-#' reservations and can cross state and county boundaries. The tribal census
-#' tracts and tribal block groups may be completely different from the census
-#' tracts and block groups defined by state and county."*
-#'
-#' @format
-#' A polygon `sf` object with `r nrow(blockgroup_sf_2020)` rows and
-#' `r ncol(blockgroup_sf_2020)` variables:
-#' \describe{
-#'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
-#'   Bureau. The parent tract can be identified from the first 11 digits.
-#'   Character.}
-#'   \item{county_fips}{Unique 5-digit FIPS code of the county the block group
-#'   is in. Character.}
-#'   \item{sqmi}{Area in square miles. Double.}
-#'   \item{geometry}{Feature geometry. `sf` polygon.}
-#' }
-#'
-#' @source
-#' US Census Bureau
-#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
-#'
-#' @examples
-#' # Display the block groups with ggplot2
-#' library(ggplot2)
-#' ggplot(blockgroup_sf_2020) + geom_sf(lwd = 0.1) + theme_void()
-"blockgroup_sf_2020"
-
-
-#' Census Tracts (2019 vintage)
+#' Census Tracts, 2010
 #'
 #' The Census Tracts within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
 #' 2019 vintage. **Use this version with data from the 2010 decennial census or
 #' the American Community Survey (ACS) from 2010 through 2019. For data from the
-#' 2020 decennial census, use `tract_sf_2020` (which will replace this dataset
-#' once the 2016-2020 ACS 5-year data is published).**
+#' 2020 decennial census or ACS from 2020 onward, use `tract_sf`.**
 #'
 #' Census Bureau description:
 #'
 #' *"Census Tracts are small, relatively permanent statistical subdivisions of a
-#' county or equivalent entity that are updated by local participants prior to
-#' each decennial census as part of the Census Bureau's Participant Statistical
-#' Areas Program. The Census Bureau delineates census tracts in situations where
-#' no local participant existed or where state, local, or tribal governments
-#' declined to participate. The primary purpose of census tracts is to provide a
-#' stable set of geographic units for the presentation of statistical data.*
+#' county or statistically equivalent entity that can be updated by local
+#' participants prior to each decennial census as part of the Census Bureau’s
+#' Participant Statistical Areas Program (PSAP). The Census Bureau delineates
+#' census tracts in situations where no local participant responded or where
+#' state, local, or tribal governments declined to participate. The primary
+#' purpose of census tracts is to provide a stable set of geographic units for
+#' the presentation of statistical data.
 #'
 #' *"Census tracts generally have a population size between 1,200 and 8,000
 #' people, with an optimum size of 4,000 people. A census tract usually covers a
@@ -234,26 +237,26 @@
 #' delineated with the intention of being maintained over a long time so that
 #' statistical comparisons can be made from census to census. Census tracts
 #' occasionally are split due to population growth or merged as a result of
-#' substantial population decline.*
+#' substantial population decline.
 #'
 #' *"Census tract boundaries generally follow visible and identifiable features.
 #' They may follow nonvisible legal boundaries, such as minor civil division
 #' (MCD) or incorporated place boundaries in some states and situations, to
-#' allow for census-tract-to-governmental-unit relationships where the
+#' allow for census tract-to-governmental unit relationships where the
 #' governmental boundaries tend to remain unchanged between censuses. State and
 #' county boundaries always are census tract boundaries in the standard census
 #' geographic hierarchy. Tribal census tracts are a unique geographic entity
 #' defined within federally recognized American Indian reservations and
-#' off-reservation trust lands and can cross state and county boundaries. Tribal
-#' census tracts may be completely different from the census tracts and block
-#' groups defined by state and county."*
+#' off-reservation trust lands and can cross state and county boundaries. The
+#' tribal census tracts may be completely different from the standard
+#' county-based census tracts defined for the same area."*
 #'
 #' @format
-#' A polygon `sf` object with `r nrow(tract_sf)` rows and `r ncol(tract_sf)`
-#' variables:
+#' A polygon `sf` object with `r nrow(tract2010_sf)` rows and
+#' `r ncol(tract2010_sf)` variables:
 #' \describe{
-#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
-#'   Bureau. Character.}
+#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census Bureau.
+#'   Character.}
 #'   \item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
 #'   Character.}
 #'   \item{sqmi}{Area in square miles. Double.}
@@ -267,28 +270,28 @@
 #' @examples
 #' # Display the tracts with ggplot2
 #' library(ggplot2)
-#' ggplot(tract_sf) + geom_sf(lwd = 0.1) + theme_void()
-"tract_sf"
+#' ggplot(tract2010_sf) + geom_sf(lwd = 0.1) + theme_void()
+"tract2010_sf"
 
 
-#' Census Tracts (2020 vintage)
+#' Census Tracts, 2020
 #'
 #' The Census Tracts within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2020 vintage. **Use this version for data from the 2020 decennial census. For
-#' data from the 2010 decennial census or the American Community Survey (ACS)
-#' from 2010 through 2019, use `tract_sf` (which will be replaced by this
-#' dataset once the 2016-2020 ACS 5-year data is published).**
+#' 2021 vintage. **Use this version for data from the 2020 decennial census or
+#' the American Community Survey (ACS) from 2020 onward. For data from the 2010
+#' decennial census or ACS from 2010 through 2019, use `tract2010_sf`.**
 #'
 #' Census Bureau description:
 #'
 #' *"Census Tracts are small, relatively permanent statistical subdivisions of a
-#' county or equivalent entity that are updated by local participants prior to
-#' each decennial census as part of the Census Bureau's Participant Statistical
-#' Areas Program. The Census Bureau delineates census tracts in situations where
-#' no local participant existed or where state, local, or tribal governments
-#' declined to participate. The primary purpose of census tracts is to provide a
-#' stable set of geographic units for the presentation of statistical data.*
+#' county or statistically equivalent entity that can be updated by local
+#' participants prior to each decennial census as part of the Census Bureau’s
+#' Participant Statistical Areas Program (PSAP). The Census Bureau delineates
+#' census tracts in situations where no local participant responded or where
+#' state, local, or tribal governments declined to participate. The primary
+#' purpose of census tracts is to provide a stable set of geographic units for
+#' the presentation of statistical data.
 #'
 #' *"Census tracts generally have a population size between 1,200 and 8,000
 #' people, with an optimum size of 4,000 people. A census tract usually covers a
@@ -297,23 +300,23 @@
 #' delineated with the intention of being maintained over a long time so that
 #' statistical comparisons can be made from census to census. Census tracts
 #' occasionally are split due to population growth or merged as a result of
-#' substantial population decline.*
+#' substantial population decline.
 #'
 #' *"Census tract boundaries generally follow visible and identifiable features.
 #' They may follow nonvisible legal boundaries, such as minor civil division
 #' (MCD) or incorporated place boundaries in some states and situations, to
-#' allow for census-tract-to-governmental-unit relationships where the
+#' allow for census tract-to-governmental unit relationships where the
 #' governmental boundaries tend to remain unchanged between censuses. State and
 #' county boundaries always are census tract boundaries in the standard census
 #' geographic hierarchy. Tribal census tracts are a unique geographic entity
 #' defined within federally recognized American Indian reservations and
-#' off-reservation trust lands and can cross state and county boundaries. Tribal
-#' census tracts may be completely different from the census tracts and block
-#' groups defined by state and county."*
+#' off-reservation trust lands and can cross state and county boundaries. The
+#' tribal census tracts may be completely different from the standard
+#' county-based census tracts defined for the same area."*
 #'
 #' @format
-#' A polygon `sf` object with `r nrow(tract_sf_2020)` rows and
-#' `r ncol(tract_sf_2020)` variables:
+#' A multipolygon `sf` object with `r nrow(tract_sf)` rows and
+#' `r ncol(tract_sf)` variables:
 #' \describe{
 #'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
 #'   Bureau. Character.}
@@ -330,15 +333,17 @@
 #' @examples
 #' # Display the tracts with ggplot2
 #' library(ggplot2)
-#' ggplot(tract_sf_2020) + geom_sf(lwd = 0.1) + theme_void()
-"tract_sf_2020"
+#' ggplot(tract_sf) + geom_sf(lwd = 0.1) + theme_void()
+"tract_sf"
 
 
-#' Census Public Use Microdata Areas (PUMAs)
+#' Census Public Use Microdata Areas (PUMAs), 2010
 #'
 #' The Census PUMAs covering the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2019 vintage.
+#' 2021 vintage. **These PUMAs are valid for use with ACS PUMS data from 2012
+#' through 2021. They will be superseded by the 2020 PUMAs when the 2022 ACS
+#' data is published.**
 #'
 #' Census Bureau description:
 #'
@@ -383,11 +388,11 @@
 #'
 #' The Census ZCTAs covering the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2019 vintage.
+#' 2021 vintage.
 #'
 #' Census Bureau description:
 #'
-#' *ZIP Code Tabulation Areas (ZCTAs) are approximate area representations of
+#' *"ZIP Code Tabulation Areas (ZCTAs) are approximate area representations of
 #' U.S. Postal Service (USPS) five-digit ZIP Code service areas that the Census
 #' Bureau creates using whole blocks to present statistical data from censuses
 #' and surveys. The Census Bureau defines ZCTAs by allocating each block that
@@ -399,25 +404,13 @@
 #' buffering performed between multiple ZCTAs. The Census Bureau identifies
 #' five-digit ZCTAs using a five-character numeric code that represents the most
 #' frequently occurring USPS ZIP Code within that ZCTA, and this code may
-#' contain leading zeros.*
-#'
-#' *There are significant changes to the 2010 ZCTA delineation from that used in
-#' 2000. Coverage was extended to include the Island Areas for 2010 so that the
-#' United States, Puerto Rico, and the Island Areas have ZCTAs. Unlike 2000,
-#' when areas that could not be assigned to a ZCTA were given a generic code
-#' ending in "XX" (land area) or "HH" (water area), for 2010 there is no
-#' universal coverage by ZCTAs, and only legitimate five-digit areas are
-#' defined. The 2010 ZCTAs will better represent the actual Zip Code service
-#' areas because the Census Bureau initiated a process before creation of 2010
-#' blocks to add block boundaries that split polygons with large numbers of
-#' addresses using different ZIP Codes.*
-#'
-#' *Data users should not use ZCTAs to identify the official USPS ZIP Code for
-#' mail delivery. The USPS makes periodic changes to ZIP Codes to support more
-#' efficient mail delivery. The ZCTAs process used primarily residential
-#' addresses and was biased towards ZIP Codes used for city-style mail delivery,
-#' thus there may be ZIP Codes that are primarily nonresidential or boxes only
-#' that may not have a corresponding ZCTA.*
+#' contain leading zeros. Not all ZIP Codes in use by the USPS may have a ZCTA
+#' delineated to represent them, The USPS makes periodic changes to ZIP Codes to
+#' support more efficient mail delivery. In addition, the ZCTA delineation
+#' process primarily uses residential addresses and has a bias towards ZIP Codes
+#' used for city-style mail delivery, thus there may be ZIP Codes that are
+#' primarily nonresidential or used for PO boxes only that may not have a
+#' corresponding ZCTA. ZIP Code is a trademark of the U.S. Postal Service."*
 #'
 #' @format
 #' A multipolygon `sf` object with `r nrow(zcta_sf)` rows and `r ncol(zcta_sf)`
@@ -440,10 +433,13 @@
 "zcta_sf"
 
 
-#' Illinois State Senate Districts
+#' Illinois State Senate Districts, 2011
 #'
 #' The Illinois General Assembly Senate Districts. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2019 vintage.
+#' TIGER/Line shapefiles, 2021 vintage. **These districts were in effect for
+#' elections from 2012 through 2020 (i.e. the 98th through 102nd General
+#' Assemblies). They will be superseded by new district boundaries for the 2022
+#' election (for the 103rd General Assembly).**
 #'
 #' Census Bureau description:
 #'
@@ -451,23 +447,21 @@
 #' elected to state legislatures. The Census Bureau first reported data for SLDs
 #' as part of the 2000 Public Law (P.L.) 94-171 Redistricting Data File.*
 #'
-#' *"Current SLDs (2010 Election Cycle) -- States participating in Phase 1 of
-#' the 2010 Census Redistricting Data Program voluntarily provided the Census
-#' Bureau with the 2006 election cycle boundaries, codes, and, in some cases,
-#' names for their SLDs. All 50 states, plus the District of Columbia and Puerto
-#' Rico, participated in Phase 1, State Legislative District Project (SLDP) of
-#' the 2010 Census Redistricting Data Program. States subsequently provided
-#' legal changes to those plans through the Redistricting Data Office and/or
-#' corrections as part of Phase 2 of the 2010 Census Redistricting Data Program,
-#' as needed.*
+#' *"Current SLDs (2018 Election Cycle)—States participating in Phase 4 of the
+#' 2020 Census Redistricting Data Program voluntarily provided the Census Bureau
+#' with the 2018 election cycle boundaries, codes, and, in some cases, names for
+#' their SLDs. All 50 states, plus the District of Columbia and Puerto Rico,
+#' participated in Phase 4's State Legislative District Project (SLDP) of the
+#' 2020 Census Redistricting Data Program. States subsequently provided
+#' corrections to those plans through the Redistricting Data Office during Phase
+#' 2 of the 2020 Census Redistricting Data Program, if needed.
 #'
-#' *"The SLDs embody the upper (senate) and lower (house) chambers of the state
-#' legislature. A unique three-character census code, identified by state
-#' participants, is assigned to each SLD within a state. In Connecticut, Hawaii,
-#' Illinois, Louisiana, Maine, Massachusetts, New Jersey, Ohio, and Puerto Rico,
+#' "The SLDs embody the upper (senate—SLDU) and lower (house—SLDL) chambers of
+#' the state legislature. A unique three-character census code, identified by
+#' state participants, is assigned to each SLD within a state. In some states,
 #' state officials did not define the SLDs to cover all of the state or state
 #' equivalent area (usually bodies of water). In these areas with no SLDs
-#' defined, the code "ZZZ" has been assigned, which is treated within state as a
+#' defined, the code 'ZZZ' has been assigned, which is treated within state as a
 #' single SLD for purposes of data presentation."*
 #'
 #' Note: The aforementioned "ZZZ" district, which comprises the Illinois portion
@@ -495,10 +489,13 @@
 "ilga_senate_sf"
 
 
-#' Illinois State House Districts
+#' Illinois State House Districts, 2011
 #'
 #' The Illinois General Assembly House Districts. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2019 vintage.
+#' TIGER/Line shapefiles, 2021 vintage. **These districts were in effect for
+#' elections from 2012 through 2020 (i.e. the 98th through 102nd General
+#' Assemblies). They will be superseded by new district boundaries for the 2022
+#' election (for the 103rd General Assembly).**
 #'
 #' Census Bureau description:
 #'
@@ -506,23 +503,21 @@
 #' elected to state legislatures. The Census Bureau first reported data for SLDs
 #' as part of the 2000 Public Law (P.L.) 94-171 Redistricting Data File.*
 #'
-#' *"Current SLDs (2010 Election Cycle) -- States participating in Phase 1 of
-#' the 2010 Census Redistricting Data Program voluntarily provided the Census
-#' Bureau with the 2006 election cycle boundaries, codes, and, in some cases,
-#' names for their SLDs. All 50 states, plus the District of Columbia and Puerto
-#' Rico, participated in Phase 1, State Legislative District Project (SLDP) of
-#' the 2010 Census Redistricting Data Program. States subsequently provided
-#' legal changes to those plans through the Redistricting Data Office and/or
-#' corrections as part of Phase 2 of the 2010 Census Redistricting Data Program,
-#' as needed.*
+#' *"Current SLDs (2018 Election Cycle)—States participating in Phase 4 of the
+#' 2020 Census Redistricting Data Program voluntarily provided the Census Bureau
+#' with the 2018 election cycle boundaries, codes, and, in some cases, names for
+#' their SLDs. All 50 states, plus the District of Columbia and Puerto Rico,
+#' participated in Phase 4's State Legislative District Project (SLDP) of the
+#' 2020 Census Redistricting Data Program. States subsequently provided
+#' corrections to those plans through the Redistricting Data Office during Phase
+#' 2 of the 2020 Census Redistricting Data Program, if needed.
 #'
-#' *"The SLDs embody the upper (senate) and lower (house) chambers of the state
-#' legislature. A unique three-character census code, identified by state
-#' participants, is assigned to each SLD within a state. In Connecticut, Hawaii,
-#' Illinois, Louisiana, Maine, Massachusetts, New Jersey, Ohio, and Puerto Rico,
+#' "The SLDs embody the upper (senate—SLDU) and lower (house—SLDL) chambers of
+#' the state legislature. A unique three-character census code, identified by
+#' state participants, is assigned to each SLD within a state. In some states,
 #' state officials did not define the SLDs to cover all of the state or state
 #' equivalent area (usually bodies of water). In these areas with no SLDs
-#' defined, the code "ZZZ" has been assigned, which is treated within state as a
+#' defined, the code 'ZZZ' has been assigned, which is treated within state as a
 #' single SLD for purposes of data presentation."*
 #'
 #' Note: The aforementioned "ZZZ" district, which comprises the Illinois portion
@@ -550,10 +545,13 @@
 "ilga_house_sf"
 
 
-#' U.S. Congressional Districts
+#' U.S. Congressional Districts, 2012
 #'
 #' The United States Congressional Districts in the state of Illinois. From the
-#' US Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+#' US Census Bureau's TIGER/Line shapefiles, 2021 vintage. **These districts
+#' were in effect for elections from 2012 through 2020 (i.e. the 113th through
+#' 117th Congresses). They will be superseded by new district boundaries for the
+#' 2022 election (for the 118th Congress).**
 #'
 #' Census Bureau description:
 #'
@@ -567,20 +565,18 @@
 #' each Island Area, a separate code is used to identify the entire areas of
 #' these state-equivalent entities as having a single nonvoting delegate."*
 #'
-#' @format
-#' A multipolygon `sf` object with `r nrow(congress_sf)` rows and `r ncol(congress_sf)`
-#' variables:
+#' @format A multipolygon `sf` object with `r nrow(congress_sf)` rows and
+#' `r ncol(congress_sf)` variables:
 #' \describe{
 #'   \item{dist_num}{Congressional District number. Integer.}
 #'   \item{dist_name}{Name of the district (full). Character.}
 #'   \item{dist_name_short}{Name of the district (short). Character.}
 #'   \item{cmap}{Does the district overlap the 7-county CMAP region? Logical.}
-#'   \item{sqmi}{Area in square miles. Double.}
-#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
+#'   \item{sqmi}{Area in square miles. Double.} \item{geometry}{Feature
+#'   geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source
-#' US Census Bureau
+#' @source US Census Bureau
 #' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
 #' @examples
@@ -595,23 +591,22 @@
 #' The 284 municipalities (also referred to as "incorporated places" in Census
 #' Bureau terminology) that are at least partially within the 7-county Chicago
 #' Metropolitan Agency for Planning (CMAP) region. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2019 vintage.
+#' TIGER/Line shapefiles, 2021 vintage.
 #'
 #' Census Bureau description:
 #'
 #' *"Incorporated Places are those reported to the Census Bureau as legally in
-#' existence as of January 1, 2010, as reported in the latest Boundary and
-#' Annexation Survey (BAS), under the laws of their respective states. An
-#' incorporated place is established to provide governmental functions for a
-#' concentration of people as opposed to a minor civil division, which generally
-#' is created to provide services or administer an area without regard,
-#' necessarily, to population. Places always are within a single state or
-#' equivalent entity, but may extend across county and county subdivision
-#' boundaries. An incorporated place usually is a city, town, village, or
-#' borough, but can have other legal descriptions."*
+#' existence as of January 1, as reported in the latest Boundary and Annexation
+#' Survey (BAS), under the laws of their respective states. An incorporated
+#' place is established to provide governmental functions for a concentration of
+#' people as opposed to a minor civil division (MCD), which generally is created
+#' to provide services or administer an area without regard, necessarily, to
+#' population. Places always are within a single state or equivalent entity, but
+#' may extend across county and county subdivision boundaries. An incorporated
+#' place usually is a city, town, village, or borough, but can have other legal
+#' descriptions."*
 #'
-#' @format
-#' A multipolygon `sf` object with `r nrow(municipality_sf)` rows and
+#' @format A multipolygon `sf` object with `r nrow(municipality_sf)` rows and
 #' `r ncol(municipality_sf)` variables:
 #' \describe{
 #'   \item{geoid_place}{Unique 7-digit place/municipality ID, assigned by the
@@ -621,8 +616,7 @@
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source
-#' US Census Bureau
+#' @source US Census Bureau
 #' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
 #' @examples
@@ -638,7 +632,7 @@
 #' Bureau terminology) that are within the CMAP Metropolitan Planning Area
 #' (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
 #' Grundy County and Sandwich & Somonauk Townships in DeKalb County.) From the
-#' US Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+#' US Census Bureau's TIGER/Line shapefiles, 2021 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -647,16 +641,14 @@
 #' divisions, and unorganized territories and can be classified as either legal
 #' or statistical. Each county subdivision is assigned a five-character numeric
 #' Federal Information Processing Series (FIPS) code based on alphabetical
-#' sequence within state and an eight-digit National Standard feature
-#' identifier."*
+#' sequence within state, and an eight-digit National Standard (NS) code."*
 #'
 #' Note: The entire City of Chicago (other than the portion of O'Hare in DuPage
 #' County) is included as a single township in this dataset, and has not been
 #' subdivided into the eight theoretical townships defined by the Cook County
 #' Clerk's Office for the purposes of collecting property tax.
 #'
-#' @format
-#' A multipolygon `sf` object with `r nrow(township_sf)` rows and
+#' @format A multipolygon `sf` object with `r nrow(township_sf)` rows and
 #' `r ncol(township_sf)` variables:
 #' \describe{
 #'   \item{geoid_cousub}{Unique 10-digit county subdivision/township ID,
@@ -668,8 +660,7 @@
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source
-#' US Census Bureau
+#' @source US Census Bureau
 #' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
 #' @examples
@@ -684,23 +675,23 @@
 #' The counties that are within the CMAP travel modeling area **or** the
 #' "Chicago-Naperville-Elgin, IL-IN-WI" Metropolitan Statistical Area (as
 #' defined by the United States Office of Management and Budget). From the US
-#' Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+#' Census Bureau's TIGER/Line shapefiles, 2021 vintage.
 #'
 #' Census Bureau description:
 #'
-#' *"Counties are the primary legal divisions of most states. Most counties are
-#' functioning governmental units, whose powers and functions vary from state to
-#' state. Legal changes to county boundaries or names are typically infrequent,
-#' but do occur from time to time."*
+#' *"The primary legal divisions of most states are termed counties. Each county
+#' or statistically equivalent entity is assigned a three-character numeric
+#' Federal Information Processing Series (FIPS) code based on alphabetical
+#' sequence that is unique within state, and an eight-digit National Standard
+#' (NS) code."*
 #'
 #' Note: The Illinois counties of LaSalle, Lee and Ogle are included in their
 #' entirety, although only portions of these counties are part of the CMAP
 #' travel modeling area. The precise geographic extent of the CMAP travel
 #' modeling area is reflected in `zone_sf` and `subzone_sf`.
 #'
-#' @format
-#' A polygon `sf` object with `r nrow(county_sf)` rows and `r ncol(county_sf)`
-#' variables:
+#' @format A polygon `sf` object with `r nrow(county_sf)` rows and
+#' `r ncol(county_sf)` variables:
 #' \describe{
 #'   \item{geoid_county}{Unique 5-digit county ID (a.k.a. FIPS code), assigned
 #'   by the Census Bureau. Character.}
@@ -718,6 +709,7 @@
 #' @source US Census Bureau
 #'   [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
+#'
 #' @examples
 #' # Display the counties with ggplot2
 #' library(ggplot2)
@@ -734,7 +726,7 @@
 #' by the Illinois Department of Transportation (IDOT). Includes a column
 #' indicating which of the five transportation regions each district belongs to.
 #' Created using the county boundaries in the US Census Bureau's TIGER/Line
-#' shapefiles, 2019 vintage.
+#' shapefiles, 2021 vintage.
 #'
 #' @format
 #' A polygon `sf` object with `r nrow(idot_sf)` rows and `r ncol(idot_sf)`
@@ -785,7 +777,7 @@
 "cca_sf"
 
 
-#' Chicago Wards
+#' Chicago Wards, 2015
 #'
 #' The official boundaries of the current Chicago wards (established in May of
 #' 2015). Obtained 3/24/2021.
@@ -866,8 +858,8 @@
 #' Northwest subregional councils; in this case, the subregional boundary
 #' follows the county boundary through Buffalo Grove.
 #'
-#' It is important to note here that the portions of COM boundaries, defined by
-#' municipalities, are fluid: they change as a village annexes adjacent
+#' It is important to note here that the portions of COM boundaries defined by
+#' municipalities are fluid: they change as a village annexes adjacent
 #' unincorporated land. The boundaries depicted in this dataset reflect
 #' municipal boundaries of varying vintages and sources, and cannot be
 #' considered “true” for any given point in time.
@@ -979,7 +971,7 @@
 "fpa_sf"
 
 
-#' CMAP Travel Modeling Subzones
+#' CMAP Travel Modeling Subzones, 2017
 #'
 #' The 2017 subzones (a.k.a. MAZs) used by [CMAP](http://cmap.illinois.gov) for
 #' travel demand modeling and socioeconomic forecasting. Covers the 7-county
@@ -1040,7 +1032,7 @@
 "subzone_sf"
 
 
-#' CMAP Travel Modeling Zones
+#' CMAP Travel Modeling Zones, 2017
 #'
 #' The 2017 zones (a.k.a. TAZs) used by [CMAP](http://cmap.illinois.gov) for
 #' travel demand modeling. Covers the 7-county CMAP region, plus 14 other
