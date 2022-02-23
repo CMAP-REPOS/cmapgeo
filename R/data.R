@@ -823,7 +823,7 @@
 "fpa_sf"
 
 
-#' CMAP Travel Modeling Subzones, 2017
+#' CMAP Travel Modeling Subzones
 #'
 #' The 2017 subzones (a.k.a. MAZs) used by [CMAP](http://cmap.illinois.gov) for
 #' travel demand modeling and socioeconomic forecasting. Covers the 7-county
@@ -884,7 +884,7 @@
 "subzone_sf"
 
 
-#' CMAP Travel Modeling Zones, 2017
+#' CMAP Travel Modeling Zones
 #'
 #' The 2017 zones (a.k.a. TAZs) used by [CMAP](http://cmap.illinois.gov) for
 #' travel demand modeling. Covers the 7-county CMAP region, plus 14 other
