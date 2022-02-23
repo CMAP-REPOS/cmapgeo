@@ -31,6 +31,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,18 +45,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cmapgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CMAP-REPOS/cmapgeo/">
+  <a href="https://github.com/CMAP-REPOS/cmapgeo/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -81,85 +77,92 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="cmapgeo-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#cmapgeo-" class="anchor"></a>cmapgeo <img src="reference/figures/logo.png" align="right" alt="cmapplot logo" width="128">
+<div class="section level1">
+<div class="page-header"><h1 id="cmapgeo-">cmapgeo <img src="reference/figures/logo.png" align="right" alt="cmapplot logo" width="128"><a class="anchor" aria-label="anchor" href="#cmapgeo-"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p>The cmapgeo package for <a href="https://www.r-project.org">R</a> is a repository of geodata files representing various geographic and administrative boundaries in the Chicago region, maintained by the <a href="https://www.cmap.illinois.gov">Chicago Metropolitan Agency for Planning</a> (CMAP). Data is in the <a href="https://r-spatial.github.io/sf"><code>sf</code></a> (simple features) format, and includes boundaries for:</p>
+<p>The cmapgeo package for <a href="https://www.r-project.org" class="external-link">R</a> is a repository of geodata files representing various geographic and administrative boundaries in the Chicago region, maintained by the <a href="https://www.cmap.illinois.gov" class="external-link">Chicago Metropolitan Agency for Planning</a> (CMAP). Data is in the <a href="https://r-spatial.github.io/sf" class="external-link"><code>sf</code></a> (simple features) format, and includes boundaries for:</p>
 <ul>
 <li>Counties</li>
 <li>Municipalities</li>
 <li>Chicago community areas (CCAs) and wards</li>
-<li>Census tracts, block groups, blocks, public use microdata areas (PUMAs) and ZIP code tabulation areas (ZCTAs) — <em>2019 vintage, for use with most recent ACS data</em>
-</li>
-<li>Census tracts, block groups and blocks — <em>2020 vintage, for use with 2020 Census data</em>
-</li>
+<li>Census tracts, block groups, blocks, public use microdata areas (PUMAs) and ZIP code tabulation areas (ZCTAs)</li>
 <li>CMAP travel modeling zones and subzones</li>
 <li>CMAP subregional Councils of Mayors (COMs)</li>
 <li>Legislative districts (state and federal)</li>
 <li>IDOT districts</li>
 <li>Facility Planning Areas (FPAs)</li>
 </ul>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>Run the following to install or update cmapgeo:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Install current version from GitHub</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"CMAP-REPOS/cmapgeo"</span>, build_vignettes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"CMAP-REPOS/cmapgeo"</span><span class="op">)</span>
 
 <span class="co">## Then load the package as you would any other</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cmap-repos.github.io/cmapgeo">cmapgeo</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cmap-repos.github.io/cmapgeo">cmapgeo</a></span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/CMAP-REPOS/cmapgeo/">https://​github.com/​CMAP-REPOS/​cmapgeo/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/CMAP-REPOS/cmapgeo/issues">https://​github.com/​CMAP-REPOS/​cmapgeo/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Noel Peterson <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-1290-2362" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>
-<a href="https://www.cmap.illinois.gov"><img src="https://gist.githubusercontent.com/nmpeterson/c0d9b113b9ddbf17dbf5d3f875d58fb6/raw/08db1b4906b20af2f704e8d80a664b4599bf3cbc/cmap_logo_long.svg" height="28" alt="Chicago Metropolitan Agency for Planning logo"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
+<li><a href="https://github.com/CMAP-REPOS/cmapgeo/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/CMAP-REPOS/cmapgeo/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/CMAP-REPOS/cmapgeo/actions"><img src="https://github.com/CMAP-REPOS/cmapgeo/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://github.com/CMAP-REPOS/cmapgeo/actions"><img src="https://github.com/CMAP-REPOS/cmapgeo/workflows/pkgdown/badge.svg" alt="pkgdown"></a></li>
-<li><a href="https://cran.r-project.org/package=cmapgeo"><img src="https://www.r-pkg.org/badges/version/cmapgeo" alt="CRAN status"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing cmapgeo</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Noel Peterson <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-1290-2362" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://www.cmap.illinois.gov" class="external-link"><img src="https://gist.githubusercontent.com/nmpeterson/c0d9b113b9ddbf17dbf5d3f875d58fb6/raw/08db1b4906b20af2f704e8d80a664b4599bf3cbc/cmap_logo_long.svg" height="28" alt="Chicago Metropolitan Agency for Planning logo"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/CMAP-REPOS/cmapgeo/actions" class="external-link"><img src="https://github.com/CMAP-REPOS/cmapgeo/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/CMAP-REPOS/cmapgeo/actions" class="external-link"><img src="https://github.com/CMAP-REPOS/cmapgeo/workflows/pkgdown/badge.svg" alt="pkgdown"></a></li>
+<li><a href="https://cran.r-project.org/package=cmapgeo" class="external-link"><img src="https://www.r-pkg.org/badges/version/cmapgeo" alt="CRAN status"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Noel Peterson, <a href="https://www.cmap.illinois.gov"><img src="https://gist.githubusercontent.com/nmpeterson/c0d9b113b9ddbf17dbf5d3f875d58fb6/raw/08db1b4906b20af2f704e8d80a664b4599bf3cbc/cmap_logo_long.svg" height="28" alt="Chicago Metropolitan Agency for Planning logo"></a>.</p>
+  <p></p>
+<p>Developed by Noel Peterson, <a href="https://www.cmap.illinois.gov" class="external-link"><img src="https://gist.githubusercontent.com/nmpeterson/c0d9b113b9ddbf17dbf5d3f875d58fb6/raw/08db1b4906b20af2f704e8d80a664b4599bf3cbc/cmap_logo_long.svg" height="28" alt="Chicago Metropolitan Agency for Planning logo"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -167,6 +170,8 @@
 
   
 
+
+  
 
   </body>
 </html>
