@@ -1,4 +1,4 @@
-# cmapgeo 0.1.4
+# cmapgeo 0.2.0
 February 23, 2022
 
 * `block_sf`, `blockgroup_sf` and `tract_sf` now represent the 2020 census
