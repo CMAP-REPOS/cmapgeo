@@ -28,7 +28,7 @@ The nine highway districts covering the entire state of Illinois, as defined
 by the Illinois Department of Transportation (IDOT). Includes a column
 indicating which of the five transportation regions each district belongs to.
 Created using the county boundaries in the US Census Bureau's TIGER/Line
-shapefiles, 2019 vintage.
+shapefiles, 2021 vintage.
 }
 \examples{
 # Display the IDOT districts/regions with ggplot2

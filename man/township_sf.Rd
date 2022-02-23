@@ -29,7 +29,7 @@ The political townships (also referred to as "county subdivisions" in Census
 Bureau terminology) that are within the CMAP Metropolitan Planning Area
 (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
 Grundy County and Sandwich & Somonauk Townships in DeKalb County.) From the
-US Census Bureau's TIGER/Line shapefiles, 2019 vintage.
+US Census Bureau's TIGER/Line shapefiles, 2021 vintage.
 }
 \details{
 Census Bureau description:
@@ -39,8 +39,7 @@ entities. They include census county divisions, census subareas, minor civil
 divisions, and unorganized territories and can be classified as either legal
 or statistical. Each county subdivision is assigned a five-character numeric
 Federal Information Processing Series (FIPS) code based on alphabetical
-sequence within state and an eight-digit National Standard feature
-identifier."}
+sequence within state, and an eight-digit National Standard (NS) code."}
 
 Note: The entire City of Chicago (other than the portion of O'Hare in DuPage
 County) is included as a single township in this dataset, and has not been

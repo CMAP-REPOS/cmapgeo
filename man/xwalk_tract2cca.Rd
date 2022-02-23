@@ -3,10 +3,11 @@
 \docType{data}
 \name{xwalk_tract2cca}
 \alias{xwalk_tract2cca}
+\alias{xwalk_tract2cca_2010}
 \title{Tract-to-CCA Crosswalk}
 \format{
-A tibble with 805 rows and 5
-variables:
+\code{xwalk_tract2cca} is a tibble with 807 rows and
+6 variables:
 \describe{
 \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
 Bureau. Corresponds to \code{tract_sf}. Character.}
@@ -24,10 +25,20 @@ portion. Double.}
 quarters) living in the specified CCA. Multiply this by a tract-level
 measure of a population attribute (e.g. race/ethnicity) to estimate the
 CCA's portion. Double.}
+\item{emp_pct}{Proportion of the tract's total jobs located in the
+specified CCA. Multiply this by a tract-level measure of an employment
+attribute (e.g. retail jobs) to estimate the CCA's portion.
+\strong{Not available in \code{xwalk_tract2cca_2010}.} Double.}
 }
+
+\code{xwalk_tract2cca_2010} is a tibble with
+805 rows and 5
+variables (no \code{emp_pct}).
 }
 \usage{
 xwalk_tract2cca
+
+xwalk_tract2cca_2010
 }
 \description{
 This table contains a set of factors to apportion Census tract-level data
@@ -35,25 +46,29 @@ among Chicago Community Areas (CCAs). Separate factors are provided for
 apportioning housing unit, household, and population attributes. All factors
 were determined by calculating the percentage of a tract's housing units,
 households and population that were located in each of its component blocks,
-according to the 2010 Decennial Census, and then assigning each block to a
-CCA (based on the location of the block's centroid point).
+according to the 2020 Decennial Census, and then assigning each block to a
+CCA (based on the location of the block's centroid point). \strong{Use
+\code{xwalk_tract2cca} for data from the 2020 decennial census or the American
+Community Survey (ACS) from 2020 onward. For data from the 2010 decennial
+census or ACS from 2010 through 2019, use \code{xwalk_tract2cca_2010}.}
 }
 \details{
 Generally speaking, tract boundaries align neatly with CCA boundaries as they
 tend to follow similar features (e.g. rivers, major roads, rail lines) but
-there are cases where the population, households and/or housing units in a
-tract are split across multiple CCAs, or else are partially within the City
-of Chicago and partially outside of it. For that reason, it is not
+there are cases where the jobs, population, households and/or housing units
+in a tract are split across multiple CCAs, or else are partially within the
+City of Chicago and partially outside of it. For that reason, it is not
 appropriate to use a one-to-one tract-to-CCA assignment to apportion Census
 data among CCAs, and this crosswalk should be used instead.
 
 To use this crosswalk effectively, Census data should be joined to it (not
 vice versa, since tract IDs appear multiple times in this table). Once the
 data is joined, it should be multiplied by the appropriate factor (depending
-whether the data of interest is measured at the housing unit, household or
-person level), and then the result should be summed by CCA. If calculating
-rates, this should only be done after the counts have been summed to CCA. The
-resulting table can then be joined to \code{cca_sf} for mapping, if desired.
+whether the data of interest is measured at the housing unit, household,
+person or job level), and then the result should be summed by CCA. If
+calculating rates, this should only be done after the counts have been summed
+to CCA. The resulting table can then be joined to \code{cca_sf} for mapping, if
+desired.
 
 If your data is also available at the block group level, it is recommended
 that you use that with \code{xwalk_blockgroup2cca} instead of the tract-level
@@ -62,24 +77,22 @@ allocation.
 \examples{
 suppressPackageStartupMessages(library(dplyr))
 
-# View the tracts with population not fully contained in a single CCA
+# View the tracts with population split between multiple CCAs
 filter(xwalk_tract2cca, pop_pct < 1)
 
-# Estimate CCA-level transit mode share from tract-level ACS data
-df_tract <- tidycensus::get_acs(
-  "tract", state = "IL", county = "031", table = "B08006",
-  year = 2019, survey = "acs5", output = "wide", cache_table = TRUE
+# Estimate CCA-level population density from tract-level Census data
+df_tract <- tidycensus::get_decennial(
+  geography = "tract", variables = c("P1_001N"),
+  year = 2020, state = "IL", county = c("031", "043"), output = "wide"
 ) \%>\%
-  rename(workers = B08006_001E, transit = B08006_008E) \%>\%
-  select(GEOID, workers, transit)
+  suppressMessages() \%>\%  # Hide tidycensus messages
+  select(geoid_tract = GEOID, pop = P1_001N)
 
 df_cca <- xwalk_tract2cca \%>\%
-  left_join(df_tract, by = c("geoid_tract" = "GEOID")) \%>\%
-  mutate(transit = transit * pop_pct,
-         workers = workers * pop_pct) \%>\%
+  left_join(df_tract, by = "geoid_tract") \%>\%
+  mutate(pop = pop * pop_pct) \%>\%
   group_by(cca_num) \%>\%
-  summarize_at(vars(transit, workers), sum) \%>\%
-  mutate(transit_commute_pct = transit / workers)
+  summarize(pop = sum(pop))
 df_cca
 
 # Join to cca_sf for mapping
@@ -87,8 +100,8 @@ library(ggplot2)
 cca_sf \%>\%
   left_join(df_cca, by = "cca_num") \%>\%
   ggplot() +
-    geom_sf(aes(fill = transit_commute_pct), lwd = 0.1) +
-    scale_fill_viridis_c() +
+    geom_sf(aes(fill = pop / sqmi), lwd = 0.1) +
+    scale_fill_viridis_c(direction = -1) +
     theme_void()
 }
 \keyword{datasets}

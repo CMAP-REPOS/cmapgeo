@@ -2,20 +2,21 @@ library(tidyverse)
 devtools::load_all()
 
 # Set common parameters
+BASE_YEAR <- 2021  # TIGER/Line vintage to use by default
 STATE <- "17"  # Illinois
 COUNTIES_7CO <- c("031", "043", "089", "093", "097", "111", "197")  # CMAP 7
 COUNTIES_MPO <- c(COUNTIES_7CO, "063", "037")  # CMAP 7, plus Grundy and DeKalb
 
 # Get CMAP counties for spatial filtering (not saved) -- includes Lake Michigan
-temp_cmap_sf <- tigris::counties(state = STATE) %>%
+temp_cmap_sf <- tigris::counties(state = STATE, year = BASE_YEAR) %>%
   filter(COUNTYFP %in% COUNTIES_7CO) %>%
   sf::st_transform(cmap_crs) %>%
   select(GEOID)
 
 # Get Lake Michigan tracts for erasing
-temp_lakemich_sf <- tigris::tracts(state = "17") %>%
-  bind_rows(tigris::tracts(state = "18")) %>%
-  bind_rows(tigris::tracts(state = "55")) %>%
+temp_lakemich_sf <- tigris::tracts(state = "17", year = BASE_YEAR) %>%
+  bind_rows(tigris::tracts(state = "18", year = BASE_YEAR)) %>%
+  bind_rows(tigris::tracts(state = "55", year = BASE_YEAR)) %>%
   filter(TRACTCE == "990000") %>%  # Water tracts only
   sf::st_transform(cmap_crs) %>%
   rmapshaper::ms_dissolve()
@@ -30,7 +31,7 @@ intersects_cmap <- function(in_sf) {
 # Process Census counties
 keep_counties <- unique(unlist(county_fips_codes))
 state_fips <- unique(substr(keep_counties, 1, 2))
-county_sf <- tigris::counties(state = state_fips) %>%
+county_sf <- tigris::counties(state = state_fips, year = BASE_YEAR) %>%
   filter(GEOID %in% keep_counties) %>%
   sf::st_transform(cmap_crs) %>%
   rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
@@ -47,7 +48,7 @@ county_sf <- tigris::counties(state = state_fips) %>%
   arrange(geoid_county)
 
 # Process Census county subdivisions (a.k.a. political townships)
-township_sf <- tigris::county_subdivisions(state = STATE, county = COUNTIES_MPO) %>%
+township_sf <- tigris::county_subdivisions(state = STATE, county = COUNTIES_MPO, year = BASE_YEAR) %>%
   filter(COUSUBFP != "00000",  # Exclude Lake Michigan "townships"
          COUNTYFP %in% COUNTIES_7CO | NAME %in% c("Aux Sable", "Sandwich", "Somonauk")) %>%
   sf::st_transform(cmap_crs) %>%
@@ -59,7 +60,7 @@ township_sf <- tigris::county_subdivisions(state = STATE, county = COUNTIES_MPO)
   arrange(geoid_cousub)
 
 # Process Census places (a.k.a. municipalities)
-municipality_sf <- tigris::places(state = STATE) %>%
+municipality_sf <- tigris::places(state = STATE, year = BASE_YEAR) %>%
   filter(!str_detect(NAMELSAD, " CDP")) %>%  # Incorporated places only
   sf::st_transform(cmap_crs) %>%
   filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
@@ -69,51 +70,9 @@ municipality_sf <- tigris::places(state = STATE) %>%
   select(geoid_place, municipality, sqmi) %>%
   arrange(geoid_place)
 
-# Process Census tracts
-tract_sf <- tigris::tracts(state = STATE, county = COUNTIES_7CO) %>%
-  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_tract = GEOID) %>%
-  mutate(county_fips = paste0(STATEFP, COUNTYFP),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_tract, county_fips, sqmi) %>%
-  arrange(geoid_tract)
-
-# Process Census block groups
-blockgroup_sf <- tigris::block_groups(state = STATE, county = COUNTIES_7CO) %>%
-  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_blkgrp = GEOID) %>%
-  mutate(county_fips = paste0(STATEFP, COUNTYFP),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_blkgrp, county_fips, sqmi) %>%
-  arrange(geoid_blkgrp)
-
-# Process Census blocks
-block_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO) %>%
-  filter(TRACTCE10 != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_block = GEOID10) %>%
-  mutate(county_fips = paste0(STATEFP10, COUNTYFP10),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_block, county_fips, sqmi) %>%
-  arrange(geoid_block)
-
-# Process Census PUMAs
-puma_sf <- tigris::pumas(state = STATE) %>%
-  sf::st_transform(cmap_crs) %>%
-  filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
-  rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
-  rename(geoid_puma = GEOID10,
-         name = NAMELSAD10) %>%
-  mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_puma, name, sqmi) %>%
-  arrange(geoid_puma) %>%
-  ## Manually exclude one PUMA, which appears to mistakenly include a *tiny* block in McHenry
-  filter(geoid_puma != "1702901")
-
 # Process Congressional Districts (U.S. House of Representatives)
-congress_sf <- tigris::congressional_districts() %>%
+# Note: still 2011 districts, as of 2020 TIGER/Line
+congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
   filter(STATEFP == STATE, LSAD == "C2") %>%
   sf::st_transform(cmap_crs) %>%
   mutate(dist_num = as.integer(CD116FP),
@@ -126,8 +85,9 @@ congress_sf <- tigris::congressional_districts() %>%
   select(dist_num, dist_name, dist_name_short, cmap, sqmi) %>%
   arrange(dist_num)
 
-# Process IL House Districts
-ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "lower") %>%
+# Process IL House Districts (Illinois General Assembly)
+# Note: still 2011 districts, as of 2020 TIGER/Line
+ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "lower", year = BASE_YEAR) %>%
   filter(LSAD == "LL") %>%
   sf::st_transform(cmap_crs) %>%
   rename(dist_name = NAMELSAD) %>%
@@ -137,8 +97,9 @@ ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "low
   select(dist_num, dist_name, cmap, sqmi) %>%
   arrange(dist_num)
 
-# Process IL Senate Districts
-ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "upper") %>%
+# Process IL Senate Districts (Illinois General Assembly)
+# Note: still 2011 districts, as of 2020 TIGER/Line
+ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "upper", year = BASE_YEAR) %>%
   filter(LSAD == "LU") %>%
   sf::st_transform(cmap_crs) %>%
   rename(dist_name = NAMELSAD) %>%
@@ -148,11 +109,25 @@ ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "up
   select(dist_num, dist_name, cmap, sqmi) %>%
   arrange(dist_num)
 
-# Process ZIP Code Tabulation Areas (ZCTAs)
-zcta_sf <- tigris::zctas(starts_with = "6") %>%
+# Process Public Use Microddata Areas (PUMAs)
+# Note: still 2010 boundaries, as of 2020 TIGER/Line
+puma_sf <- tigris::pumas(state = STATE, year = BASE_YEAR) %>%
   sf::st_transform(cmap_crs) %>%
   filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
-  rename(geoid_zcta = GEOID10) %>%
+  rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
+  rename(geoid_puma = GEOID10,
+         name = NAMELSAD10) %>%
+  mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_puma, name, sqmi) %>%
+  arrange(geoid_puma) %>%
+  ## Manually exclude one PUMA, which appears to mistakenly include a *tiny* block in McHenry
+  filter(geoid_puma != "1702901")
+
+# Process ZIP Code Tabulation Areas (ZCTAs)
+zcta_sf <- tigris::zctas(starts_with = "6", year = BASE_YEAR) %>%
+  sf::st_transform(cmap_crs) %>%
+  filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
+  rename(geoid_zcta = GEOID20) %>%
   mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
   select(geoid_zcta, sqmi) %>%
   arrange(geoid_zcta)
@@ -169,7 +144,7 @@ county_district = c(
   `17005`="D8", `17083`="D8", `17163`="D8", `17189`="D8", `17027`="D8", `17061`="D8", `17157`="D8", `17013`="D8", `17121`="D8", `17119`="D8", `17133`="D8",
   `17151`="D9", `17055`="D9", `17059`="D9", `17065`="D9", `17193`="D9", `17181`="D9", `17199`="D9", `17069`="D9", `17127`="D9", `17145`="D9", `17087`="D9", `17153`="D9", `17003`="D9", `17165`="D9", `17081`="D9", `17077`="D9"
 )
-idot_sf <- tigris::counties(state = STATE) %>%
+idot_sf <- tigris::counties(state = STATE, year = BASE_YEAR) %>%
   sf::st_transform(cmap_crs) %>%
   rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
   mutate(district = recode(GEOID, !!!county_district),
@@ -183,9 +158,8 @@ idot_sf <- tigris::counties(state = STATE) %>%
   summarize(sqmi = sum(sqmi), .groups = "drop")
 
 
-# Process 2020 Census geographies (block, block group, tract).
-# (These should replace the 2019 vintage once 2020 ACS data is published.)
-tract_sf_2020 <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 2020) %>%
+# Process 2020 Census geographies (block, block group, tract)
+tract_sf <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = BASE_YEAR) %>%
   filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
   sf::st_transform(cmap_crs) %>%
   rename(geoid_tract = GEOID) %>%
@@ -194,7 +168,7 @@ tract_sf_2020 <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 202
   select(geoid_tract, county_fips, sqmi) %>%
   arrange(geoid_tract)
 
-blockgroup_sf_2020 <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, year = 2020) %>%
+blockgroup_sf <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, year = BASE_YEAR) %>%
   filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
   sf::st_transform(cmap_crs) %>%
   rename(geoid_blkgrp = GEOID) %>%
@@ -203,7 +177,7 @@ blockgroup_sf_2020 <- tigris::block_groups(state = STATE, county = COUNTIES_7CO,
   select(geoid_blkgrp, county_fips, sqmi) %>%
   arrange(geoid_blkgrp)
 
-block_sf_2020 <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = 2020) %>%
+block_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = BASE_YEAR) %>%
   filter(TRACTCE20 != "990000") %>%  # Exclude Lake Michigan tracts
   sf::st_transform(cmap_crs) %>%
   rename(geoid_block = GEOID20) %>%
@@ -213,19 +187,49 @@ block_sf_2020 <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = 202
   arrange(geoid_block)
 
 
+# Process 2010 Census geographies (block, block group, tract)
+# Note: remove these datasets from cmapgeo once 2021 1-year ACS is released
+tract_sf_2010 <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
+  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
+  sf::st_transform(cmap_crs) %>%
+  rename(geoid_tract = GEOID) %>%
+  mutate(county_fips = paste0(STATEFP, COUNTYFP),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_tract, county_fips, sqmi) %>%
+  arrange(geoid_tract)
+
+blockgroup_sf_2010 <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
+  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
+  sf::st_transform(cmap_crs) %>%
+  rename(geoid_blkgrp = GEOID) %>%
+  mutate(county_fips = paste0(STATEFP, COUNTYFP),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_blkgrp, county_fips, sqmi) %>%
+  arrange(geoid_blkgrp)
+
+block_sf_2010 <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
+  filter(TRACTCE10 != "990000") %>%  # Exclude Lake Michigan tracts
+  sf::st_transform(cmap_crs) %>%
+  rename(geoid_block = GEOID10) %>%
+  mutate(county_fips = paste0(STATEFP10, COUNTYFP10),
+         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+  select(geoid_block, county_fips, sqmi) %>%
+  arrange(geoid_block)
+
+
 # Save processed data to package's data dir
 usethis::use_data(county_sf, overwrite = TRUE)
 usethis::use_data(township_sf, overwrite = TRUE)
 usethis::use_data(municipality_sf, overwrite = TRUE)
-usethis::use_data(tract_sf, overwrite = TRUE)
-usethis::use_data(blockgroup_sf, overwrite = TRUE)
-usethis::use_data(block_sf, overwrite = TRUE)
-usethis::use_data(puma_sf, overwrite = TRUE)
 usethis::use_data(congress_sf, overwrite = TRUE)
 usethis::use_data(ilga_house_sf, overwrite = TRUE)
 usethis::use_data(ilga_senate_sf, overwrite = TRUE)
+usethis::use_data(puma_sf, overwrite = TRUE)
 usethis::use_data(zcta_sf, overwrite = TRUE)
 usethis::use_data(idot_sf, overwrite = TRUE)
-usethis::use_data(tract_sf_2020, overwrite = TRUE)
-usethis::use_data(blockgroup_sf_2020, overwrite = TRUE)
-usethis::use_data(block_sf_2020, overwrite = TRUE)
+usethis::use_data(tract_sf, overwrite = TRUE)
+usethis::use_data(blockgroup_sf, overwrite = TRUE)
+usethis::use_data(block_sf, overwrite = TRUE)
+usethis::use_data(tract_sf_2010, overwrite = TRUE)
+usethis::use_data(blockgroup_sf_2010, overwrite = TRUE)
+usethis::use_data(block_sf_2010, overwrite = TRUE)

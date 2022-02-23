@@ -1,6 +1,6 @@
 Package: cmapgeo
 Title: R-Friendly Geodata for the Chicago Region
-Version: 0.1.3
+Version: 0.2.0
 Authors@R: c(
     person("Noel", "Peterson",
            role = c("aut", "cre"),
@@ -25,10 +25,12 @@ LazyData: true
 LazyDataCompression: gzip
 Depends:
     R (>= 2.10)
+Imports:
+    sf,
+    tibble
 Suggests:
     dplyr,
     ggplot2,
-    sf,
     tidycensus
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2

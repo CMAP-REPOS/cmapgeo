@@ -20,8 +20,8 @@ variables:
 ward_sf
 }
 \description{
-The official boundaries of the current Chicago wards (established in May of
-2015). Obtained 3/24/2021.
+The official boundaries of the Chicago wards established in May of 2015.
+Obtained 3/24/2021.
 }
 \examples{
 # Display the wards with ggplot2

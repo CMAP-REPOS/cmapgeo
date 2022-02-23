@@ -2,3 +2,4 @@
 
 export(cmap_crs)
 export(county_fips_codes)
+import(sf)

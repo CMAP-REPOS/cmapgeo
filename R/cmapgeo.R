@@ -13,6 +13,7 @@
 #'
 #' @name cmapgeo
 #' @docType package
+#' @import sf
 #' @keywords internal
 "_PACKAGE"
 

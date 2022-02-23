@@ -24,7 +24,10 @@ ilga_house_sf
 }
 \description{
 The Illinois General Assembly House Districts. From the US Census Bureau's
-TIGER/Line shapefiles, 2019 vintage.
+TIGER/Line shapefiles, 2021 vintage. \strong{These districts were in effect for
+elections from 2012 through 2020 (i.e. the 98th through 102nd General
+Assemblies). They will be superseded by new district boundaries for the 2022
+election (for the 103rd General Assembly).}
 }
 \details{
 Census Bureau description:
@@ -33,24 +36,22 @@ Census Bureau description:
 elected to state legislatures. The Census Bureau first reported data for SLDs
 as part of the 2000 Public Law (P.L.) 94-171 Redistricting Data File.}
 
-\emph{"Current SLDs (2010 Election Cycle) -- States participating in Phase 1 of
-the 2010 Census Redistricting Data Program voluntarily provided the Census
-Bureau with the 2006 election cycle boundaries, codes, and, in some cases,
-names for their SLDs. All 50 states, plus the District of Columbia and Puerto
-Rico, participated in Phase 1, State Legislative District Project (SLDP) of
-the 2010 Census Redistricting Data Program. States subsequently provided
-legal changes to those plans through the Redistricting Data Office and/or
-corrections as part of Phase 2 of the 2010 Census Redistricting Data Program,
-as needed.}
+*"Current SLDs (2018 Election Cycle)—States participating in Phase 4 of the
+2020 Census Redistricting Data Program voluntarily provided the Census Bureau
+with the 2018 election cycle boundaries, codes, and, in some cases, names for
+their SLDs. All 50 states, plus the District of Columbia and Puerto Rico,
+participated in Phase 4's State Legislative District Project (SLDP) of the
+2020 Census Redistricting Data Program. States subsequently provided
+corrections to those plans through the Redistricting Data Office during Phase
+2 of the 2020 Census Redistricting Data Program, if needed.
 
-\emph{"The SLDs embody the upper (senate) and lower (house) chambers of the state
-legislature. A unique three-character census code, identified by state
-participants, is assigned to each SLD within a state. In Connecticut, Hawaii,
-Illinois, Louisiana, Maine, Massachusetts, New Jersey, Ohio, and Puerto Rico,
+"The SLDs embody the upper (senate—SLDU) and lower (house—SLDL) chambers of
+the state legislature. A unique three-character census code, identified by
+state participants, is assigned to each SLD within a state. In some states,
 state officials did not define the SLDs to cover all of the state or state
 equivalent area (usually bodies of water). In these areas with no SLDs
-defined, the code "ZZZ" has been assigned, which is treated within state as a
-single SLD for purposes of data presentation."}
+defined, the code 'ZZZ' has been assigned, which is treated within state as a
+single SLD for purposes of data presentation."*
 
 Note: The aforementioned "ZZZ" district, which comprises the Illinois portion
 of Lake Michigan, has been excluded from this dataset.
