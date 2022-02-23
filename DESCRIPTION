@@ -25,10 +25,12 @@ LazyData: true
 LazyDataCompression: gzip
 Depends:
     R (>= 2.10)
+Imports:
+    sf,
+    tibble
 Suggests:
     dplyr,
     ggplot2,
-    sf,
     tidycensus
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
