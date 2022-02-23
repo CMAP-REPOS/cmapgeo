@@ -3,10 +3,11 @@
 \docType{data}
 \name{xwalk_blockgroup2cca}
 \alias{xwalk_blockgroup2cca}
+\alias{xwalk_blockgroup2cca_2010}
 \title{Block Group-to-CCA Crosswalk}
 \format{
-A tibble with 2180 rows and
-5 variables:
+\code{xwalk_blockgroup2cca} is a tibble with 2175 rows
+and 6 variables:
 \describe{
 \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 Bureau. Corresponds to \code{blockgroup_sf}. Character.}
@@ -24,10 +25,20 @@ estimate the CCA's portion.Double.}
 group quarters) living in the specified CCA. Multiply this by a block
 group-level measure of a population attribute (e.g. race/ethnicity) to
 estimate the CCA's portion. Double.}
+\item{emp_pct}{Proportion of the block group's total jobs located in the
+specified CCA. Multiply this by a block group-level measure of an
+employment attribute (e.g. retail jobs) to estimate the CCA's portion.
+\strong{Not available in \code{xwalk_blockgroup2cca_2010}.} Double.}
 }
+
+\code{xwalk_blockgroup2cca_2010} is a tibble with
+2180 rows and
+5 variables (no \code{emp_pct}).
 }
 \usage{
 xwalk_blockgroup2cca
+
+xwalk_blockgroup2cca_2010
 }
 \description{
 This table contains a set of factors to apportion Census block group-level
@@ -35,26 +46,31 @@ data among Chicago Community Areas (CCAs). Separate factors are provided for
 apportioning housing unit, household, and population attributes. All factors
 were determined by calculating the percentage of a block group's housing
 units, households and population that were located in each of its component
-blocks, according to the 2010 Decennial Census, and then assigning each block
-to a CCA (based on the location of the block's centroid point).
+blocks, according to the 2020 Decennial Census, and then assigning each block
+to a CCA (based on the location of the block's centroid point). \strong{Use
+\code{xwalk_blockgroup2cca} for data from the 2020 decennial census or the
+American Community Survey (ACS) from 2020 onward. For data from the 2010
+decennial census or ACS from 2010 through 2019, use
+\code{xwalk_blockgroup2cca_2010}.}
 }
 \details{
 Generally speaking, block group boundaries align neatly with CCA boundaries
 as they tend to follow similar features (e.g. rivers, major roads, rail
-lines) but there are cases where the population, households and/or housing
-units in a block group are split across multiple CCAs, or else are partially
-within the City of Chicago and partially outside of it. For that reason, it
-is not appropriate to use a one-to-one block group-to-CCA assignment to
-apportion Census data among CCAs, and this crosswalk should be used instead.
+lines) but there are cases where the jobs, population, households and/or
+housing units in a block group are split across multiple CCAs, or else are
+partially within the City of Chicago and partially outside of it. For that
+reason, it is not appropriate to use a one-to-one block group-to-CCA
+assignment to apportion Census data among CCAs, and this crosswalk should be
+used instead.
 
 To use this crosswalk effectively, Census data should be joined to it (not
 vice versa, since block group IDs appear multiple times in this table). Once
 the data is joined, it should be multiplied by the appropriate factor
 (depending whether the data of interest is measured at the housing unit,
-household or person level), and then the result should be summed by CCA. If
-calculating rates, this should only be done after the counts have been summed
-to CCA. The resulting table can then be joined to \code{cca_sf} for mapping, if
-desired.
+household, person or job level), and then the result should be summed by CCA.
+If calculating rates, this should only be done after the counts have been
+summed to CCA. The resulting table can then be joined to \code{cca_sf} for
+mapping, if desired.
 
 If your data is only available at the tract level, you can use
 \code{xwalk_tract2cca} for a tract-level allocation instead.
@@ -73,7 +89,7 @@ df_blkgrp <- tidycensus::get_acs(
   rename(civ_lf = B23025_003E, unemp = B23025_005E) \%>\%
   select(GEOID, civ_lf, unemp)
 
-df_cca <- xwalk_blockgroup2cca \%>\%
+df_cca <- xwalk_blockgroup2cca_2010 \%>\%  # Note use of 2010 version with 2019 ACS
   left_join(df_blkgrp, by = c("geoid_blkgrp" = "GEOID")) \%>\%
   mutate(civ_lf = civ_lf * pop_pct,
          unemp = unemp * pop_pct) \%>\%

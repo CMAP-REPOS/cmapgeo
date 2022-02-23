@@ -3,13 +3,14 @@
 # NOTE: Census geography glossary is located at
 # <https://www.census.gov/programs-surveys/geography/about/glossary.html>
 
-#' Census Blocks, 2010
+
+#' Census Blocks
 #'
 #' The Census Blocks within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2019 vintage. **Use this version with data from the 2010 decennial census or
-#' the American Community Survey (ACS) from 2010 through 2019. For data from the
-#' 2020 decennial census or ACS from 2020 onward, use `block_sf`.**
+#' 2021 vintage. **Use `block_sf` for data from the 2020 decennial census or the
+#' American Community Survey (ACS) from 2020 onward. For data from the 2010
+#' decennial census or ACS from 2010 through 2019, use `block_sf_2010`.**
 #'
 #' Census Bureau description:
 #'
@@ -32,59 +33,8 @@
 #' include only water area, but not all water-only blocks have block numbers
 #' beginning with 0 (zero)."*
 #'
-#' @format A multipolygon `sf` object with `r nrow(block2010_sf)` rows and
-#' `r ncol(block2010_sf)` variables:
-#' \describe{
-#'   \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
-#'   The parent tract and block group can be identified from the first 11 and 12
-#'   digits, respectively. Character.}
-#'   \item{county_fips}{Unique 5-digit FIPS code of the county the block is in.
-#'   Character.}
-#'   \item{sqmi}{Area in square miles. Double.}
-#'   \item{geometry}{Feature geometry. `sf` multipolygon.}
-#' }
-#'
-#' @source US Census Bureau
-#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
-#'
-#' @examples
-#' # Display the blocks with ggplot2
-#' library(ggplot2)
-#' ggplot(block2010_sf) + geom_sf(lwd = 0.1) + theme_void()
-"block2010_sf"
-
-
-#' Census Blocks, 2020
-#'
-#' The Census Blocks within the 7-county Chicago Metropolitan Agency for
-#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2021 vintage. **Use this version for data from the 2020 decennial census or
-#' the American Community Survey (ACS) from 2020 onward. For data from the 2010
-#' decennial census or ACS from 2010 through 2019, use `block2010_sf`.**
-#'
-#' Census Bureau description:
-#'
-#' *"Blocks (Census Blocks or Tabulation Blocks) are statistical areas bounded
-#' by visible features, such as streets, roads, streams, and railroad tracks,
-#' and by nonvisible boundaries, such as selected property lines and city,
-#' township, school district, and county limits and short line-of-sight
-#' extensions of streets and roads. Generally, blocks are small in area; for
-#' example, a city block bounded on all sides by streets. Blocks in suburban and
-#' rural areas may be larger, more irregular in shape, and bounded by a variety
-#' of features, such as roads, streams, and transmission lines. In remote areas,
-#' blocks may even encompass hundreds of square miles. Blocks cover the entire
-#' territory of the United States, Puerto Rico, and the Island Areas. Blocks
-#' nest within all other tabulated census geographic entities at the time of the
-#' decennial census and are the basis for all tabulated data from that census.
-#' Census Block Numbers—Blocks are numbered uniquely with a four-digit census
-#' block number from 0000 to 9999 within census tract, which nest within state
-#' and county. The first digit of the census block number identifies the block
-#' group. Block numbers beginning with a zero (in Block Group 0) are intended to
-#' include only water area, but not all water-only blocks have block numbers
-#' beginning with 0 (zero)."*
-#'
-#' @format A multipolygon `sf` object with `r nrow(block_sf)` rows and
-#' `r ncol(block_sf)` variables:
+#' @format `block_sf` is a multipolygon `sf` object with `r nrow(block_sf)` rows
+#' and `r ncol(block_sf)` variables:
 #' \describe{
 #'   \item{geoid_block}{Unique 15-digit block ID, assigned by the Census Bureau.
 #'   The parent tract and block group can be identified from the first 11 and 12
@@ -104,66 +54,20 @@
 #' ggplot(block_sf) + geom_sf(lwd = 0.1) + theme_void()
 "block_sf"
 
+#' @rdname block_sf
+#' @format `block_sf_2010` is a multipolygon `sf` object with
+#' `r nrow(block_sf_2010)` rows and `r ncol(block_sf_2010)` variables.
+"block_sf_2010"
 
-#' Census Block Groups, 2010
+
+#' Census Block Groups
 #'
 #' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2019 vintage. **Use this version with data from the 2010 decennial census or
-#' the American Community Survey (ACS) from 2010 through 2019. For data from the
-#' 2020 decennial census or ACS from 2020 onward, use `blockgroup_sf`.**
-#'
-#' Census Bureau description:
-#'
-#' *"Block Groups (BGs) are statistical divisions of census tracts, are
-#' generally defined to contain between 600 and 3,000 people, and are used to
-#' present data and control block numbering. A block group consists of clusters
-#' of blocks within the same census tract that have the same first digit of
-#' their four-digit census block number. For example, blocks 3001, 3002, 3003,
-#' ..., 3999 in census tract 1210.02 belong to BG 3 in that census tract. Most
-#' BGs were delineated by local participants in the Census Bureau’s Participant
-#' Statistical Areas Program (PSAP). The Census Bureau delineated BGs only where
-#' a local or tribal government declined to participate in PSAP, and a regional
-#' organization or the State Data Center was not available to participate. A BG
-#' usually covers a contiguous area. Each census tract contains at least one BG,
-#' and BGs are uniquely numbered within the census tract. Within the standard
-#' census geographic hierarchy, BGs never cross state, county, or census tract
-#' boundaries, but may cross the boundaries of any other geographic entity.
-#' Tribal census tracts and tribal BGs are separate and unique geographic areas
-#' defined within federally recognized American Indian reservations and can
-#' cross state and county boundaries. The tribal census tracts and tribal block
-#' groups may be completely different from the standard county-based census
-#' tracts and block groups defined for the same area."*
-#'
-#' @format A polygon `sf` object with `r nrow(blockgroup2010_sf)` rows and
-#' `r ncol(blockgroup2010_sf)` variables:
-#' \describe{
-#'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
-#'   Bureau. The parent tract can be identified from the first 11 digits.
-#'   Character.}
-#'   \item{county_fips}{Unique 5-digit FIPS code of the county the block group
-#'   is in. Character.}
-#'   \item{sqmi}{Area in square miles. Double.}
-#'   \item{geometry}{Feature geometry. `sf` polygon.}
-#' }
-#'
-#' @source US Census Bureau
-#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
-#'
-#' @examples
-#' # Display the block groups with ggplot2
-#' library(ggplot2)
-#' ggplot(blockgroup2010_sf) + geom_sf(lwd = 0.1) + theme_void()
-"blockgroup2010_sf"
-
-
-#' Census Block Groups, 2020
-#'
-#' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
-#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2021 vintage. **Use this version for data from the 2020 decennial census or
-#' the American Community Survey (ACS) from 2020 onward. For data from the 2010
-#' decennial census or ACS from 2010 through 2019, use `blockgroup2010_sf`.**
+#' 2021 vintage. **Use `blockgroup_sf` for data from the 2020 decennial census
+#' or the American Community Survey (ACS) from 2020 onward. For data from the
+#' 2010 decennial census or ACS from 2010 through 2019, use
+#' `blockgroup_sf_2010`.**
 #'
 #' Census Bureau description:
 #'
@@ -188,8 +92,8 @@
 #' tracts and block groups defined for the same area."*
 #'
 #' @format
-#' A multipolygon `sf` object with `r nrow(blockgroup_sf)` rows and
-#' `r ncol(blockgroup_sf)` variables:
+#' `blockgroup_sf` is a multipolygon `sf` object with `r nrow(blockgroup_sf)`
+#' rows and `r ncol(blockgroup_sf)` variables:
 #' \describe{
 #'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 #'   Bureau. The parent tract can be identified from the first 11 digits.
@@ -210,14 +114,19 @@
 #' ggplot(blockgroup_sf) + geom_sf(lwd = 0.1) + theme_void()
 "blockgroup_sf"
 
+#' @rdname blockgroup_sf
+#' @format `blockgroup_sf_2010` is a polygon `sf` object with
+#' `r nrow(blockgroup_sf_2010)` rows and `r ncol(blockgroup_sf_2010)` variables.
+"blockgroup_sf_2010"
 
-#' Census Tracts, 2010
+
+#' Census Tracts
 #'
 #' The Census Tracts within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2019 vintage. **Use this version with data from the 2010 decennial census or
-#' the American Community Survey (ACS) from 2010 through 2019. For data from the
-#' 2020 decennial census or ACS from 2020 onward, use `tract_sf`.**
+#' 2021 vintage. **Use `tract_sf` for data from the 2020 decennial census or the
+#' American Community Survey (ACS) from 2020 onward. For data from the 2010
+#' decennial census or ACS from 2010 through 2019, use `tract_sf_2010`.**
 #'
 #' Census Bureau description:
 #'
@@ -252,70 +161,7 @@
 #' county-based census tracts defined for the same area."*
 #'
 #' @format
-#' A polygon `sf` object with `r nrow(tract2010_sf)` rows and
-#' `r ncol(tract2010_sf)` variables:
-#' \describe{
-#'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census Bureau.
-#'   Character.}
-#'   \item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
-#'   Character.}
-#'   \item{sqmi}{Area in square miles. Double.}
-#'   \item{geometry}{Feature geometry. `sf` polygon.}
-#' }
-#'
-#' @source
-#' US Census Bureau
-#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
-#'
-#' @examples
-#' # Display the tracts with ggplot2
-#' library(ggplot2)
-#' ggplot(tract2010_sf) + geom_sf(lwd = 0.1) + theme_void()
-"tract2010_sf"
-
-
-#' Census Tracts, 2020
-#'
-#' The Census Tracts within the 7-county Chicago Metropolitan Agency for
-#' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2021 vintage. **Use this version for data from the 2020 decennial census or
-#' the American Community Survey (ACS) from 2020 onward. For data from the 2010
-#' decennial census or ACS from 2010 through 2019, use `tract2010_sf`.**
-#'
-#' Census Bureau description:
-#'
-#' *"Census Tracts are small, relatively permanent statistical subdivisions of a
-#' county or statistically equivalent entity that can be updated by local
-#' participants prior to each decennial census as part of the Census Bureau’s
-#' Participant Statistical Areas Program (PSAP). The Census Bureau delineates
-#' census tracts in situations where no local participant responded or where
-#' state, local, or tribal governments declined to participate. The primary
-#' purpose of census tracts is to provide a stable set of geographic units for
-#' the presentation of statistical data.
-#'
-#' *"Census tracts generally have a population size between 1,200 and 8,000
-#' people, with an optimum size of 4,000 people. A census tract usually covers a
-#' contiguous area; however, the spatial size of census tracts varies widely
-#' depending on the density of settlement. Census tract boundaries are
-#' delineated with the intention of being maintained over a long time so that
-#' statistical comparisons can be made from census to census. Census tracts
-#' occasionally are split due to population growth or merged as a result of
-#' substantial population decline.
-#'
-#' *"Census tract boundaries generally follow visible and identifiable features.
-#' They may follow nonvisible legal boundaries, such as minor civil division
-#' (MCD) or incorporated place boundaries in some states and situations, to
-#' allow for census tract-to-governmental unit relationships where the
-#' governmental boundaries tend to remain unchanged between censuses. State and
-#' county boundaries always are census tract boundaries in the standard census
-#' geographic hierarchy. Tribal census tracts are a unique geographic entity
-#' defined within federally recognized American Indian reservations and
-#' off-reservation trust lands and can cross state and county boundaries. The
-#' tribal census tracts may be completely different from the standard
-#' county-based census tracts defined for the same area."*
-#'
-#' @format
-#' A multipolygon `sf` object with `r nrow(tract_sf)` rows and
+#' `tract_sf` is a multipolygon `sf` object with `r nrow(tract_sf)` rows and
 #' `r ncol(tract_sf)` variables:
 #' \describe{
 #'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
@@ -336,8 +182,13 @@
 #' ggplot(tract_sf) + geom_sf(lwd = 0.1) + theme_void()
 "tract_sf"
 
+#' @rdname tract_sf
+#' @format `tract_sf_2010` is a polygon `sf` object with `r nrow(tract_sf_2010)`
+#' rows and `r ncol(tract_sf_2010)` variables.
+"tract_sf_2010"
 
-#' Census Public Use Microdata Areas (PUMAs), 2010
+
+#' Census Public Use Microdata Areas (PUMAs)
 #'
 #' The Census PUMAs covering the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
@@ -433,7 +284,7 @@
 "zcta_sf"
 
 
-#' Illinois State Senate Districts, 2011
+#' Illinois State Senate Districts
 #'
 #' The Illinois General Assembly Senate Districts. From the US Census Bureau's
 #' TIGER/Line shapefiles, 2021 vintage. **These districts were in effect for
@@ -489,7 +340,7 @@
 "ilga_senate_sf"
 
 
-#' Illinois State House Districts, 2011
+#' Illinois State House Districts
 #'
 #' The Illinois General Assembly House Districts. From the US Census Bureau's
 #' TIGER/Line shapefiles, 2021 vintage. **These districts were in effect for
@@ -545,7 +396,7 @@
 "ilga_house_sf"
 
 
-#' U.S. Congressional Districts, 2012
+#' U.S. Congressional Districts
 #'
 #' The United States Congressional Districts in the state of Illinois. From the
 #' US Census Bureau's TIGER/Line shapefiles, 2021 vintage. **These districts
@@ -777,10 +628,10 @@
 "cca_sf"
 
 
-#' Chicago Wards, 2015
+#' Chicago Wards
 #'
-#' The official boundaries of the current Chicago wards (established in May of
-#' 2015). Obtained 3/24/2021.
+#' The official boundaries of the Chicago wards established in May of 2015.
+#' Obtained 3/24/2021.
 #'
 #' @format
 #' A multipolygon `sf` object with `r nrow(ward_sf)` rows and `r ncol(ward_sf)`
@@ -908,7 +759,8 @@
 #' variables:
 #' \describe{
 #'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
-#'   Bureau. Character.}
+#'   Bureau. **These correspond to tract boundaries from 2010, not 2020.**
+#'   Character.}
 #'   \item{county_fips}{Unique 5-digit FIPS code of the county the tract is in.
 #'   Character.}
 #'   \item{area_type}{Description of the tract's combined EDA and disinvested
@@ -1082,32 +934,36 @@
 #' apportioning housing unit, household, and population attributes. All factors
 #' were determined by calculating the percentage of a tract's housing units,
 #' households and population that were located in each of its component blocks,
-#' according to the 2010 Decennial Census, and then assigning each block to a
-#' CCA (based on the location of the block's centroid point).
+#' according to the 2020 Decennial Census, and then assigning each block to a
+#' CCA (based on the location of the block's centroid point). **Use
+#' `xwalk_tract2cca` for data from the 2020 decennial census or the American
+#' Community Survey (ACS) from 2020 onward. For data from the 2010 decennial
+#' census or ACS from 2010 through 2019, use `xwalk_tract2cca_2010`.**
 #'
 #' Generally speaking, tract boundaries align neatly with CCA boundaries as they
 #' tend to follow similar features (e.g. rivers, major roads, rail lines) but
-#' there are cases where the population, households and/or housing units in a
-#' tract are split across multiple CCAs, or else are partially within the City
-#' of Chicago and partially outside of it. For that reason, it is not
+#' there are cases where the jobs, population, households and/or housing units
+#' in a tract are split across multiple CCAs, or else are partially within the
+#' City of Chicago and partially outside of it. For that reason, it is not
 #' appropriate to use a one-to-one tract-to-CCA assignment to apportion Census
 #' data among CCAs, and this crosswalk should be used instead.
 #'
 #' To use this crosswalk effectively, Census data should be joined to it (not
 #' vice versa, since tract IDs appear multiple times in this table). Once the
 #' data is joined, it should be multiplied by the appropriate factor (depending
-#' whether the data of interest is measured at the housing unit, household or
-#' person level), and then the result should be summed by CCA. If calculating
-#' rates, this should only be done after the counts have been summed to CCA. The
-#' resulting table can then be joined to `cca_sf` for mapping, if desired.
+#' whether the data of interest is measured at the housing unit, household,
+#' person or job level), and then the result should be summed by CCA. If
+#' calculating rates, this should only be done after the counts have been summed
+#' to CCA. The resulting table can then be joined to `cca_sf` for mapping, if
+#' desired.
 #'
 #' If your data is also available at the block group level, it is recommended
 #' that you use that with `xwalk_blockgroup2cca` instead of the tract-level
 #' allocation.
 #'
 #' @format
-#' A tibble with `r nrow(xwalk_tract2cca)` rows and `r ncol(xwalk_tract2cca)`
-#' variables:
+#' `xwalk_tract2cca` is a tibble with `r nrow(xwalk_tract2cca)` rows and
+#' `r ncol(xwalk_tract2cca)` variables:
 #' \describe{
 #'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census
 #'   Bureau. Corresponds to `tract_sf`. Character.}
@@ -1125,6 +981,10 @@
 #'   quarters) living in the specified CCA. Multiply this by a tract-level
 #'   measure of a population attribute (e.g. race/ethnicity) to estimate the
 #'   CCA's portion. Double.}
+#'   \item{emp_pct}{Proportion of the tract's total jobs located in the
+#'   specified CCA. Multiply this by a tract-level measure of an employment
+#'   attribute (e.g. retail jobs) to estimate the CCA's portion.
+#'   **Not available in `xwalk_tract2cca_2010`.** Double.}
 #' }
 #'
 #' @examples
@@ -1141,7 +1001,7 @@
 #'   rename(workers = B08006_001E, transit = B08006_008E) %>%
 #'   select(GEOID, workers, transit)
 #'
-#' df_cca <- xwalk_tract2cca %>%
+#' df_cca <- xwalk_tract2cca_2010 %>%  # Note use of 2010 version with 2019 ACS
 #'   left_join(df_tract, by = c("geoid_tract" = "GEOID")) %>%
 #'   mutate(transit = transit * pop_pct,
 #'          workers = workers * pop_pct) %>%
@@ -1160,6 +1020,12 @@
 #'     theme_void()
 "xwalk_tract2cca"
 
+#' @rdname xwalk_tract2cca
+#' @format `xwalk_tract2cca_2010` is a tibble with
+#' `r nrow(xwalk_tract2cca_2010)` rows and `r ncol(xwalk_tract2cca_2010)`
+#' variables (no `emp_pct`).
+"xwalk_tract2cca_2010"
+
 
 #' Block Group-to-CCA Crosswalk
 #'
@@ -1168,32 +1034,37 @@
 #' apportioning housing unit, household, and population attributes. All factors
 #' were determined by calculating the percentage of a block group's housing
 #' units, households and population that were located in each of its component
-#' blocks, according to the 2010 Decennial Census, and then assigning each block
-#' to a CCA (based on the location of the block's centroid point).
+#' blocks, according to the 2020 Decennial Census, and then assigning each block
+#' to a CCA (based on the location of the block's centroid point). **Use
+#' `xwalk_blockgroup2cca` for data from the 2020 decennial census or the
+#' American Community Survey (ACS) from 2020 onward. For data from the 2010
+#' decennial census or ACS from 2010 through 2019, use
+#' `xwalk_blockgroup2cca_2010`.**
 #'
 #' Generally speaking, block group boundaries align neatly with CCA boundaries
 #' as they tend to follow similar features (e.g. rivers, major roads, rail
-#' lines) but there are cases where the population, households and/or housing
-#' units in a block group are split across multiple CCAs, or else are partially
-#' within the City of Chicago and partially outside of it. For that reason, it
-#' is not appropriate to use a one-to-one block group-to-CCA assignment to
-#' apportion Census data among CCAs, and this crosswalk should be used instead.
+#' lines) but there are cases where the jobs, population, households and/or
+#' housing units in a block group are split across multiple CCAs, or else are
+#' partially within the City of Chicago and partially outside of it. For that
+#' reason, it is not appropriate to use a one-to-one block group-to-CCA
+#' assignment to apportion Census data among CCAs, and this crosswalk should be
+#' used instead.
 #'
 #' To use this crosswalk effectively, Census data should be joined to it (not
 #' vice versa, since block group IDs appear multiple times in this table). Once
 #' the data is joined, it should be multiplied by the appropriate factor
 #' (depending whether the data of interest is measured at the housing unit,
-#' household or person level), and then the result should be summed by CCA. If
-#' calculating rates, this should only be done after the counts have been summed
-#' to CCA. The resulting table can then be joined to `cca_sf` for mapping, if
-#' desired.
+#' household, person or job level), and then the result should be summed by CCA.
+#' If calculating rates, this should only be done after the counts have been
+#' summed to CCA. The resulting table can then be joined to `cca_sf` for
+#' mapping, if desired.
 #'
 #' If your data is only available at the tract level, you can use
 #' `xwalk_tract2cca` for a tract-level allocation instead.
 #'
 #' @format
-#' A tibble with `r nrow(xwalk_blockgroup2cca)` rows and
-#' `r ncol(xwalk_blockgroup2cca)` variables:
+#' `xwalk_blockgroup2cca` is a tibble with `r nrow(xwalk_blockgroup2cca)` rows
+#' and `r ncol(xwalk_blockgroup2cca)` variables:
 #' \describe{
 #'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 #'   Bureau. Corresponds to `blockgroup_sf`. Character.}
@@ -1211,6 +1082,10 @@
 #'   group quarters) living in the specified CCA. Multiply this by a block
 #'   group-level measure of a population attribute (e.g. race/ethnicity) to
 #'   estimate the CCA's portion. Double.}
+#'   \item{emp_pct}{Proportion of the block group's total jobs located in the
+#'   specified CCA. Multiply this by a block group-level measure of an
+#'   employment attribute (e.g. retail jobs) to estimate the CCA's portion.
+#'   **Not available in `xwalk_blockgroup2cca_2010`.** Double.}
 #' }
 #'
 #' @examples
@@ -1227,7 +1102,7 @@
 #'   rename(civ_lf = B23025_003E, unemp = B23025_005E) %>%
 #'   select(GEOID, civ_lf, unemp)
 #'
-#' df_cca <- xwalk_blockgroup2cca %>%
+#' df_cca <- xwalk_blockgroup2cca_2010 %>%  # Note use of 2010 version with 2019 ACS
 #'   left_join(df_blkgrp, by = c("geoid_blkgrp" = "GEOID")) %>%
 #'   mutate(civ_lf = civ_lf * pop_pct,
 #'          unemp = unemp * pop_pct) %>%
@@ -1246,6 +1121,12 @@
 #'     theme_void()
 "xwalk_blockgroup2cca"
 
+#' @rdname xwalk_blockgroup2cca
+#' @format `xwalk_blockgroup2cca_2010` is a tibble with
+#' `r nrow(xwalk_blockgroup2cca_2010)` rows and
+#' `r ncol(xwalk_blockgroup2cca_2010)` variables (no `emp_pct`).
+"xwalk_blockgroup2cca_2010"
+
 
 #' Tract-to-Subzone Crosswalk
 #'
@@ -1254,24 +1135,26 @@
 #' apportioning housing unit, household, and population attributes. All factors
 #' were determined by calculating the percentage of a tract's housing units,
 #' households and population that were located in each of its component blocks,
-#' according to the 2010 Decennial Census, and then assigning each block to a
+#' according to the 2020 Decennial Census, and then assigning each block to a
 #' subzone (based on the location of the block's centroid point). Subzones that
 #' do not contain the centroid of any blocks with at least one housing unit,
-#' household or person are not present in this table, and should be considered
-#' unpopulated.
+#' household, person or job are *not* present in this table. **Use
+#' `xwalk_tract2subzone` for data from the 2020 decennial census or the American
+#' Community Survey (ACS) from 2020 onward. For data from the 2010 decennial
+#' census or ACS from 2010 through 2019, use `xwalk_tract2subzone_2010`.**
 #'
 #' Other than in certain areas of Chicago, tracts tend to be significantly
 #' larger than subzones and have highly irregular boundaries, so in most cases
-#' the population, households and/or housing units in a tract are split across
-#' multiple subzones. For that reason, it is not appropriate to use a one-to-one
-#' tract-to-subzone assignment to apportion Census data among subzones, and this
-#' crosswalk should be used instead.
+#' the jobs, population, households and/or housing units in a tract are split
+#' across multiple subzones. For that reason, it is not appropriate to use a
+#' one-to-one tract-to-subzone assignment to apportion Census data among
+#' subzones, and this crosswalk should be used instead.
 #'
 #' To use this crosswalk effectively, Census data should be joined to it (not
 #' vice versa, since tract IDs appear multiple times in this table). Once the
 #' data is joined, it should be multiplied by the appropriate factor (depending
-#' whether the data of interest is measured at the housing unit, household or
-#' person level), and then the result should be summed by subzone ID. If
+#' whether the data of interest is measured at the housing unit, household,
+#' person or job level), and then the result should be summed by subzone ID. If
 #' calculating rates, this should only be done after the counts have been summed
 #' to subzone. The resulting table can then be joined to `subzone_sf` for
 #' mapping, if desired.
@@ -1282,7 +1165,7 @@
 #' use zones instead with `xwalk_tract2zone` or `xwalk_blockgroup2zone`.
 #'
 #' @format
-#' A tibble with `r nrow(xwalk_tract2subzone)` rows and
+#' `xwalk_tract2subzone` is a tibble with `r nrow(xwalk_tract2subzone)` rows and
 #' `r ncol(xwalk_tract2subzone)` variables:
 #' \describe{
 #'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census Bureau.
@@ -1301,19 +1184,29 @@
 #'   quarters) living in the specified subzone. Multiply this by a tract-level
 #'   measure of a population attribute (e.g. race/ethnicity) to estimate the
 #'   subzone's portion. Double.}
+#'   \item{emp_pct}{Proportion of the tract's total jobs located in the
+#'   specified subzone. Multiply this by a tract-level measure of an employment
+#'   attribute (e.g. retail jobs) to estimate the subzone's portion.
+#'   **Not available in `xwalk_tract2subzone_2010`.** Double.}
 #' }
 #'
 #' @examples
 #' # View the tract allocations for subzone17 == 1
 #' dplyr::filter(xwalk_tract2subzone, subzone17 == 1)
 #'
-#' # Map the subzones missing from xwalk_tract2subzone (i.e. no HU/HH/pop)
+#' # Map the subzones missing from xwalk_tract2subzone (i.e. no HU/HH/pop/emp)
 #' library(ggplot2)
 #' ggplot(dplyr::anti_join(subzone_sf, xwalk_tract2subzone)) +
 #'   geom_sf(fill = "red", lwd = 0.1) +
 #'   geom_sf(data = subzone_sf, fill = NA, lwd = 0.1) +
 #'   theme_void()
 "xwalk_tract2subzone"
+
+#' @rdname xwalk_tract2subzone
+#' @format `xwalk_tract2subzone_2010` is a tibble with
+#' `r nrow(xwalk_tract2subzone_2010)` rows and
+#' `r ncol(xwalk_tract2subzone_2010)` variables (no `emp_pct`).
+"xwalk_tract2subzone_2010"
 
 
 #' Block Group-to-Subzone Crosswalk
@@ -1323,27 +1216,30 @@
 #' for apportioning housing unit, household, and population attributes. All
 #' factors were determined by calculating the percentage of a block group's
 #' housing units, households and population that were located in each of its
-#' component blocks, according to the 2010 Decennial Census, and then assigning
+#' component blocks, according to the 2020 Decennial Census, and then assigning
 #' each block to a subzone (based on the location of the block's centroid
 #' point). Subzones that do not contain the centroid of any blocks with at least
-#' one housing unit, household or person are not present in this table, and
-#' should be considered unpopulated.
+#' one housing unit, household, person or job are *not* present in this table.
+#' **Use `xwalk_blockgroup2subzone` for data from the 2020 decennial census or
+#' the American Community Survey (ACS) from 2020 onward. For data from the 2010
+#' decennial census or ACS from 2010 through 2019, use
+#' `xwalk_blockgroup2subzone_2010`.**
 #'
 #' Other than in certain areas of Chicago, block groups tend to be significantly
 #' larger than subzones and have highly irregular boundaries, so in most cases
-#' the population, households and/or housing units in a block group are split
-#' across multiple subzones. For that reason, it is not appropriate to use a
-#' one-to-one block group-to-subzone assignment to apportion Census data among
+#' the jobs, population, households and/or housing units in a block group are
+#' split across multiple subzones. For that reason, it is not appropriate to use
+#' a one-to-one block group-to-subzone assignment to apportion Census data among
 #' subzones, and this crosswalk should be used instead.
 #'
 #' To use this crosswalk effectively, Census data should be joined to it (not
 #' vice versa, since block group IDs appear multiple times in this table). Once
 #' the data is joined, it should be multiplied by the appropriate factor
 #' (depending whether the data of interest is measured at the housing unit,
-#' household or person level), and then the result should be summed by subzone
-#' ID. If calculating rates, this should only be done after the counts have been
-#' summed to subzone. The resulting table can then be joined to `subzone_sf` for
-#' mapping, if desired.
+#' household, person or job level), and then the result should be summed by
+#' subzone ID. If calculating rates, this should only be done after the counts
+#' have been summed to subzone. The resulting table can then be joined to
+#' `subzone_sf` for mapping, if desired.
 #'
 #' If your data is only available at the tract level, you can use
 #' `xwalk_tract2subzone` for a tract-level allocation instead. If the subzone
@@ -1351,7 +1247,8 @@
 #' `xwalk_blockgroup2zone` or `xwalk_tract2zone`.
 #'
 #' @format
-#' A tibble with `r nrow(xwalk_blockgroup2subzone)` rows and
+#' `xwalk_blockgroup2subzone` is a tibble with
+#' `r nrow(xwalk_blockgroup2subzone)` rows and
 #' `r ncol(xwalk_blockgroup2subzone)` variables:
 #' \describe{
 #'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
@@ -1370,19 +1267,29 @@
 #'   group quarters) living in the specified subzone. Multiply this by a block
 #'   group-level measure of a population attribute (e.g. race/ethnicity) to
 #'   estimate the subzone's portion. Double.}
+#'   \item{emp_pct}{Proportion of the block group's total jobs located in the
+#'   specified subzone. Multiply this by a block group-level measure of an
+#'   employment attribute (e.g. retail jobs) to estimate the subzone's portion.
+#'   **Not available in `xwalk_blockgroup2subzone_2010`.** Double.}
 #' }
 #'
 #' @examples
 #' # View the block group allocations for subzone17 == 1
 #' dplyr::filter(xwalk_blockgroup2subzone, subzone17 == 1)
 #'
-#' # Map the subzones missing from xwalk_blockgroup2subzone (i.e. no HU/HH/pop)
+#' # Map the subzones missing from xwalk_blockgroup2subzone (i.e. no HU/HH/pop/emp)
 #' library(ggplot2)
 #' ggplot(dplyr::anti_join(subzone_sf, xwalk_blockgroup2subzone)) +
 #'   geom_sf(fill = "red", lwd = 0.1) +
 #'   geom_sf(data = subzone_sf, fill = NA, lwd = 0.1) +
 #'   theme_void()
 "xwalk_blockgroup2subzone"
+
+#' @rdname xwalk_blockgroup2subzone
+#' @format `xwalk_blockgroup2subzone_2010` is a tibble with
+#' `r nrow(xwalk_blockgroup2subzone_2010)` rows and
+#' `r ncol(xwalk_blockgroup2subzone_2010)` variables (no `emp_pct`).
+"xwalk_blockgroup2subzone_2010"
 
 
 #' Tract-to-Zone Crosswalk
@@ -1392,14 +1299,16 @@
 #' apportioning housing unit, household, and population attributes. All factors
 #' were determined by calculating the percentage of a tract's housing units,
 #' households and population that were located in each of its component blocks,
-#' according to the 2010 Decennial Census, and then assigning each block to a
-#' zone (based on the location of the block's centroid point). Zones that
-#' do not contain the centroid of any blocks with at least one housing unit,
-#' household or person are not present in this table, and should be considered
-#' unpopulated.
+#' according to the 2020 Decennial Census, and then assigning each block to a
+#' zone (based on the location of the block's centroid point). Zones that do not
+#' contain the centroid of any blocks with at least one housing unit, household,
+#' person or job are *not* present in this table. **Use `xwalk_tract2zone` for
+#' data from the 2020 decennial census or the American Community Survey (ACS)
+#' from 2020 onward. For data from the 2010 decennial census or ACS from 2010
+#' through 2019, use `xwalk_tract2zone_2010`.**
 #'
 #' Other than in certain areas of Chicago, tracts tend to be larger than zones
-#' and have highly irregular boundaries, so in most cases the population,
+#' and have highly irregular boundaries, so in most cases the jobs, population,
 #' households and/or housing units in a tract are split across multiple zones.
 #' For that reason, it is not appropriate to use a one-to-one tract-to-zone
 #' assignment to apportion Census data among zones, and this crosswalk should be
@@ -1408,8 +1317,8 @@
 #' To use this crosswalk effectively, Census data should be joined to it (not
 #' vice versa, since tract IDs appear multiple times in this table). Once the
 #' data is joined, it should be multiplied by the appropriate factor (depending
-#' whether the data of interest is measured at the housing unit, household or
-#' person level), and then the result should be summed by zone ID. If
+#' whether the data of interest is measured at the housing unit, household,
+#' person or job level), and then the result should be summed by zone ID. If
 #' calculating rates, this should only be done after the counts have been summed
 #' to zone. The resulting table can then be joined to `zone_sf` for mapping, if
 #' desired.
@@ -1420,8 +1329,8 @@
 #' subzones instead with `xwalk_tract2subzone` or `xwalk_blockgroup2subzone`.
 #'
 #' @format
-#' A tibble with `r nrow(xwalk_tract2zone)` rows and `r ncol(xwalk_tract2zone)`
-#' variables:
+#' `xwalk_tract2zone` is a tibble with `r nrow(xwalk_tract2zone)` rows and
+#' `r ncol(xwalk_tract2zone)` variables:
 #' \describe{
 #'   \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census Bureau.
 #'   Corresponds to `tract_sf` (although that only includes the tracts in the
@@ -1439,13 +1348,17 @@
 #'   quarters) living in the specified zone. Multiply this by a tract-level
 #'   measure of a population attribute (e.g. race/ethnicity) to estimate the
 #'   zone's portion. Double.}
+#'   \item{emp_pct}{Proportion of the tracts's total jobs located in the
+#'   specified zone. Multiply this by a tract-level measure of an employment
+#'   attribute (e.g. retail jobs) to estimate the zone's portion.
+#'   **Not available in `xwalk_tract2zone_2010`.** Double.}
 #' }
 #'
 #' @examples
 #' # View the tract allocations for zone17 == 55
 #' dplyr::filter(xwalk_tract2zone, zone17 == 55)
 #'
-#' # Map the zones missing from xwalk_tract2zone (i.e. no HU/HH/pop)
+#' # Map the zones missing from xwalk_tract2zone (i.e. no HU/HH/pop/emp)
 #' library(ggplot2)
 #' ggplot(dplyr::anti_join(zone_sf, xwalk_tract2zone)) +
 #'   geom_sf(fill = "red", lwd = 0.1) +
@@ -1453,33 +1366,42 @@
 #'   theme_void()
 "xwalk_tract2zone"
 
+#' @rdname xwalk_tract2zone
+#' @format `xwalk_tract2zone_2010` is a tibble with
+#' `r nrow(xwalk_tract2zone_2010)` rows and `r ncol(xwalk_tract2zone_2010)`
+#' variables (no `emp_pct`).
+"xwalk_tract2zone_2010"
+
 
 #' Block Group-to-Zone Crosswalk
 #'
 #' This table contains a set of factors to apportion Census block group-level
 #' data among the CMAP travel modeling zones. Separate factors are provided for
-#' apportioning housing unit, household, and population attributes. All factors
-#' were determined by calculating the percentage of a block group's housing
-#' units, households and population that were located in each of its component
-#' blocks, according to the 2010 Decennial Census, and then assigning each block
-#' to a zone (based on the location of the block's centroid point). Zones that
-#' do not contain the centroid of any blocks with at least one housing unit,
-#' household or person are not present in this table, and should be considered
-#' unpopulated.
+#' apportioning housing unit, household, population and employment attributes.
+#' All factors were determined by calculating the percentage of a block group's
+#' housing units, households, population and employment that were located in
+#' each of its component blocks, according to the 2020 Decennial Census and 2019
+#' LEHD, and then assigning each block to a zone (based on the location of the
+#' block's centroid point). Zones that do not contain the centroid of any blocks
+#' with at least one housing unit, household, person or job are *not* present in
+#' this table. **Use `xwalk_blockgroup2zone` for data from the 2020 decennial
+#' census or the American Community Survey (ACS) from 2020 onward. For data from
+#' the 2010 decennial census or ACS from 2010 through 2019, use
+#' `xwalk_blockgroup2zone_2010`.**
 #'
 #' Other than in certain areas of Chicago, block groups tend to be larger than
-#' zones and have highly irregular boundaries, so in most cases the population,
-#' households and/or housing units in a block group are split across multiple
-#' zones. For that reason, it is not appropriate to use a one-to-one block
-#' group-to-zone assignment to apportion Census data among zones, and this
+#' zones and have highly irregular boundaries, so in most cases the jobs,
+#' population, households and/or housing units in a block group are split across
+#' multiple zones. For that reason, it is not appropriate to use a one-to-one
+#' block group-to-zone assignment to apportion Census data among zones, and this
 #' crosswalk should be used instead.
 #'
 #' To use this crosswalk effectively, Census data should be joined to it (not
 #' vice versa, since block group IDs appear multiple times in this table). Once
 #' the data is joined, it should be multiplied by the appropriate factor
 #' (depending whether the data of interest is measured at the housing unit,
-#' household or person level), and then the result should be summed by zone ID.
-#' If calculating rates, this should only be done after the counts have been
+#' household, person or job level), and then the result should be summed by zone
+#' ID. If calculating rates, this should only be done after the counts have been
 #' summed to zone. The resulting table can then be joined to `zone_sf` for
 #' mapping, if desired.
 #'
@@ -1489,8 +1411,8 @@
 #' `xwalk_blockgroup2subzone` or `xwalk_tract2subzone`.
 #'
 #' @format
-#' A tibble with `r nrow(xwalk_blockgroup2zone)` rows and
-#' `r ncol(xwalk_blockgroup2zone)` variables:
+#' `xwalk_blockgroup2zone` is a tibble with `r nrow(xwalk_blockgroup2zone)` rows
+#' and `r ncol(xwalk_blockgroup2zone)` variables:
 #' \describe{
 #'   \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 #'   Bureau. Corresponds to `blockgroup_sf` (although that only includes the
@@ -1508,16 +1430,26 @@
 #'   group quarters) living in the specified zone. Multiply this by a block
 #'   group-level measure of a population attribute (e.g. race/ethnicity) to
 #'   estimate the zone's portion. Double.}
+#'   \item{emp_pct}{Proportion of the block group's total jobs located in the
+#'   specified zone. Multiply this by a block group-level measure of an
+#'   employment attribute (e.g. retail jobs) to estimate the zone's portion.
+#'   **Not available in `xwalk_blockgroup2zone_2010`.** Double.}
 #' }
 #'
 #' @examples
 #' # View the block group allocations for zone17 == 55
 #' dplyr::filter(xwalk_blockgroup2zone, zone17 == 55)
 #'
-#' # Map the zones missing from xwalk_blockgroup2zone (i.e. no HU/HH/pop)
+#' # Map the zones missing from xwalk_blockgroup2zone (i.e. no HU/HH/pop/emp)
 #' library(ggplot2)
 #' ggplot(dplyr::anti_join(zone_sf, xwalk_blockgroup2zone)) +
 #'   geom_sf(fill = "red", lwd = 0.1) +
 #'   geom_sf(data = zone_sf, fill = NA, lwd = 0.1) +
 #'   theme_void()
 "xwalk_blockgroup2zone"
+
+#' @rdname xwalk_blockgroup2zone
+#' @format `xwalk_blockgroup2zone_2010` is a tibble with
+#' `r nrow(xwalk_blockgroup2zone_2010)` rows and
+#' `r ncol(xwalk_blockgroup2zone_2010)` variables (no `emp_pct`).
+"xwalk_blockgroup2zone_2010"

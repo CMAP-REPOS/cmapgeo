@@ -3,10 +3,11 @@
 \docType{data}
 \name{blockgroup_sf}
 \alias{blockgroup_sf}
-\title{Census Block Groups, 2020}
+\alias{blockgroup_sf_2010}
+\title{Census Block Groups}
 \format{
-A multipolygon \code{sf} object with 6077 rows and
-4 variables:
+\code{blockgroup_sf} is a multipolygon \code{sf} object with 6077
+rows and 4 variables:
 \describe{
 \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 Bureau. The parent tract can be identified from the first 11 digits.
@@ -16,6 +17,9 @@ is in. Character.}
 \item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} multipolygon.}
 }
+
+\code{blockgroup_sf_2010} is a polygon \code{sf} object with
+5880 rows and 4 variables.
 }
 \source{
 US Census Bureau
@@ -23,13 +27,16 @@ US Census Bureau
 }
 \usage{
 blockgroup_sf
+
+blockgroup_sf_2010
 }
 \description{
 The Census Block Groups within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2021 vintage. \strong{Use this version for data from the 2020 decennial census or
-the American Community Survey (ACS) from 2020 onward. For data from the 2010
-decennial census or ACS from 2010 through 2019, use \code{blockgroup2010_sf}.}
+2021 vintage. \strong{Use \code{blockgroup_sf} for data from the 2020 decennial census
+or the American Community Survey (ACS) from 2020 onward. For data from the
+2010 decennial census or ACS from 2010 through 2019, use
+\code{blockgroup_sf_2010}.}
 }
 \details{
 Census Bureau description:

@@ -3,7 +3,7 @@
 \docType{data}
 \name{congress_sf}
 \alias{congress_sf}
-\title{U.S. Congressional Districts, 2012}
+\title{U.S. Congressional Districts}
 \format{
 A multipolygon \code{sf} object with 18 rows and
 6 variables:

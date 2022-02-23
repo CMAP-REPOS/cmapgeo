@@ -3,7 +3,7 @@
 \docType{data}
 \name{ilga_house_sf}
 \alias{ilga_house_sf}
-\title{Illinois State House Districts, 2011}
+\title{Illinois State House Districts}
 \format{
 A polygon \code{sf} object with 118 rows and
 5 variables:

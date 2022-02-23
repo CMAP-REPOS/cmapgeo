@@ -3,10 +3,12 @@
 \docType{data}
 \name{xwalk_blockgroup2subzone}
 \alias{xwalk_blockgroup2subzone}
+\alias{xwalk_blockgroup2subzone_2010}
 \title{Block Group-to-Subzone Crosswalk}
 \format{
-A tibble with 21411 rows and
-5 variables:
+\code{xwalk_blockgroup2subzone} is a tibble with
+22669 rows and
+6 variables:
 \describe{
 \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census
 Bureau. Corresponds to \code{blockgroup_sf} (although that only includes the
@@ -24,10 +26,20 @@ estimate the subzone's portion. Double.}
 group quarters) living in the specified subzone. Multiply this by a block
 group-level measure of a population attribute (e.g. race/ethnicity) to
 estimate the subzone's portion. Double.}
+\item{emp_pct}{Proportion of the block group's total jobs located in the
+specified subzone. Multiply this by a block group-level measure of an
+employment attribute (e.g. retail jobs) to estimate the subzone's portion.
+\strong{Not available in \code{xwalk_blockgroup2subzone_2010}.} Double.}
 }
+
+\code{xwalk_blockgroup2subzone_2010} is a tibble with
+21411 rows and
+5 variables (no \code{emp_pct}).
 }
 \usage{
 xwalk_blockgroup2subzone
+
+xwalk_blockgroup2subzone_2010
 }
 \description{
 This table contains a set of factors to apportion Census block group-level
@@ -35,28 +47,31 @@ data among the CMAP travel modeling subzones. Separate factors are provided
 for apportioning housing unit, household, and population attributes. All
 factors were determined by calculating the percentage of a block group's
 housing units, households and population that were located in each of its
-component blocks, according to the 2010 Decennial Census, and then assigning
+component blocks, according to the 2020 Decennial Census, and then assigning
 each block to a subzone (based on the location of the block's centroid
 point). Subzones that do not contain the centroid of any blocks with at least
-one housing unit, household or person are not present in this table, and
-should be considered unpopulated.
+one housing unit, household, person or job are \emph{not} present in this table.
+\strong{Use \code{xwalk_blockgroup2subzone} for data from the 2020 decennial census or
+the American Community Survey (ACS) from 2020 onward. For data from the 2010
+decennial census or ACS from 2010 through 2019, use
+\code{xwalk_blockgroup2subzone_2010}.}
 }
 \details{
 Other than in certain areas of Chicago, block groups tend to be significantly
 larger than subzones and have highly irregular boundaries, so in most cases
-the population, households and/or housing units in a block group are split
-across multiple subzones. For that reason, it is not appropriate to use a
-one-to-one block group-to-subzone assignment to apportion Census data among
+the jobs, population, households and/or housing units in a block group are
+split across multiple subzones. For that reason, it is not appropriate to use
+a one-to-one block group-to-subzone assignment to apportion Census data among
 subzones, and this crosswalk should be used instead.
 
 To use this crosswalk effectively, Census data should be joined to it (not
 vice versa, since block group IDs appear multiple times in this table). Once
 the data is joined, it should be multiplied by the appropriate factor
 (depending whether the data of interest is measured at the housing unit,
-household or person level), and then the result should be summed by subzone
-ID. If calculating rates, this should only be done after the counts have been
-summed to subzone. The resulting table can then be joined to \code{subzone_sf} for
-mapping, if desired.
+household, person or job level), and then the result should be summed by
+subzone ID. If calculating rates, this should only be done after the counts
+have been summed to subzone. The resulting table can then be joined to
+\code{subzone_sf} for mapping, if desired.
 
 If your data is only available at the tract level, you can use
 \code{xwalk_tract2subzone} for a tract-level allocation instead. If the subzone
@@ -67,7 +82,7 @@ geography is too granular for your needs, you can use zones instead with
 # View the block group allocations for subzone17 == 1
 dplyr::filter(xwalk_blockgroup2subzone, subzone17 == 1)
 
-# Map the subzones missing from xwalk_blockgroup2subzone (i.e. no HU/HH/pop)
+# Map the subzones missing from xwalk_blockgroup2subzone (i.e. no HU/HH/pop/emp)
 library(ggplot2)
 ggplot(dplyr::anti_join(subzone_sf, xwalk_blockgroup2subzone)) +
   geom_sf(fill = "red", lwd = 0.1) +

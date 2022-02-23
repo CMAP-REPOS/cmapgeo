@@ -189,7 +189,7 @@ block_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = BASE_YEA
 
 # Process 2010 Census geographies (block, block group, tract)
 # Note: remove these datasets from cmapgeo once 2021 1-year ACS is released
-tract2010_sf <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
+tract_sf_2010 <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
   filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
   sf::st_transform(cmap_crs) %>%
   rename(geoid_tract = GEOID) %>%
@@ -198,7 +198,7 @@ tract2010_sf <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 2019
   select(geoid_tract, county_fips, sqmi) %>%
   arrange(geoid_tract)
 
-blockgroup2010_sf <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
+blockgroup_sf_2010 <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
   filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
   sf::st_transform(cmap_crs) %>%
   rename(geoid_blkgrp = GEOID) %>%
@@ -207,7 +207,7 @@ blockgroup2010_sf <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, 
   select(geoid_blkgrp, county_fips, sqmi) %>%
   arrange(geoid_blkgrp)
 
-block2010_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
+block_sf_2010 <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
   filter(TRACTCE10 != "990000") %>%  # Exclude Lake Michigan tracts
   sf::st_transform(cmap_crs) %>%
   rename(geoid_block = GEOID10) %>%
@@ -230,6 +230,6 @@ usethis::use_data(idot_sf, overwrite = TRUE)
 usethis::use_data(tract_sf, overwrite = TRUE)
 usethis::use_data(blockgroup_sf, overwrite = TRUE)
 usethis::use_data(block_sf, overwrite = TRUE)
-usethis::use_data(tract2010_sf, overwrite = TRUE)
-usethis::use_data(blockgroup2010_sf, overwrite = TRUE)
-usethis::use_data(block2010_sf, overwrite = TRUE)
+usethis::use_data(tract_sf_2010, overwrite = TRUE)
+usethis::use_data(blockgroup_sf_2010, overwrite = TRUE)
+usethis::use_data(block_sf_2010, overwrite = TRUE)

@@ -3,7 +3,7 @@
 \docType{data}
 \name{puma_sf}
 \alias{puma_sf}
-\title{Census Public Use Microdata Areas (PUMAs), 2010}
+\title{Census Public Use Microdata Areas (PUMAs)}
 \format{
 A multipolygon \code{sf} object with 58 rows and 4
 variables:
