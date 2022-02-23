@@ -1,12 +1,19 @@
 # cmapgeo 0.1.4
-February 17, 2022
+February 23, 2022
 
 * `block_sf`, `blockgroup_sf` and `tract_sf` now represent the 2020 census
-  geographies. (2010 census geographies are still available as `block2010_sf`,
-  `blockgroup2010_sf` and `tract2010_sf`.)
+  geographies. (2010 census geographies are still available with a `_2010`
+  suffix for use with ACS data from 2010 through 2019.)
+* Crosswalk tables (`xwalk_*`) have also been updated to use 2020 Census data,
+  and a new employment allocation factor (based on 2019
+  [LEHD](https://lehd.ces.census.gov/data) data) has been added to each. The
+  prior crosswalks based on the 2010 Census data are still available with a
+  `_2010` suffix for use with ACS data from 2010 through 2019 (although they
+  still lack an employment allocation factor).
 * All datasets based on the Census Bureau's TIGER/Line boundaries have been
   updated with the 2021 vintage. (The exception is the 2010 blocks, block groups
   and tracts, which are still based on the 2019 vintage.)
+* Added `sf` and `tibble` packages as requirements instead of suggestions.
 
 
 # cmapgeo 0.1.3
