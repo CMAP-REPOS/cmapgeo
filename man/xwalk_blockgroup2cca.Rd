@@ -78,24 +78,24 @@ If your data is only available at the tract level, you can use
 \examples{
 suppressPackageStartupMessages(library(dplyr))
 
-# View the block groups with households not fully contained in a single CCA
-filter(xwalk_blockgroup2cca, hh_pct < 1)
+# View the block groups with housing units split between multiple CCAs
+filter(xwalk_blockgroup2cca, hu_pct < 1)
 
-# Estimate CCA-level unemployment rate from block group-level ACS data
-df_blkgrp <- tidycensus::get_acs(
-  "block group", state = "IL", county = "031", table = "B23025",
-  year = 2019, survey = "acs5", output = "wide", cache_table = TRUE
+# Estimate CCA-level housing vacancy rates from block group-level Census data
+df_blkgrp <- tidycensus::get_decennial(
+  geography = "block group", variables = c("H1_001N", "H1_003N"),
+  year = 2020, state = "IL", county = c("031", "043"), output = "wide"
 ) \%>\%
-  rename(civ_lf = B23025_003E, unemp = B23025_005E) \%>\%
-  select(GEOID, civ_lf, unemp)
+  suppressMessages() \%>\%  # Hide tidycensus messages
+  select(geoid_blkgrp = GEOID, hu_tot = H1_001N, hu_vac = H1_003N)
 
-df_cca <- xwalk_blockgroup2cca_2010 \%>\%  # Note use of 2010 version with 2019 ACS
-  left_join(df_blkgrp, by = c("geoid_blkgrp" = "GEOID")) \%>\%
-  mutate(civ_lf = civ_lf * pop_pct,
-         unemp = unemp * pop_pct) \%>\%
+df_cca <- xwalk_blockgroup2cca \%>\%
+  left_join(df_blkgrp, by = "geoid_blkgrp") \%>\%
+  mutate(hu_tot = hu_tot * hu_pct,
+         hu_vac = hu_vac * hu_pct) \%>\%
   group_by(cca_num) \%>\%
-  summarize_at(vars(civ_lf, unemp), sum) \%>\%
-  mutate(unemp_rate = unemp / civ_lf)
+  summarize_at(vars(hu_tot, hu_vac), sum) \%>\%
+  mutate(vac_rate = hu_vac / hu_tot)
 df_cca
 
 # Join to cca_sf for mapping
@@ -103,7 +103,7 @@ library(ggplot2)
 cca_sf \%>\%
   left_join(df_cca, by = "cca_num") \%>\%
   ggplot() +
-    geom_sf(aes(fill = unemp_rate), lwd = 0.1) +
+    geom_sf(aes(fill = vac_rate), lwd = 0.1) +
     scale_fill_viridis_c(direction = -1) +
     theme_void()
 }

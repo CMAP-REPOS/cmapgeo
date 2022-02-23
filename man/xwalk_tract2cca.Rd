@@ -77,24 +77,22 @@ allocation.
 \examples{
 suppressPackageStartupMessages(library(dplyr))
 
-# View the tracts with population not fully contained in a single CCA
+# View the tracts with population split between multiple CCAs
 filter(xwalk_tract2cca, pop_pct < 1)
 
-# Estimate CCA-level transit mode share from tract-level ACS data
-df_tract <- tidycensus::get_acs(
-  "tract", state = "IL", county = "031", table = "B08006",
-  year = 2019, survey = "acs5", output = "wide", cache_table = TRUE
+# Estimate CCA-level population density from tract-level Census data
+df_tract <- tidycensus::get_decennial(
+  geography = "tract", variables = c("P1_001N"),
+  year = 2020, state = "IL", county = c("031", "043"), output = "wide"
 ) \%>\%
-  rename(workers = B08006_001E, transit = B08006_008E) \%>\%
-  select(GEOID, workers, transit)
+  suppressMessages() \%>\%  # Hide tidycensus messages
+  select(geoid_tract = GEOID, pop = P1_001N)
 
-df_cca <- xwalk_tract2cca_2010 \%>\%  # Note use of 2010 version with 2019 ACS
-  left_join(df_tract, by = c("geoid_tract" = "GEOID")) \%>\%
-  mutate(transit = transit * pop_pct,
-         workers = workers * pop_pct) \%>\%
+df_cca <- xwalk_tract2cca \%>\%
+  left_join(df_tract, by = "geoid_tract") \%>\%
+  mutate(pop = pop * pop_pct) \%>\%
   group_by(cca_num) \%>\%
-  summarize_at(vars(transit, workers), sum) \%>\%
-  mutate(transit_commute_pct = transit / workers)
+  summarize(pop = sum(pop))
 df_cca
 
 # Join to cca_sf for mapping
@@ -102,8 +100,8 @@ library(ggplot2)
 cca_sf \%>\%
   left_join(df_cca, by = "cca_num") \%>\%
   ggplot() +
-    geom_sf(aes(fill = transit_commute_pct), lwd = 0.1) +
-    scale_fill_viridis_c() +
+    geom_sf(aes(fill = pop / sqmi), lwd = 0.1) +
+    scale_fill_viridis_c(direction = -1) +
     theme_void()
 }
 \keyword{datasets}
