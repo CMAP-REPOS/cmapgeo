@@ -2,9 +2,12 @@ Package: cmapgeo
 Title: R-Friendly Geodata for the Chicago Region
 Version: 0.2.0
 Authors@R: c(
-    person("Noel", "Peterson",
+    person("Daniel", "Comeaux",
            role = c("aut", "cre"),
-           email = "npeterson@cmap.illinois.gov",
+           email = "dcomeaux@cmap.illinois.gov",
+           comment = c(ORCID = "0000-0002-8412-9092")),
+    person("Noel", "Peterson",
+           role = c("aut"),
            comment = c(ORCID = "0000-0003-1290-2362")),
     person("Chicago Metropolitan Agency for Planning",
            role = c("cph", "fnd")))
