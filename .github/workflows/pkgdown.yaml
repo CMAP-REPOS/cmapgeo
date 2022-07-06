@@ -24,9 +24,12 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
 
       - name: Query dependencies
+      # Note that the code below explicitly excludes a package, rgdal, that is
+      # not used in this package but is causing errors on export due to a
+      # mismatch between the CRAN version number and the MacOS binaries.
         run: |
           install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE)[remotes::dev_package_deps(dependencies = TRUE)$package != "rgdal",], ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
 
