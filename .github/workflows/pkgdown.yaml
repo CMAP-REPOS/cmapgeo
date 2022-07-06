@@ -24,9 +24,12 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
 
       - name: Query dependencies
+      # Manually give rgdal version number due to CRAN mismatch
         run: |
           install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
+          dependencies <- remotes::dev_package_deps(dependencies = TRUE)
+          dependencies[dependencies$package == "rgdal",3] <- "1.5-30"
+          saveRDS(dependencies, ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
 
