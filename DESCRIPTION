@@ -19,7 +19,7 @@ Description: The cmapgeo package is a repository of geodata files representing
     block groups, blocks, public use microdata areas (PUMAs) and ZIP code
     tabulation areas (ZCTAs); CMAP travel modeling zones and subzones; CMAP
     subregional Councils of Mayors (COMs); legislative districts (state and
-    federal); IDOT districts; and, Facility Planning Areas (FPAs).
+    federal); IDOT districts; and Facility Planning Areas (FPAs).
 URL: https://cmap-repos.github.io/cmapgeo, https://github.com/CMAP-REPOS/cmapgeo
 BugReports: https://github.com/CMAP-REPOS/cmapgeo/issues
 License: MIT + file LICENSE
