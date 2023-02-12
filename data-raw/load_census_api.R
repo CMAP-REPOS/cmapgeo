@@ -2,7 +2,7 @@ library(tidyverse)
 devtools::load_all()
 
 # Set common parameters
-BASE_YEAR <- 2021  # TIGER/Line vintage to use by default
+BASE_YEAR <- 2022  # TIGER/Line vintage to use by default
 STATE <- "17"  # Illinois
 COUNTIES_7CO <- c("031", "043", "089", "093", "097", "111", "197")  # CMAP 7
 COUNTIES_MPO <- c(COUNTIES_7CO, "063", "037")  # CMAP 7, plus Grundy and DeKalb
