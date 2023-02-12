@@ -185,36 +185,6 @@ block_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = BASE_YEA
   arrange(geoid_block)
 
 
-# Process 2010 Census geographies (block, block group, tract)
-# Note: remove these datasets from cmapgeo once 2021 1-year ACS is released
-tract_sf_2010 <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
-  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_tract = GEOID) %>%
-  mutate(county_fips = paste0(STATEFP, COUNTYFP),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_tract, county_fips, sqmi) %>%
-  arrange(geoid_tract)
-
-blockgroup_sf_2010 <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
-  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_blkgrp = GEOID) %>%
-  mutate(county_fips = paste0(STATEFP, COUNTYFP),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_blkgrp, county_fips, sqmi) %>%
-  arrange(geoid_blkgrp)
-
-block_sf_2010 <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
-  filter(TRACTCE10 != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_block = GEOID10) %>%
-  mutate(county_fips = paste0(STATEFP10, COUNTYFP10),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_block, county_fips, sqmi) %>%
-  arrange(geoid_block)
-
-
 # Save processed data to package's data dir
 usethis::use_data(county_sf, overwrite = TRUE)
 usethis::use_data(township_sf, overwrite = TRUE)
@@ -228,6 +198,3 @@ usethis::use_data(idot_sf, overwrite = TRUE)
 usethis::use_data(tract_sf, overwrite = TRUE)
 usethis::use_data(blockgroup_sf, overwrite = TRUE)
 usethis::use_data(block_sf, overwrite = TRUE)
-usethis::use_data(tract_sf_2010, overwrite = TRUE)
-usethis::use_data(blockgroup_sf_2010, overwrite = TRUE)
-usethis::use_data(block_sf_2010, overwrite = TRUE)
