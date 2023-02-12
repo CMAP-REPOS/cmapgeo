@@ -8,9 +8,8 @@
 #'
 #' The Census Blocks within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2021 vintage. **Use `block_sf` for data from the 2020 decennial census or the
-#' American Community Survey (ACS) from 2020 onward. For data from the 2010
-#' decennial census or ACS from 2010 through 2019, use `block_sf_2010`.**
+#' 2022 vintage. **Use `block_sf` for data from the 2020 decennial census or the
+#' American Community Survey (ACS) from 2020 onward.**
 #'
 #' Census Bureau description:
 #'
@@ -54,20 +53,11 @@
 #' ggplot(block_sf) + geom_sf(lwd = 0.1) + theme_void()
 "block_sf"
 
-#' @rdname block_sf
-#' @format `block_sf_2010` is a multipolygon `sf` object with
-#' `r nrow(block_sf_2010)` rows and `r ncol(block_sf_2010)` variables.
-"block_sf_2010"
-
-
 #' Census Block Groups
 #'
 #' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2021 vintage. **Use `blockgroup_sf` for data from the 2020 decennial census
-#' or the American Community Survey (ACS) from 2020 onward. For data from the
-#' 2010 decennial census or ACS from 2010 through 2019, use
-#' `blockgroup_sf_2010`.**
+#' 2022 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -114,19 +104,11 @@
 #' ggplot(blockgroup_sf) + geom_sf(lwd = 0.1) + theme_void()
 "blockgroup_sf"
 
-#' @rdname blockgroup_sf
-#' @format `blockgroup_sf_2010` is a polygon `sf` object with
-#' `r nrow(blockgroup_sf_2010)` rows and `r ncol(blockgroup_sf_2010)` variables.
-"blockgroup_sf_2010"
-
-
 #' Census Tracts
 #'
 #' The Census Tracts within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2021 vintage. **Use `tract_sf` for data from the 2020 decennial census or the
-#' American Community Survey (ACS) from 2020 onward. For data from the 2010
-#' decennial census or ACS from 2010 through 2019, use `tract_sf_2010`.**
+#' 2022 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -182,19 +164,11 @@
 #' ggplot(tract_sf) + geom_sf(lwd = 0.1) + theme_void()
 "tract_sf"
 
-#' @rdname tract_sf
-#' @format `tract_sf_2010` is a polygon `sf` object with `r nrow(tract_sf_2010)`
-#' rows and `r ncol(tract_sf_2010)` variables.
-"tract_sf_2010"
-
-
 #' Census Public Use Microdata Areas (PUMAs)
 #'
 #' The Census PUMAs covering the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2021 vintage. **These PUMAs are valid for use with ACS PUMS data from 2012
-#' through 2021. They will be superseded by the 2020 PUMAs when the 2022 ACS
-#' data is published.**
+#' 2022 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -203,14 +177,17 @@
 #' census records that are screened to protect confidentiality. These extracts
 #' are referred to as public use microdata sample (PUMS) files.*
 #'
-#' *"For the 2010 Census, each state, the District of Columbia, Puerto Rico, and
-#' some Island Area participants delineated PUMAs for use in presenting PUMS
-#' data based on a 5 percent sample of decennial census or American Community
-#' Survey data. These areas are required to contain at least 100,000 people.
-#' This is different from Census 2000 when two types of PUMAs were defined: a 5
-#' percent PUMA as for 2010 and an additional super-PUMA designed to provide a 1
-#' percent sample. The PUMAs are identified by a five-digit census code unique
-#' within state."*
+#' *"PUMAs are statistical geographic areas defined for the tabulation and
+#' dissemination of American Community Survey (ACS) and Puerto Rico Community
+#' Survey Public Use Microdata Sample (PUMS) data as well as ACS period
+#' estimates, and decennial census data. Nesting within states or equivalent
+#' entities, PUMAs cover the entirety of the United States, Puerto Rico, Guam,
+#' and the U.S. Virgin Islands. PUMA delineations are subject to population
+#' threshold criteria, “building block5” geography criteria, and geographic
+#' nesting criteria. State Data Centers (SDCs) define PUMAs with the cooperation
+#' of regional, state, local, and tribal governments, organizations, and other
+#' interested data users. Each PUMA must have a minimum population of 100,000 at
+#' the time of delineation and throughout the decade.*
 #'
 #' @format
 #' A multipolygon `sf` object with `r nrow(puma_sf)` rows and `r ncol(puma_sf)`
@@ -239,7 +216,7 @@
 #'
 #' The Census ZCTAs covering the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2021 vintage.
+#' 2022 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -287,10 +264,11 @@
 #' Illinois State Senate Districts
 #'
 #' The Illinois General Assembly Senate Districts. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2021 vintage. **These districts were in effect for
+#' TIGER/Line shapefiles, 2022 vintage. **These districts were in effect for
 #' elections from 2012 through 2020 (i.e. the 98th through 102nd General
 #' Assemblies). They will be superseded by new district boundaries for the 2022
-#' election (for the 103rd General Assembly).**
+#' election (for the 103rd General Assembly). Updated shapefiles from the Census
+#' Bureau are expected in spring 2023.**
 #'
 #' Census Bureau description:
 #'
@@ -343,10 +321,12 @@
 #' Illinois State House Districts
 #'
 #' The Illinois General Assembly House Districts. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2021 vintage. **These districts were in effect for
+#' TIGER/Line shapefiles, 2022 vintage. **These districts were in effect for
 #' elections from 2012 through 2020 (i.e. the 98th through 102nd General
 #' Assemblies). They will be superseded by new district boundaries for the 2022
-#' election (for the 103rd General Assembly).**
+#' election (for the 103rd General Assembly). As with Illinois State Senate
+#' districts, updated files are expected from the Census Bureau in spring
+#' 2023.**
 #'
 #' Census Bureau description:
 #'
@@ -399,10 +379,10 @@
 #' U.S. Congressional Districts
 #'
 #' The United States Congressional Districts in the state of Illinois. From the
-#' US Census Bureau's TIGER/Line shapefiles, 2021 vintage. **These districts
+#' US Census Bureau's TIGER/Line shapefiles, 2022 vintage. **These districts
 #' were in effect for elections from 2012 through 2020 (i.e. the 113th through
 #' 117th Congresses). They will be superseded by new district boundaries for the
-#' 2022 election (for the 118th Congress).**
+#' 2022 election (for the 118th Congress). Updates are expected in spring 2023.**
 #'
 #' Census Bureau description:
 #'
@@ -442,7 +422,7 @@
 #' The 284 municipalities (also referred to as "incorporated places" in Census
 #' Bureau terminology) that are at least partially within the 7-county Chicago
 #' Metropolitan Agency for Planning (CMAP) region. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2021 vintage.
+#' TIGER/Line shapefiles, 2022 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -483,7 +463,7 @@
 #' Bureau terminology) that are within the CMAP Metropolitan Planning Area
 #' (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
 #' Grundy County and Sandwich & Somonauk Townships in DeKalb County.) From the
-#' US Census Bureau's TIGER/Line shapefiles, 2021 vintage.
+#' US Census Bureau's TIGER/Line shapefiles, 2022 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -526,7 +506,7 @@
 #' The counties that are within the CMAP travel modeling area **or** the
 #' "Chicago-Naperville-Elgin, IL-IN-WI" Metropolitan Statistical Area (as
 #' defined by the United States Office of Management and Budget). From the US
-#' Census Bureau's TIGER/Line shapefiles, 2021 vintage.
+#' Census Bureau's TIGER/Line shapefiles, 2022 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -577,7 +557,7 @@
 #' by the Illinois Department of Transportation (IDOT). Includes a column
 #' indicating which of the five transportation regions each district belongs to.
 #' Created using the county boundaries in the US Census Bureau's TIGER/Line
-#' shapefiles, 2021 vintage.
+#' shapefiles, 2022 vintage.
 #'
 #' @format
 #' A polygon `sf` object with `r nrow(idot_sf)` rows and `r ncol(idot_sf)`
@@ -606,7 +586,7 @@
 
 #' Chicago Community Areas (CCAs)
 #'
-#' The official boundaries of the Chicago Community Areas. Obtained 3/24/2021.
+#' The official boundaries of the Chicago Community Areas. Obtained 2/12/2023.
 #'
 #' @format
 #' A multipolygon `sf` object with `r nrow(cca_sf)` rows and `r ncol(cca_sf)`
@@ -631,7 +611,8 @@
 #' Chicago Wards
 #'
 #' The official boundaries of the Chicago wards established in May of 2015.
-#' Obtained 3/24/2021.
+#' Obtained 2/12/2023. Updated boundaries will be provided once the 2023 wards
+#' come into effect in May 2023.
 #'
 #' @format
 #' A multipolygon `sf` object with `r nrow(ward_sf)` rows and `r ncol(ward_sf)`
@@ -679,7 +660,7 @@
 #' }
 #'
 #' @source
-#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/cmap-metropolitan-planning-area-september-2014)
+#' [CMAP Data Hub (temporarily offline)](https://datahub.cmap.illinois.gov/dataset/cmap-metropolitan-planning-area-september-2014)
 #'
 #' @examples
 #' # Display the CMAP MPA counties with ggplot2
@@ -726,7 +707,7 @@
 #' }
 #'
 #' @source
-#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries)
+#' [CMAP Data Hub (temporarily offline)](https://datahub.cmap.illinois.gov/dataset/councils-of-mayors-boundaries)
 #'
 #' @seealso
 #' <https://www.cmap.illinois.gov/committees/advisory/council-of-mayors/subregional-councils>
@@ -772,7 +753,7 @@
 #' }
 #'
 #' @source
-#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/on-to-2050-layer-edas-disinvested-areas)
+#' [CMAP Data Hub (temporarily offline)](https://datahub.cmap.illinois.gov/dataset/on-to-2050-layer-edas-disinvested-areas)
 #'
 #' @seealso
 #' <https://www.cmap.illinois.gov/2050/maps/eda>
@@ -811,7 +792,7 @@
 #' }
 #'
 #' @source
-#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/facility-planning-areas-fpa)
+#' [CMAP Data Hub (temporarily offline)](https://datahub.cmap.illinois.gov/dataset/facility-planning-areas-fpa)
 #'
 #' @seealso
 #' <https://www.cmap.illinois.gov/programs/water/water-quality/wastewater-planning>
@@ -875,7 +856,7 @@
 #' }
 #'
 #' @source
-#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems)
+#' [CMAP Data Hub (temporarily offline)](https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems)
 #'
 #' @examples
 #' # Display the subzones with ggplot2
@@ -915,7 +896,7 @@
 #' }
 #'
 #' @source
-#' [CMAP Data Hub](https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems)
+#' [CMAP Data Hub (temporarily offline)](https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems)
 #'
 #' @examples
 #' # Display the zones with ggplot2
