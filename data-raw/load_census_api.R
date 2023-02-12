@@ -71,7 +71,7 @@ municipality_sf <- tigris::places(state = STATE, year = BASE_YEAR) %>%
   arrange(geoid_place)
 
 # Process Congressional Districts (U.S. House of Representatives)
-# Note: still 2011 districts, as of 2020 TIGER/Line
+# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
   filter(STATEFP == STATE, LSAD == "C2") %>%
   sf::st_transform(cmap_crs) %>%
@@ -86,7 +86,7 @@ congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
   arrange(dist_num)
 
 # Process IL House Districts (Illinois General Assembly)
-# Note: still 2011 districts, as of 2020 TIGER/Line
+# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "lower", year = BASE_YEAR) %>%
   filter(LSAD == "LL") %>%
   sf::st_transform(cmap_crs) %>%
@@ -98,7 +98,7 @@ ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "low
   arrange(dist_num)
 
 # Process IL Senate Districts (Illinois General Assembly)
-# Note: still 2011 districts, as of 2020 TIGER/Line
+# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "upper", year = BASE_YEAR) %>%
   filter(LSAD == "LU") %>%
   sf::st_transform(cmap_crs) %>%
