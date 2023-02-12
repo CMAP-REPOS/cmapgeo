@@ -28,7 +28,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Noel Peterson \email{npeterson@cmap.illinois.gov} (\href{https://orcid.org/0000-0003-1290-2362}{ORCID})
+\strong{Maintainer}: Daniel Comeaux \email{dcomeaux@cmap.illinois.gov} (\href{https://orcid.org/0000-0002-8412-9092}{ORCID})
+
+Authors:
+\itemize{
+  \item Noel Peterson (\href{https://orcid.org/0000-0003-1290-2362}{ORCID})
+}
 
 Other contributors:
 \itemize{

@@ -32,7 +32,7 @@ county_sf
 The counties that are within the CMAP travel modeling area \strong{or} the
 "Chicago-Naperville-Elgin, IL-IN-WI" Metropolitan Statistical Area (as
 defined by the United States Office of Management and Budget). From the US
-Census Bureau's TIGER/Line shapefiles, 2021 vintage.
+Census Bureau's TIGER/Line shapefiles, 2022 vintage.
 }
 \details{
 Census Bureau description:

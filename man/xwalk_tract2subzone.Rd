@@ -6,7 +6,7 @@
 \alias{xwalk_tract2subzone_2010}
 \title{Tract-to-Subzone Crosswalk}
 \format{
-\code{xwalk_tract2subzone} is a tibble with 16800 rows and
+\code{xwalk_tract2subzone} is a tibble with 16799 rows and
 6 variables:
 \describe{
 \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census Bureau.

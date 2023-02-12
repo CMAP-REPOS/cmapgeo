@@ -22,7 +22,7 @@ status. Character.}
 }
 }
 \source{
-\href{https://datahub.cmap.illinois.gov/dataset/on-to-2050-layer-edas-disinvested-areas}{CMAP Data Hub}
+\href{https://datahub.cmap.illinois.gov/dataset/on-to-2050-layer-edas-disinvested-areas}{CMAP Data Hub (temporarily offline)}
 }
 \usage{
 eda_sf

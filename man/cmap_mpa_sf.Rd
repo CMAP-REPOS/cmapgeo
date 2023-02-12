@@ -17,7 +17,7 @@ Character.}
 }
 }
 \source{
-\href{https://datahub.cmap.illinois.gov/dataset/cmap-metropolitan-planning-area-september-2014}{CMAP Data Hub}
+\href{https://datahub.cmap.illinois.gov/dataset/cmap-metropolitan-planning-area-september-2014}{CMAP Data Hub (temporarily offline)}
 }
 \usage{
 cmap_mpa_sf

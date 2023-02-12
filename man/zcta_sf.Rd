@@ -24,7 +24,7 @@ zcta_sf
 \description{
 The Census ZCTAs covering the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2021 vintage.
+2022 vintage.
 }
 \details{
 Census Bureau description:

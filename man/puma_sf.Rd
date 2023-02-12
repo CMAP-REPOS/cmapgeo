@@ -5,7 +5,7 @@
 \alias{puma_sf}
 \title{Census Public Use Microdata Areas (PUMAs)}
 \format{
-A multipolygon \code{sf} object with 58 rows and 4
+A multipolygon \code{sf} object with 60 rows and 4
 variables:
 \describe{
 \item{geoid_puma}{Unique 7-digit PUMA ID, assigned by the Census Bureau.
@@ -26,9 +26,7 @@ puma_sf
 \description{
 The Census PUMAs covering the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2021 vintage. \strong{These PUMAs are valid for use with ACS PUMS data from 2012
-through 2021. They will be superseded by the 2020 PUMAs when the 2022 ACS
-data is published.}
+2022 vintage.
 }
 \details{
 Census Bureau description:
@@ -38,14 +36,17 @@ Census Bureau provides selected extracts of raw data from a small sample of
 census records that are screened to protect confidentiality. These extracts
 are referred to as public use microdata sample (PUMS) files.}
 
-\emph{"For the 2010 Census, each state, the District of Columbia, Puerto Rico, and
-some Island Area participants delineated PUMAs for use in presenting PUMS
-data based on a 5 percent sample of decennial census or American Community
-Survey data. These areas are required to contain at least 100,000 people.
-This is different from Census 2000 when two types of PUMAs were defined: a 5
-percent PUMA as for 2010 and an additional super-PUMA designed to provide a 1
-percent sample. The PUMAs are identified by a five-digit census code unique
-within state."}
+\emph{"PUMAs are statistical geographic areas defined for the tabulation and
+dissemination of American Community Survey (ACS) and Puerto Rico Community
+Survey Public Use Microdata Sample (PUMS) data as well as ACS period
+estimates, and decennial census data. Nesting within states or equivalent
+entities, PUMAs cover the entirety of the United States, Puerto Rico, Guam,
+and the U.S. Virgin Islands. PUMA delineations are subject to population
+threshold criteria, “building block5” geography criteria, and geographic
+nesting criteria. State Data Centers (SDCs) define PUMAs with the cooperation
+of regional, state, local, and tribal governments, organizations, and other
+interested data users. Each PUMA must have a minimum population of 100,000 at
+the time of delineation and throughout the decade.}
 }
 \examples{
 # Display the PUMAs with ggplot2
