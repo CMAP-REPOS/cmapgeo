@@ -110,18 +110,16 @@ ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "up
   arrange(dist_num)
 
 # Process Public Use Microddata Areas (PUMAs)
-# Note: still 2010 boundaries, as of 2020 TIGER/Line
+# Note: Now includes 2020 boundaries, as of 2022 TIGER/Line
 puma_sf <- tigris::pumas(state = STATE, year = BASE_YEAR) %>%
   sf::st_transform(cmap_crs) %>%
   filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
   rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
-  rename(geoid_puma = GEOID10,
-         name = NAMELSAD10) %>%
+  rename(geoid_puma = GEOID20,
+         name = NAMELSAD20) %>%
   mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
   select(geoid_puma, name, sqmi) %>%
-  arrange(geoid_puma) %>%
-  ## Manually exclude one PUMA, which appears to mistakenly include a *tiny* block in McHenry
-  filter(geoid_puma != "1702901")
+  arrange(geoid_puma)
 
 # Process ZIP Code Tabulation Areas (ZCTAs)
 zcta_sf <- tigris::zctas(starts_with = "6", year = BASE_YEAR) %>%
