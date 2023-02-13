@@ -2,7 +2,7 @@ library(tidyverse)
 devtools::load_all()
 
 # Set parameters
-tigerline_year <- 2021  # Latest TIGER/Line vintage
+tigerline_year <- 2022  # Latest TIGER/Line vintage
 lehd_year <- 2019  # Latest LEHD year available, for employment data
 census_year <- 2020  # Latest Decennial Census
 census_vars <- c("H1_001N", "H1_002N", "P1_001N")  # HU, HH, POP vars in 2020 redistricting data
@@ -54,10 +54,11 @@ lehd_data <- lehdr::grab_lodes(
   select(w_geocode, emp = C000)
 
 
-### PROCESS LEHD EMPLOYMENT DATA USING 2010 CENSUS BLOCKS ###
-# Note: this section is only needed until LEHD switches to use the 2020 blocks.
-# As of the 2019 LEHD, it still uses the 2010 blocks. Once it switches, remove
-# this section and the LEHD data will be joined to block_data directly.
+### PROCESS LEHD EMPLOYMENT DATA USING 2010 CENSUS BLOCKS
+### Note: this section is only needed until LEHD switches to use the 2020
+# blocks. This is still needed as of February 12, 2023. As of the 2019 LEHD, it
+# still uses the 2010 blocks. Once it switches, remove this section and the LEHD
+# data will be joined to block_data directly.
 
 # Get 2010 Census block geometries for entire modeling area
 block2010_21co_sf <- tigris::blocks(state = "IL", county = counties_il, year = 2019) %>%

@@ -21,7 +21,7 @@ variables:
 cca_sf
 }
 \description{
-The official boundaries of the Chicago Community Areas. Obtained 3/24/2021.
+The official boundaries of the Chicago Community Areas. Obtained 2/12/2023.
 }
 \examples{
 # Display the CCAs with ggplot2

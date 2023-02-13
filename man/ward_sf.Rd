@@ -21,7 +21,8 @@ ward_sf
 }
 \description{
 The official boundaries of the Chicago wards established in May of 2015.
-Obtained 3/24/2021.
+Obtained 2/12/2023. Updated boundaries will be provided once the 2023 wards
+come into effect in May 2023.
 }
 \examples{
 # Display the wards with ggplot2

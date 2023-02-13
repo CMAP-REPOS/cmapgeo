@@ -28,7 +28,7 @@ first 2 digits are the state FIPS code. Character.}
 }
 }
 \source{
-\href{https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems}{CMAP Data Hub}
+\href{https://datahub.cmap.illinois.gov/dataset/cmap-modeling-zone-systems}{CMAP Data Hub (temporarily offline)}
 }
 \usage{
 zone_sf

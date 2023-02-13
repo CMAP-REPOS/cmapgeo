@@ -6,7 +6,7 @@
 \alias{xwalk_blockgroup2zone_2010}
 \title{Block Group-to-Zone Crosswalk}
 \format{
-\code{xwalk_blockgroup2zone} is a tibble with 13289 rows
+\code{xwalk_blockgroup2zone} is a tibble with 13288 rows
 and 6 variables:
 \describe{
 \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census

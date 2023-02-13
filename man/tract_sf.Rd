@@ -3,7 +3,6 @@
 \docType{data}
 \name{tract_sf}
 \alias{tract_sf}
-\alias{tract_sf_2010}
 \title{Census Tracts}
 \format{
 \code{tract_sf} is a multipolygon \code{sf} object with 2070 rows and
@@ -16,9 +15,6 @@ Character.}
 \item{sqmi}{Area in square miles. Double.}
 \item{geometry}{Feature geometry. \code{sf} multipolygon.}
 }
-
-\code{tract_sf_2010} is a polygon \code{sf} object with 1983
-rows and 4 variables.
 }
 \source{
 US Census Bureau
@@ -26,15 +22,11 @@ US Census Bureau
 }
 \usage{
 tract_sf
-
-tract_sf_2010
 }
 \description{
 The Census Tracts within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2021 vintage. \strong{Use \code{tract_sf} for data from the 2020 decennial census or the
-American Community Survey (ACS) from 2020 onward. For data from the 2010
-decennial census or ACS from 2010 through 2019, use \code{tract_sf_2010}.}
+2022 vintage.
 }
 \details{
 Census Bureau description:

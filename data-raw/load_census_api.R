@@ -2,7 +2,7 @@ library(tidyverse)
 devtools::load_all()
 
 # Set common parameters
-BASE_YEAR <- 2021  # TIGER/Line vintage to use by default
+BASE_YEAR <- 2022  # TIGER/Line vintage to use by default
 STATE <- "17"  # Illinois
 COUNTIES_7CO <- c("031", "043", "089", "093", "097", "111", "197")  # CMAP 7
 COUNTIES_MPO <- c(COUNTIES_7CO, "063", "037")  # CMAP 7, plus Grundy and DeKalb
@@ -71,7 +71,7 @@ municipality_sf <- tigris::places(state = STATE, year = BASE_YEAR) %>%
   arrange(geoid_place)
 
 # Process Congressional Districts (U.S. House of Representatives)
-# Note: still 2011 districts, as of 2020 TIGER/Line
+# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
   filter(STATEFP == STATE, LSAD == "C2") %>%
   sf::st_transform(cmap_crs) %>%
@@ -86,7 +86,7 @@ congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
   arrange(dist_num)
 
 # Process IL House Districts (Illinois General Assembly)
-# Note: still 2011 districts, as of 2020 TIGER/Line
+# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "lower", year = BASE_YEAR) %>%
   filter(LSAD == "LL") %>%
   sf::st_transform(cmap_crs) %>%
@@ -98,7 +98,7 @@ ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "low
   arrange(dist_num)
 
 # Process IL Senate Districts (Illinois General Assembly)
-# Note: still 2011 districts, as of 2020 TIGER/Line
+# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "upper", year = BASE_YEAR) %>%
   filter(LSAD == "LU") %>%
   sf::st_transform(cmap_crs) %>%
@@ -110,18 +110,16 @@ ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "up
   arrange(dist_num)
 
 # Process Public Use Microddata Areas (PUMAs)
-# Note: still 2010 boundaries, as of 2020 TIGER/Line
+# Note: Now includes 2020 boundaries, as of 2022 TIGER/Line
 puma_sf <- tigris::pumas(state = STATE, year = BASE_YEAR) %>%
   sf::st_transform(cmap_crs) %>%
   filter(intersects_cmap(.)) %>%  # Restrict to CMAP region
   rmapshaper::ms_erase(temp_lakemich_sf) %>%  # Erase Lake Michigan
-  rename(geoid_puma = GEOID10,
-         name = NAMELSAD10) %>%
+  rename(geoid_puma = GEOID20,
+         name = NAMELSAD20) %>%
   mutate(sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
   select(geoid_puma, name, sqmi) %>%
-  arrange(geoid_puma) %>%
-  ## Manually exclude one PUMA, which appears to mistakenly include a *tiny* block in McHenry
-  filter(geoid_puma != "1702901")
+  arrange(geoid_puma)
 
 # Process ZIP Code Tabulation Areas (ZCTAs)
 zcta_sf <- tigris::zctas(starts_with = "6", year = BASE_YEAR) %>%
@@ -187,36 +185,6 @@ block_sf <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = BASE_YEA
   arrange(geoid_block)
 
 
-# Process 2010 Census geographies (block, block group, tract)
-# Note: remove these datasets from cmapgeo once 2021 1-year ACS is released
-tract_sf_2010 <- tigris::tracts(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
-  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_tract = GEOID) %>%
-  mutate(county_fips = paste0(STATEFP, COUNTYFP),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_tract, county_fips, sqmi) %>%
-  arrange(geoid_tract)
-
-blockgroup_sf_2010 <- tigris::block_groups(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
-  filter(TRACTCE != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_blkgrp = GEOID) %>%
-  mutate(county_fips = paste0(STATEFP, COUNTYFP),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_blkgrp, county_fips, sqmi) %>%
-  arrange(geoid_blkgrp)
-
-block_sf_2010 <- tigris::blocks(state = STATE, county = COUNTIES_7CO, year = 2019) %>%
-  filter(TRACTCE10 != "990000") %>%  # Exclude Lake Michigan tracts
-  sf::st_transform(cmap_crs) %>%
-  rename(geoid_block = GEOID10) %>%
-  mutate(county_fips = paste0(STATEFP10, COUNTYFP10),
-         sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-  select(geoid_block, county_fips, sqmi) %>%
-  arrange(geoid_block)
-
-
 # Save processed data to package's data dir
 usethis::use_data(county_sf, overwrite = TRUE)
 usethis::use_data(township_sf, overwrite = TRUE)
@@ -230,6 +198,3 @@ usethis::use_data(idot_sf, overwrite = TRUE)
 usethis::use_data(tract_sf, overwrite = TRUE)
 usethis::use_data(blockgroup_sf, overwrite = TRUE)
 usethis::use_data(block_sf, overwrite = TRUE)
-usethis::use_data(tract_sf_2010, overwrite = TRUE)
-usethis::use_data(blockgroup_sf_2010, overwrite = TRUE)
-usethis::use_data(block_sf_2010, overwrite = TRUE)

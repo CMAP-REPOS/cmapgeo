@@ -24,10 +24,12 @@ ilga_house_sf
 }
 \description{
 The Illinois General Assembly House Districts. From the US Census Bureau's
-TIGER/Line shapefiles, 2021 vintage. \strong{These districts were in effect for
+TIGER/Line shapefiles, 2022 vintage. \strong{These districts were in effect for
 elections from 2012 through 2020 (i.e. the 98th through 102nd General
 Assemblies). They will be superseded by new district boundaries for the 2022
-election (for the 103rd General Assembly).}
+election (for the 103rd General Assembly). As with Illinois State Senate
+districts, updated files are expected from the Census Bureau in spring
+2023.}
 }
 \details{
 Census Bureau description:

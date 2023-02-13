@@ -18,7 +18,7 @@ Character.}
 }
 }
 \source{
-\href{https://datahub.cmap.illinois.gov/dataset/facility-planning-areas-fpa}{CMAP Data Hub}
+\href{https://datahub.cmap.illinois.gov/dataset/facility-planning-areas-fpa}{CMAP Data Hub (temporarily offline)}
 }
 \usage{
 fpa_sf

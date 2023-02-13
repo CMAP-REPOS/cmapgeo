@@ -29,7 +29,7 @@ The political townships (also referred to as "county subdivisions" in Census
 Bureau terminology) that are within the CMAP Metropolitan Planning Area
 (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
 Grundy County and Sandwich & Somonauk Townships in DeKalb County.) From the
-US Census Bureau's TIGER/Line shapefiles, 2021 vintage.
+US Census Bureau's TIGER/Line shapefiles, 2022 vintage.
 }
 \details{
 Census Bureau description:

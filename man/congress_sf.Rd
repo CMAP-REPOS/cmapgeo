@@ -25,10 +25,10 @@ congress_sf
 }
 \description{
 The United States Congressional Districts in the state of Illinois. From the
-US Census Bureau's TIGER/Line shapefiles, 2021 vintage. \strong{These districts
+US Census Bureau's TIGER/Line shapefiles, 2022 vintage. \strong{These districts
 were in effect for elections from 2012 through 2020 (i.e. the 113th through
 117th Congresses). They will be superseded by new district boundaries for the
-2022 election (for the 118th Congress).}
+2022 election (for the 118th Congress). Updates are expected in spring 2023.}
 }
 \details{
 Census Bureau description:
