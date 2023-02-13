@@ -3,14 +3,13 @@ devtools::load_all()
 
 # Define CMAP colors
 cmap_colors <- sort(c(
-  blue_dk = "#0f3e8b",
-  green_dk = "#7dc242",
-  red_dk = "#d93636",
-  gold_dk = "#cca62b",
-  blue_lt = "#73c9e3",
-  green_lt = "#c7de75",
-  red_lt = "#e5a872",
-  gold_lt = "#e6d170"
+  blue_dk = "#1e478e",
+  green_dk = "#3e6730",
+  red_dk = "#ca3428",
+  gold_dk = "#d3b42b",
+  blue_lt = "#ade0ee",
+  green_lt = "#6dae4f",
+  gold_lt = "#e6daaf"
 ))
 
 # Create simplified geodata for logo map
