@@ -183,7 +183,7 @@
 #' estimates, and decennial census data. Nesting within states or equivalent
 #' entities, PUMAs cover the entirety of the United States, Puerto Rico, Guam,
 #' and the U.S. Virgin Islands. PUMA delineations are subject to population
-#' threshold criteria, “building block5” geography criteria, and geographic
+#' threshold criteria, “building block” geography criteria, and geographic
 #' nesting criteria. State Data Centers (SDCs) define PUMAs with the cooperation
 #' of regional, state, local, and tribal governments, organizations, and other
 #' interested data users. Each PUMA must have a minimum population of 100,000 at
