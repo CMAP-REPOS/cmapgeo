@@ -1,3 +1,10 @@
+# cmapgeo 0.2.1
+February 13, 2023
+
+* All datasets based on the Census Bureau's TIGER/Line boundaries have been updated with the 2022 vintage.
+* Adds documentation note that the CMAP Data Hub is offline. All data derived from the Data Hub will remain for reference and will be updated with new links when the CMAP Data Hub is available once again.
+* Shapefiles for 2010 Census products (blocks, tracts, and block groups) have been removed from the package to minimize file size. Crosswalks from 2010 geographies are still available for historical reference.
+
 # cmapgeo 0.2.0
 February 23, 2022
 
