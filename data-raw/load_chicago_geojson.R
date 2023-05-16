@@ -3,7 +3,7 @@ devtools::load_all()
 
 # Links to City of Chicago Socrata resources' GeoJSON exports
 CCA_GEOJSON_URL <- "https://data.cityofchicago.org/api/geospatial/cauq-8yn6?method=export&format=GeoJSON"
-WARD_GEOJSON_URL <- "https://data.cityofchicago.org/api/geospatial/sp34-6z76?method=export&format=GeoJSON"
+WARD_GEOJSON_URL <- "https://data.cityofchicago.org/api/geospatial/p293-wvbd?method=export&format=GeoJSON"
 
 # Process Chicago Community Areas
 cca_sf <- sf::st_read(CCA_GEOJSON_URL) %>%
