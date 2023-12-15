@@ -441,7 +441,7 @@
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source US Census Bureau
+#' @source
 #' US Census Bureau
 #' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
