@@ -2,7 +2,7 @@ library(tidyverse)
 devtools::load_all()
 
 # Set common parameters
-BASE_YEAR <- 2022  # TIGER/Line vintage to use by default
+BASE_YEAR <- 2023  # TIGER/Line vintage to use by default
 STATE <- "17"  # Illinois
 COUNTIES_7CO <- c("031", "043", "089", "093", "097", "111", "197")  # CMAP 7
 COUNTIES_MPO <- c(COUNTIES_7CO, "063", "037")  # CMAP 7, plus Grundy and DeKalb
@@ -86,7 +86,6 @@ congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
   arrange(dist_num)
 
 # Process IL House Districts (Illinois General Assembly)
-# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "lower", year = BASE_YEAR) %>%
   filter(LSAD == "LL") %>%
   sf::st_transform(cmap_crs) %>%
@@ -98,7 +97,6 @@ ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "low
   arrange(dist_num)
 
 # Process IL Senate Districts (Illinois General Assembly)
-# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "upper", year = BASE_YEAR) %>%
   filter(LSAD == "LU") %>%
   sf::st_transform(cmap_crs) %>%

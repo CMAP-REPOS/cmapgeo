@@ -8,7 +8,7 @@
 #'
 #' The Census Blocks within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2022 vintage. **Use `block_sf` for data from the 2020 decennial census or the
+#' 2023 vintage. **Use `block_sf` for data from the 2020 decennial census or the
 #' American Community Survey (ACS) from 2020 onward.**
 #'
 #' Census Bureau description:
@@ -57,7 +57,7 @@
 #'
 #' The Census Block Groups within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2022 vintage.
+#' 2023 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -108,7 +108,7 @@
 #'
 #' The Census Tracts within the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2022 vintage.
+#' 2023 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -168,7 +168,7 @@
 #'
 #' The Census PUMAs covering the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2022 vintage.
+#' 2023 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -216,7 +216,7 @@
 #'
 #' The Census ZCTAs covering the 7-county Chicago Metropolitan Agency for
 #' Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-#' 2022 vintage.
+#' 2023 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -264,11 +264,8 @@
 #' Illinois State Senate Districts
 #'
 #' The Illinois General Assembly Senate Districts. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2022 vintage. **These districts were in effect for
-#' elections from 2012 through 2020 (i.e. the 98th through 102nd General
-#' Assemblies). They will be superseded by new district boundaries for the 2022
-#' election (for the 103rd General Assembly). Updated shapefiles from the Census
-#' Bureau are expected in spring 2023.**
+#' TIGER/Line shapefiles, 2023 vintage. **These districts now reflect new
+#' district boundaries for the 2022 election (for the 103rd General Assembly).**
 #'
 #' Census Bureau description:
 #'
@@ -321,12 +318,8 @@
 #' Illinois State House Districts
 #'
 #' The Illinois General Assembly House Districts. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2022 vintage. **These districts were in effect for
-#' elections from 2012 through 2020 (i.e. the 98th through 102nd General
-#' Assemblies). They will be superseded by new district boundaries for the 2022
-#' election (for the 103rd General Assembly). As with Illinois State Senate
-#' districts, updated files are expected from the Census Bureau in spring
-#' 2023.**
+#' TIGER/Line shapefiles, 2023 vintage. **These districts represent new district
+#' boundaries for the 2022 election (for the 103rd General Assembly).**
 #'
 #' Census Bureau description:
 #'
@@ -379,10 +372,9 @@
 #' U.S. Congressional Districts
 #'
 #' The United States Congressional Districts in the state of Illinois. From the
-#' US Census Bureau's TIGER/Line shapefiles, 2022 vintage. **These districts
-#' were in effect for elections from 2012 through 2020 (i.e. the 113th through
-#' 117th Congresses). They will be superseded by new district boundaries for the
-#' 2022 election (for the 118th Congress). Updates are expected in spring 2023.**
+#' US Census Bureau's TIGER/Line shapefiles, 2023 vintage. **These districts
+#' represent new district boundaries for the 2022 election (for the 118th
+#' Congress).**
 #'
 #' Census Bureau description:
 #'
@@ -407,8 +399,9 @@
 #'   geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source US Census Bureau
-#' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+#' @source
+#' US Census Bureau
+#'   [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
 #' @examples
 #' # Display the Congressional Districts with ggplot2
@@ -422,7 +415,7 @@
 #' The 284 municipalities (also referred to as "incorporated places" in Census
 #' Bureau terminology) that are at least partially within the 7-county Chicago
 #' Metropolitan Agency for Planning (CMAP) region. From the US Census Bureau's
-#' TIGER/Line shapefiles, 2022 vintage.
+#' TIGER/Line shapefiles, 2023 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -437,7 +430,8 @@
 #' place usually is a city, town, village, or borough, but can have other legal
 #' descriptions."*
 #'
-#' @format A multipolygon `sf` object with `r nrow(municipality_sf)` rows and
+#' @format
+#' A multipolygon `sf` object with `r nrow(municipality_sf)` rows and
 #' `r ncol(municipality_sf)` variables:
 #' \describe{
 #'   \item{geoid_place}{Unique 7-digit place/municipality ID, assigned by the
@@ -448,6 +442,7 @@
 #' }
 #'
 #' @source US Census Bureau
+#' US Census Bureau
 #' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
 #' @examples
@@ -463,7 +458,7 @@
 #' Bureau terminology) that are within the CMAP Metropolitan Planning Area
 #' (MPA). (The MPA includes the 7 CMAP counties, plus Aux Sable Township in
 #' Grundy County and Sandwich & Somonauk Townships in DeKalb County.) From the
-#' US Census Bureau's TIGER/Line shapefiles, 2022 vintage.
+#' US Census Bureau's TIGER/Line shapefiles, 2023 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -479,7 +474,8 @@
 #' subdivided into the eight theoretical townships defined by the Cook County
 #' Clerk's Office for the purposes of collecting property tax.
 #'
-#' @format A multipolygon `sf` object with `r nrow(township_sf)` rows and
+#' @format
+#' A multipolygon `sf` object with `r nrow(township_sf)` rows and
 #' `r ncol(township_sf)` variables:
 #' \describe{
 #'   \item{geoid_cousub}{Unique 10-digit county subdivision/township ID,
@@ -491,7 +487,8 @@
 #'   \item{geometry}{Feature geometry. `sf` multipolygon.}
 #' }
 #'
-#' @source US Census Bureau
+#' @source
+#' US Census Bureau
 #' [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
 #' @examples
@@ -506,7 +503,7 @@
 #' The counties that are within the CMAP travel modeling area **or** the
 #' "Chicago-Naperville-Elgin, IL-IN-WI" Metropolitan Statistical Area (as
 #' defined by the United States Office of Management and Budget). From the US
-#' Census Bureau's TIGER/Line shapefiles, 2022 vintage.
+#' Census Bureau's TIGER/Line shapefiles, 2023 vintage.
 #'
 #' Census Bureau description:
 #'
@@ -521,7 +518,8 @@
 #' travel modeling area. The precise geographic extent of the CMAP travel
 #' modeling area is reflected in `zone_sf` and `subzone_sf`.
 #'
-#' @format A polygon `sf` object with `r nrow(county_sf)` rows and
+#' @format
+#' A polygon `sf` object with `r nrow(county_sf)` rows and
 #' `r ncol(county_sf)` variables:
 #' \describe{
 #'   \item{geoid_county}{Unique 5-digit county ID (a.k.a. FIPS code), assigned
@@ -537,7 +535,8 @@
 #'   \item{geometry}{Feature geometry. `sf` polygon.}
 #' }
 #'
-#' @source US Census Bureau
+#' @source
+#' US Census Bureau
 #'   [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'
 #'
@@ -557,7 +556,7 @@
 #' by the Illinois Department of Transportation (IDOT). Includes a column
 #' indicating which of the five transportation regions each district belongs to.
 #' Created using the county boundaries in the US Census Bureau's TIGER/Line
-#' shapefiles, 2022 vintage.
+#' shapefiles, 2023 vintage.
 #'
 #' @format
 #' A polygon `sf` object with `r nrow(idot_sf)` rows and `r ncol(idot_sf)`
@@ -569,7 +568,8 @@
 #'   \item{geometry}{Feature geometry. `sf` polygon.}
 #' }
 #'
-#' @source US Census Bureau
+#' @source
+#' US Census Bureau
 #'   [TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
 #'   counties, aggregated into
 #'   [IDOT Regions](https://idot.illinois.gov/about-idot/idot-regions/index)
