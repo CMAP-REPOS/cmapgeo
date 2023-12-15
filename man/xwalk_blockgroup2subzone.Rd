@@ -7,7 +7,7 @@
 \title{Block Group-to-Subzone Crosswalk}
 \format{
 \code{xwalk_blockgroup2subzone} is a tibble with
-22669 rows and
+22781 rows and
 6 variables:
 \describe{
 \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census

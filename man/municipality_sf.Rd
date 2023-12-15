@@ -26,7 +26,7 @@ municipality_sf
 The 284 municipalities (also referred to as "incorporated places" in Census
 Bureau terminology) that are at least partially within the 7-county Chicago
 Metropolitan Agency for Planning (CMAP) region. From the US Census Bureau's
-TIGER/Line shapefiles, 2022 vintage.
+TIGER/Line shapefiles, 2023 vintage.
 }
 \details{
 Census Bureau description:
