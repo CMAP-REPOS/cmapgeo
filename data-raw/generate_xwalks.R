@@ -2,7 +2,7 @@ library(tidyverse)
 devtools::load_all()
 
 # Set parameters
-tigerline_year <- 2022  # Latest TIGER/Line vintage
+tigerline_year <- 2023  # Latest TIGER/Line vintage
 lehd_year <- 2019  # Latest LEHD year available, for employment data
 census_year <- 2020  # Latest Decennial Census
 census_vars <- c("H1_001N", "H1_002N", "P1_001N")  # HU, HH, POP vars in 2020 redistricting data
@@ -25,15 +25,15 @@ block_21co_sf <- tigris::blocks(state = "IL", county = counties_il, year = tiger
 
 # Get population, households and housing units for modeling area Census blocks
 block_data <- tidycensus::get_decennial(
-  "block", census_vars, year = census_year, sumfile = "sf1", output = "wide",
+  "block", census_vars, year = census_year, sumfile = "pl", output = "wide",
   state = "IL", county = counties_il
 ) %>%
   bind_rows(tidycensus::get_decennial(
-    "block", census_vars, year = census_year, sumfile = "sf1", output = "wide",
+    "block", census_vars, year = census_year, sumfile = "pl", output = "wide",
     state = "IN", county = counties_in
   )) %>%
   bind_rows(tidycensus::get_decennial(
-    "block", census_vars, year = census_year, sumfile = "sf1", output = "wide",
+    "block", census_vars, year = census_year, sumfile = "pl", output = "wide",
     state = "WI", county = counties_wi
   )) %>%
   select(-NAME) %>%
@@ -56,7 +56,7 @@ lehd_data <- lehdr::grab_lodes(
 
 ### PROCESS LEHD EMPLOYMENT DATA USING 2010 CENSUS BLOCKS
 ### Note: this section is only needed until LEHD switches to use the 2020
-# blocks. This is still needed as of February 12, 2023. As of the 2019 LEHD, it
+# blocks. This is still needed as of December 15, 2023. As of the 2019 LEHD, it
 # still uses the 2010 blocks. Once it switches, remove this section and the LEHD
 # data will be joined to block_data directly.
 
@@ -448,7 +448,7 @@ block_21co_sf %>%
 
 # Check CCA sums against Census' Chicago total
 chi_data <- tidycensus::get_decennial(
-  "place", census_vars, year = census_year, sumfile = "sf1", output = "wide",
+  "place", census_vars, year = census_year, sumfile = "pl", output = "wide",
   state = "IL"
 ) %>%
   filter(NAME == "Chicago city, Illinois") %>%
