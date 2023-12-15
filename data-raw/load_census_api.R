@@ -70,12 +70,32 @@ municipality_sf <- tigris::places(state = STATE, year = BASE_YEAR) %>%
   select(geoid_place, municipality, sqmi) %>%
   arrange(geoid_place)
 
-# Process Congressional Districts (U.S. House of Representatives)
-# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
-congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
-  filter(STATEFP == STATE, LSAD == "C2") %>%
+# Process Congressional Districts (U.S. House of Representatives) Code to
+# manually download congressional districts due to issue with tigris
+# functionality on congressional districts
+
+######################################
+
+download.file("https://www2.census.gov/geo/tiger/TIGER_RD18/LAYER/CD/tl_rd22_17_cd118.zip",
+              destfile = "cd_2022.zip")
+unzip("cd_2022.zip")
+
+# Code below can be used when tigris is updated to allow for 118th Congress.
+# congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
+
+# The first line of this function should be replaced with the commented function
+# above when tigris is updated
+######################################
+congress_sf <- sf::read_sf("tl_rd22_17_cd118.shp") %>%
+  # The commented line below should be uncommented and replace the subsequent
+  # line when tigris is updated
+######################################
+  # filter(STATEFP == STATE, LSAD == "C2") %>%
+######################################
+
+  filter(STATEFP20 == STATE, LSAD20 == "C2") %>%
   sf::st_transform(cmap_crs) %>%
-  mutate(dist_num = as.integer(CD116FP),
+  mutate(dist_num = as.integer(CD118FP),
          dist_name = paste("Illinois",
                            nombre::nom_ord(dist_num, max_n = 0),
                            "Congressional District"),
@@ -84,6 +104,19 @@ congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
          sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
   select(dist_num, dist_name, dist_name_short, cmap, sqmi) %>%
   arrange(dist_num)
+
+# To remove when tigris is updated
+######################################
+file.remove("cd_2022.zip",
+            "tl_rd22_17_cd118.shx",
+            "tl_rd22_17_cd118.cpg",
+            "tl_rd22_17_cd118.dbf",
+            "tl_rd22_17_cd118.prj",
+            "tl_rd22_17_cd118.shp",
+            "tl_rd22_17_cd118.shp.ea.iso.xml",
+            "tl_rd22_17_cd118.shp.iso.xml")
+######################################
+
 
 # Process IL House Districts (Illinois General Assembly)
 ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "lower", year = BASE_YEAR) %>%
