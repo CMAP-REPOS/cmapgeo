@@ -1,35 +1,24 @@
 library(tidyverse)
 devtools::load_all()
 
-# Links to zipped shapefiles hosted on the CMAP Data Hub
+# Links to JSON shapefiles hosted on the CMAP Data Hub
 
-### CMAP MPA file is now offline - will need to be updated with new source when posted
-# CMAP_ZIP_URL <- "https://datahub.cmap.illinois.gov/dataset/2e8ed4ce-d056-4183-8d97-5f2901edb1f9/resource/832c29a6-9ca8-4459-9ff0-106c56c39a0d/download/mpocountiescmap201409.zip"
-
-# Other files now use CMAP's new data hub structure.
+MPA_URL <- "https://services5.arcgis.com/LcMXE3TFhi1BSaCY/arcgis/rest/services/Shapefile_CMAP_MPA_Boundary_September_2014/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
 COM_URL <- "https://services5.arcgis.com/LcMXE3TFhi1BSaCY/arcgis/rest/services/Councils_of_Mayors_Boundary_Shapefile_March_2013/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
 EDA_URL <- "https://services5.arcgis.com/LcMXE3TFhi1BSaCY/arcgis/rest/services/EDAs_and_Disinvested_Areas/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
 FPA_URL <- "https://services5.arcgis.com/LcMXE3TFhi1BSaCY/arcgis/rest/services/FPA_CMAP_201404_revised_6_16_/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
 SUBZONE_URL <- "https://services5.arcgis.com/LcMXE3TFhi1BSaCY/arcgis/rest/services/Trip_Generation_Zone_Subzone_Geography_2017/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
 ZONE_URL <- "https://services5.arcgis.com/LcMXE3TFhi1BSaCY/arcgis/rest/services/Traffic_Analysis_Zone_Geography_2017/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
 
-# Set temp dir to download and extract ZIP files into
-# unzip_dir <- tempdir()
-
-#### Process CMAP Metropolitan Planning Area (code temporarily not functional
-#### due to outdated URL)
-# cmap_zip <- tempfile()
-# download.file(CMAP_ZIP_URL, cmap_zip)
-# unzip(cmap_zip, exdir = unzip_dir)
-# unlink(cmap_zip)
-# cmap_mpa_sf <- sf::st_read(paste(unzip_dir, "MPOcounties_CMAP_201409.shp", sep="\\")) %>%
-#   sf::st_transform(cmap_crs) %>%
-#   rename(label_name = LabelName) %>%
-#   mutate(county_fips = paste0("17", FIPSCNTY),
-#          whole_county = !(CNTYNAME %in% c("DeKalb", "Grundy")),
-#          sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
-#   select(label_name, county_fips, whole_county, sqmi) %>%
-#   arrange(desc(whole_county), county_fips)
+# Process CMAP Metropolitan Planning Area
+cmap_mpa_sf <- sf::st_read(MPA_URL) %>%
+  sf::st_transform(cmap_crs) %>%
+    rename(label_name = LabelName) %>%
+    mutate(county_fips = paste0("17", FIPSCNTY),
+           whole_county = !(CNTYNAME %in% c("DeKalb", "Grundy")),
+           sqmi = unclass(sf::st_area(geometry) / sqft_per_sqmi)) %>%
+    select(label_name, county_fips, whole_county, sqmi) %>%
+    arrange(desc(whole_county), county_fips)
 
 # Process Councils of Mayors
 com_sf <- sf::st_read(COM_URL) %>%
