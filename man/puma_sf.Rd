@@ -26,7 +26,7 @@ puma_sf
 \description{
 The Census PUMAs covering the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2022 vintage.
+2023 vintage.
 }
 \details{
 Census Bureau description:

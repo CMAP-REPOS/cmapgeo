@@ -27,7 +27,7 @@ block_sf
 \description{
 The Census Blocks within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2022 vintage. \strong{Use \code{block_sf} for data from the 2020 decennial census or the
+2023 vintage. \strong{Use \code{block_sf} for data from the 2020 decennial census or the
 American Community Survey (ACS) from 2020 onward.}
 }
 \details{

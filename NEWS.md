@@ -1,3 +1,10 @@
+# cmapgeo 0.2.2
+December 29, 2023
+
+* All datasets based on the Census Bureau's TIGER/Line boundaries have been updated with the 2023 vintage, including the redistricted boundaries for both state and federal legislative districts (2020 vintage). Congressional districts rely on a manual update and should be reverted to use `congressional_districts` when that function can retrieve districts from the 118th Congress.
+* All datasets based on CMAP's data hub have been migrated to the new ArcGIS Online data hub link and new file format.
+* Crosswalks and shapefiles have been updated with latest vintages.
+
 # cmapgeo 0.2.1
 February 13, 2023
 

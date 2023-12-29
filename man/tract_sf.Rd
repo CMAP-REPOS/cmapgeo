@@ -26,7 +26,7 @@ tract_sf
 \description{
 The Census Tracts within the 7-county Chicago Metropolitan Agency for
 Planning (CMAP) region. From the US Census Bureau's TIGER/Line shapefiles,
-2022 vintage.
+2023 vintage.
 }
 \details{
 Census Bureau description:

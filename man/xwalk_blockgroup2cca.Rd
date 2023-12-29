@@ -6,7 +6,7 @@
 \alias{xwalk_blockgroup2cca_2010}
 \title{Block Group-to-CCA Crosswalk}
 \format{
-\code{xwalk_blockgroup2cca} is a tibble with 2175 rows
+\code{xwalk_blockgroup2cca} is a tibble with 2185 rows
 and 6 variables:
 \describe{
 \item{geoid_blkgrp}{Unique 12-digit block group ID, assigned by the Census

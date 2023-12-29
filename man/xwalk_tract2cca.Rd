@@ -6,7 +6,7 @@
 \alias{xwalk_tract2cca_2010}
 \title{Tract-to-CCA Crosswalk}
 \format{
-\code{xwalk_tract2cca} is a tibble with 807 rows and
+\code{xwalk_tract2cca} is a tibble with 818 rows and
 6 variables:
 \describe{
 \item{geoid_tract}{Unique 11-digit tract ID, assigned by the Census

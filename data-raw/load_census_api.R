@@ -2,7 +2,7 @@ library(tidyverse)
 devtools::load_all()
 
 # Set common parameters
-BASE_YEAR <- 2022  # TIGER/Line vintage to use by default
+BASE_YEAR <- 2023  # TIGER/Line vintage to use by default
 STATE <- "17"  # Illinois
 COUNTIES_7CO <- c("031", "043", "089", "093", "097", "111", "197")  # CMAP 7
 COUNTIES_MPO <- c(COUNTIES_7CO, "063", "037")  # CMAP 7, plus Grundy and DeKalb
@@ -71,11 +71,49 @@ municipality_sf <- tigris::places(state = STATE, year = BASE_YEAR) %>%
   arrange(geoid_place)
 
 # Process Congressional Districts (U.S. House of Representatives)
-# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
-congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
-  filter(STATEFP == STATE, LSAD == "C2") %>%
+
+################################################################
+#### Code to manually download congressional districts due to issue with tigris
+#### functionality on congressional districts. All lines involving downloading
+#### temp files and extracting can be removed when tigris is updated.
+
+
+# Set temp dir to download and extract ZIP files into
+congress_unzip_dir <- tempdir()
+
+# URL for current shapefile
+congress_zip_url <- c("https://www2.census.gov/geo/tiger/TIGER_RD18/LAYER/CD/tl_rd22_17_cd118.zip")
+
+# Create temporary file, download, and unzip to temp directory before unlinking
+congress_zip <- tempfile()
+download.file(congress_zip_url, congress_zip)
+unzip(congress_zip, exdir = congress_unzip_dir)
+unlink(congress_zip)
+
+#################################################################
+
+
+#### Commnted code below can be used when tigris is updated to allow for 118th
+#### Congress.
+
+#### The first line of this function should be replaced with the commented
+#### line below when tigris is updated
+######################################
+congress_sf <- sf::read_sf(paste(congress_unzip_dir,"tl_rd22_17_cd118.shp",sep="\\")) %>%
+######################################
+# congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
+######################################
+
+
+#### The commented line below should be uncommented and replace the subsequent
+#### line when tigris is updated
+######################################
+  # filter(STATEFP == STATE, LSAD == "C2") %>%
+######################################
+  filter(STATEFP20 == STATE, LSAD20 == "C2") %>%
+######################################
   sf::st_transform(cmap_crs) %>%
-  mutate(dist_num = as.integer(CD116FP),
+  mutate(dist_num = as.integer(CD118FP),
          dist_name = paste("Illinois",
                            nombre::nom_ord(dist_num, max_n = 0),
                            "Congressional District"),
@@ -85,8 +123,8 @@ congress_sf <- tigris::congressional_districts(year = BASE_YEAR) %>%
   select(dist_num, dist_name, dist_name_short, cmap, sqmi) %>%
   arrange(dist_num)
 
+
 # Process IL House Districts (Illinois General Assembly)
-# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "lower", year = BASE_YEAR) %>%
   filter(LSAD == "LL") %>%
   sf::st_transform(cmap_crs) %>%
@@ -98,7 +136,6 @@ ilga_house_sf <- tigris::state_legislative_districts(state = STATE, house = "low
   arrange(dist_num)
 
 # Process IL Senate Districts (Illinois General Assembly)
-# Note: still 2011 districts, as of 2022 TIGER/Line. Updates are expected in spring 2023.
 ilga_senate_sf <- tigris::state_legislative_districts(state = STATE, house = "upper", year = BASE_YEAR) %>%
   filter(LSAD == "LU") %>%
   sf::st_transform(cmap_crs) %>%
