@@ -27,7 +27,7 @@ xwalk_blockgroup2cca_2010."><meta property="og:image" content="https://repositor
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cmapgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@ decennial census or ACS from 2010 through 2019, use
 
     <div id="format">
     <h2>Format</h2>
-    <p><code>xwalk_blockgroup2cca</code> is a tibble with 2175 rows
+    <p><code>xwalk_blockgroup2cca</code> is a tibble with 2185 rows
 and 6 variables:</p><dl><dt>geoid_blkgrp</dt>
 <dd><p>Unique 12-digit block group ID, assigned by the Census
 Bureau. Corresponds to <code>blockgroup_sf</code>. Character.</p></dd>
@@ -146,20 +146,20 @@ mapping, if desired.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># View the block groups with housing units split between multiple CCAs</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">xwalk_blockgroup2cca</span>, <span class="va">hu_pct</span> <span class="op">&lt;</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 22 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 33 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    geoid_blkgrp cca_num  hu_pct  hh_pct pop_pct emp_pct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 170310701012       7 1       1        1      1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 170315205003      52 0.992   0.992    0.981  1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 170315205003      55 0.008<span style="text-decoration: underline;">16</span> 0.008<span style="text-decoration: underline;">33</span>  0.018<span style="text-decoration: underline;">7</span> 0      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 170315206001      52 0.993   0.993    0.981  1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 170315206001      55 0.007<span style="text-decoration: underline;">12</span> 0.007<span style="text-decoration: underline;">38</span>  0.019<span style="text-decoration: underline;">4</span> 0      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 170317706022      76 0       0        0      0.188  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 170317707001      76 0       0        0      0.007<span style="text-decoration: underline;">03</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 170317707002      76 0       0        0      0.115  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 170317709022      76 0.161   0.167    0.132  0.016<span style="text-decoration: underline;">5</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 170318104003      10 0.163   0.154    0.132  0.313  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 170310619024       6 1       1        1      1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 170310701012       7 1       1        1      1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 170310814031      32 0       0        0      0.306  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 170311611002      15 0       0        0      0.262  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 170314304001      69 0       0        0      0.125  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 170315205003      52 0.992   0.992    0.981  1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 170315205003      55 0.008<span style="text-decoration: underline;">16</span> 0.008<span style="text-decoration: underline;">33</span>  0.018<span style="text-decoration: underline;">7</span> 0      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 170315206001      52 0.993   0.993    0.981  1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 170315206001      55 0.007<span style="text-decoration: underline;">12</span> 0.007<span style="text-decoration: underline;">38</span>  0.019<span style="text-decoration: underline;">4</span> 0      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 170315502002      54 0       0        0      0.008<span style="text-decoration: underline;">81</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 23 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Estimate CCA-level housing vacancy rates from block group-level Census data</span></span></span>
 <span class="r-in"><span><span class="va">df_blkgrp</span> <span class="op">&lt;-</span> <span class="fu">tidycensus</span><span class="fu">::</span><span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_decennial.html" class="external-link">get_decennial</a></span><span class="op">(</span></span></span>

@@ -28,7 +28,7 @@ census or ACS from 2010 through 2019, use xwalk_tract2subzone_2010."><meta prope
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cmapgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ census or ACS from 2010 through 2019, use <code>xwalk_tract2subzone_2010</code>.
 
     <div id="format">
     <h2>Format</h2>
-    <p><code>xwalk_tract2subzone</code> is a tibble with 16799 rows and
+    <p><code>xwalk_tract2subzone</code> is a tibble with 16877 rows and
 6 variables:</p><dl><dt>geoid_tract</dt>
 <dd><p>Unique 11-digit tract ID, assigned by the Census Bureau.
 Corresponds to <code>tract_sf</code> (although that only includes the tracts in the
@@ -149,8 +149,8 @@ use zones instead with <code>xwalk_tract2zone</code> or <code>xwalk_blockgroup2z
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   geoid_tract subzone17 hu_pct hh_pct pop_pct emp_pct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 17031081600         1  0.482  0.482   0.498   0.186</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 17031081700         1  0.374  0.385   0.390   0.132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 17031081600         1  0.482  0.482   0.498  0.186 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 17031081700         1  0.374  0.385   0.390  0.072<span style="text-decoration: underline;">1</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Map the subzones missing from xwalk_tract2subzone (i.e. no HU/HH/pop/emp)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>

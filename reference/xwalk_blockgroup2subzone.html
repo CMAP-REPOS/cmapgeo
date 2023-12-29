@@ -29,7 +29,7 @@ xwalk_blockgroup2subzone_2010."><meta property="og:image" content="https://repos
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cmapgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@ decennial census or ACS from 2010 through 2019, use
     <div id="format">
     <h2>Format</h2>
     <p><code>xwalk_blockgroup2subzone</code> is a tibble with
-22669 rows and
+22781 rows and
 6 variables:</p><dl><dt>geoid_blkgrp</dt>
 <dd><p>Unique 12-digit block group ID, assigned by the Census
 Bureau. Corresponds to <code>blockgroup_sf</code> (although that only includes the
@@ -154,8 +154,8 @@ geography is too granular for your needs, you can use zones instead with
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 170310816001         1  0.285  0.290   0.324  0.089<span style="text-decoration: underline;">5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 170310816002         1  1      1       1      1     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 170310817001         1  0.877  0.882   0.853  0.888 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 170310817002         1  0.161  0.165   0.167  0.036<span style="text-decoration: underline;">3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 170310817001         1  0.877  0.882   0.853  0.233 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 170310817002         1  0.161  0.165   0.167  0.051<span style="text-decoration: underline;">7</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Map the subzones missing from xwalk_blockgroup2subzone (i.e. no HU/HH/pop/emp)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
