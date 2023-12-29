@@ -23,6 +23,11 @@ block_21co_sf <- tigris::blocks(state = "IL", county = counties_il, year = tiger
   select(geoid_block, county_fips, sqmi) %>%
   arrange(geoid_block)
 
+### NOTE: The \code{tidycensus} calls in this section currently call the "pl" summary
+### file, as the "sf1" file is not available for 2020. Previous code leveraged
+### an auto-redirect to this table by \code{get_decennial} which was removed in
+### a subsequent update.
+#
 # Get population, households and housing units for modeling area Census blocks
 block_data <- tidycensus::get_decennial(
   "block", census_vars, year = census_year, sumfile = "pl", output = "wide",
@@ -56,7 +61,7 @@ lehd_data <- lehdr::grab_lodes(
 
 ### PROCESS LEHD EMPLOYMENT DATA USING 2010 CENSUS BLOCKS
 ### Note: this section is only needed until LEHD switches to use the 2020
-# blocks. This is still needed as of December 15, 2023. As of the 2019 LEHD, it
+# blocks. This is still needed as of December 29, 2023. As of the 2019 LEHD, it
 # still uses the 2010 blocks. Once it switches, remove this section and the LEHD
 # data will be joined to block_data directly.
 
@@ -446,6 +451,8 @@ block_21co_sf %>%
   tm_shape(filter(block_pt_sf, substr(geoid_block, 1, 12) %in% model_partial_blkgrps$geoid_blkgrp)) +
     tm_dots()
 
+### As above, this code relies on "pl" and should be replaced with "sf1" when
+### made available for 2020.
 # Check CCA sums against Census' Chicago total
 chi_data <- tidycensus::get_decennial(
   "place", census_vars, year = census_year, sumfile = "pl", output = "wide",
