@@ -1,7 +1,6 @@
 
 <!--
-
-    ####### UUUUUUUU        ,ad8888ba,   88b           d88         db         88888888ba
+&#10;    ####### UUUUUUUU        ,ad8888ba,   88b           d88         db         88888888ba
     ####### :UUUUUUU       d8"'    `"8b  888b         d888        d88b        88      "8b
     #######. :UUUUUU      d8'            88`8b       d8'88       d8'`8b       88      ,8P
     ########  :UUUUU      88             88 `8b     d8' 88      d8'  `8b      88aaaaaa8P'
@@ -9,11 +8,9 @@
     ##########:    '      Y8,            88   `8b d8'   88    d8""""""""8b    88
     #############:.        Y8a.    .a8P  88    `888'    88   d8'        `8b   88
     ################        `"Y8888Y"'   88     `8'     88  d8'          `8b  88
-    
-    
+    &#10;    
                                       PROUDLY PRESENTS
-                                                                                               
-                                                                                               
+                                                                                               &#10;                                                                                               
  ,adPPYba,  88,dPYba,,adPYba,   ,adPPYYba,  8b,dPPYba,    ,adPPYb,d8   ,adPPYba,   ,adPPYba,
 a8"     ""  88P'   "88"    "8a  ""     `Y8  88P'    "8a  a8"    `Y88  a8P_____88  a8"     "8a
 8b          88      88      88  ,adPPPPP88  88       d8  8b       88  8PP"""""""  8b       d8
@@ -21,8 +18,7 @@ a8"     ""  88P'   "88"    "8a  ""     `Y8  88P'    "8a  a8"    `Y88  a8P_____88
  `"Ybbd8"'  88      88      88  `"8bbdP"Y8  88`YbbdP"'    `"YbbdP"Y8   `"Ybbd8"'   `"YbbdP"'
                                             88            aa,    ,88
                                             88             "Y8bbdP"
-
-
+&#10;
                  An R package made with ♥ in Chicago by and for CMAP staff.
 -->
 
@@ -43,16 +39,16 @@ Metropolitan Agency for Planning](https://www.cmap.illinois.gov) (CMAP).
 Data is in the [`sf`](https://r-spatial.github.io/sf) (simple features)
 format, and includes boundaries for:
 
--   Counties
--   Municipalities
--   Chicago community areas (CCAs) and wards
--   Census tracts, block groups, blocks, public use microdata areas
-    (PUMAs) and ZIP code tabulation areas (ZCTAs)
--   CMAP travel modeling zones and subzones
--   CMAP subregional Councils of Mayors (COMs)
--   Legislative districts (state and federal)
--   IDOT districts
--   Facility Planning Areas (FPAs)
+- Counties
+- Municipalities
+- Chicago community areas (CCAs) and wards
+- Census tracts, block groups, blocks, public use microdata areas
+  (PUMAs) and ZIP code tabulation areas (ZCTAs)
+- CMAP travel modeling zones and subzones
+- CMAP subregional Councils of Mayors (COMs)
+- Legislative districts (state and federal)
+- IDOT districts
+- Facility Planning Areas (FPAs)
 
 ## Installation
 
@@ -65,3 +61,17 @@ devtools::install_github("CMAP-REPOS/cmapgeo")
 ## Then load the package as you would any other
 library(cmapgeo)
 ```
+
+## ArcGIS helper function *(new)*
+
+The `sf_from_arcgis` function is designed to help simplify and
+standardize download data from online resources like the Data Catalog,
+ArcGIS Online, and ArcGIS Enterprise. It lets you
+
+- easily filter data to the CMAP region (see the geo_filter,
+  region_filter, and townships parameters)
+- apply filters to the data before it downloads to speed up laod time
+  (see geo_filter, where, and columsn parameters)
+- automatically converts to the standard CMAP crs (see the to_cmap_crs
+  parameter)
+- and more!

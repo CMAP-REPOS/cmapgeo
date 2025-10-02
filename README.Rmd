@@ -76,3 +76,12 @@ devtools::install_github("CMAP-REPOS/cmapgeo")
 ## Then load the package as you would any other
 library(cmapgeo)
 ```
+
+## ArcGIS helper function *(new)*
+
+The `sf_from_arcgis` function is designed to help simplify and standardize download data from online resources like the Data Catalog, ArcGIS Online, and ArcGIS Enterprise. It lets you
+
+- easily filter data to the CMAP region (see the geo_filter, region_filter, and townships parameters)
+- apply filters to the data before it downloads to speed up laod time (see geo_filter, where, and columsn parameters)
+- automatically converts to the standard CMAP crs (see the to_cmap_crs parameter)
+- and more!
