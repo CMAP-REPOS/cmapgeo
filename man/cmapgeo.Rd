@@ -2,8 +2,8 @@
 % Please edit documentation in R/cmapgeo.R
 \docType{package}
 \name{cmapgeo}
-\alias{cmapgeo}
 \alias{cmapgeo-package}
+\alias{cmapgeo}
 \title{cmapgeo}
 \description{
 This package is a repository of geodata files representing various geographic
@@ -28,11 +28,13 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Daniel Comeaux \email{dcomeaux@cmap.illinois.gov} (\href{https://orcid.org/0000-0002-8412-9092}{ORCID})
+\strong{Maintainer}: Sean Connelly \email{sconnelly@cmap.illinois.gov}
 
 Authors:
 \itemize{
+  \item Daniel Comeaux \email{dcomeaux@cmap.illinois.gov} (\href{https://orcid.org/0000-0002-8412-9092}{ORCID})
   \item Noel Peterson (\href{https://orcid.org/0000-0003-1290-2362}{ORCID})
+  \item David Wells \email{dwells@cmap.illinois.gov}
 }
 
 Other contributors:
