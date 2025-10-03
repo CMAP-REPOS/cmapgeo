@@ -56,6 +56,7 @@
 #' @import dplyr
 #' @importFrom arcgisutils auth_binding
 #' @importFrom arcgisbinding arc.check_product
+#' @import esri2sf
 #' 
 #' @export
 sf_from_arcgis <- function(
